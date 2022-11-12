@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GestiPadel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--<link rel="stylesheet" href="../assets/css/style.css">-->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <!--Header-->
+    <header id="header">
+        <nav>
+            <div class="container">
+                <div class="text-center">
+                    <a href="/" class="nav-brand text-dark">Sistema de Gestão do Utilizador</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--/Header-->
+
+    <!--Main-->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <div class="filter">
+                    <a href="/"><i class="fas fa-angle-double-left"></i>Todos os utilizadores</a>
+                </div>
+            </div>
+            <div class="form-title text-center">
+                <h2 class="text-dark">Novo Utilizador</h2>
+                <span class="text-light">Utiliza o formulário para criar uma conta</span>
+            </div>
+
+            <form action="/" method="'post" id="update_user">
+                <div class="new_user">
+                    <div class="form-group">
+                        <label for="name" class="text-light">Nome</label>
+                        <input type="hidden" name="id" value="">
+                        <input type="text" name="name" value="" placeholder="Marco">
+                    </div>
+                    <div class="form-group">
+                        <label for="Email" class="text-light">Email</label>
+                        <input type="text" name="email" value="" placeholder="exemplo@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender" class="text-light">Género</label>
+                        <div class="radio inline">
+                            <input type="radio" name="gender" value="Masculino">
+                            <label for="gender" class="text-light">Masculino</label>
+                        </div>
+                        <div class="radio inline">
+                            <input type="radio" name="gender" value="Feminino">
+                            <label for="gender" class="text-light">Feminino</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nif" class="text-light">NIF</label>
+                        <input type="text" name="NIF" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone_number" class="text-light">Número de telemóvel</label>
+                        <input type="text" name="phone_number" value="">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn text-dark update">Guardar</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </main>
+
+</body>
+</html>

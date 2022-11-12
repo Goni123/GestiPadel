@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GestiPadel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--<link rel="stylesheet" href="../assets/css/style.css">-->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     
@@ -18,8 +21,54 @@
             </div>
         </nav>
     </header>
-
     <!--/Header-->
+
+    <!--Main-->
+    <main id="site-main">
+        <div class="container">
+            <div class="box-nav d-flex justify-between">
+                <a href="/adicionar-utilizador" class="border-shadow">
+                    <span class="text-gradient">Novo Utilizador <i class="fa-solid fa-user"></i></span>
+                </a>
+            </div>
+
+            <form action="/" method="'post">
+                <table class="'table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Género</th>
+                            <th>NIF</th>
+                            <th>Número telemóvel</th>
+                            <th>Ação</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Roger</td>
+                            <td>roger.ball@gmail.com</td>
+                            <td>Masculino</td>
+                            <td>2598763</td>
+                            <td>969864735</td>
+                            <td>
+                                <a href="#" class="btn border-shadow update">
+                                    <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                                </a>
+                                <a class="btn border-shadow delet"e>
+                                    <span class="text-gradient"><i class="fa-solid fa-trash"></i></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>  
+            </form>
+
+
+        </div>
+    </main>
 
 </body>
 </html>

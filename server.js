@@ -3,8 +3,8 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyparser = require("body-parser");
 const path = require('path');
+const mongoose = require('mongoose');
 
-const connectDB = require('./server/database/connection')
 
 const app = express();
 
@@ -19,6 +19,22 @@ const PORT = process.env.PORT || 8080
 app.use(morgan('tiny'));
 
 //mongodb connection
+const connectDB = async () => {
+    try{
+        // mongodb connection string
+        const con = await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            //useFindAndModify: false,
+            //useCreateIndex: true
+        })
+
+        console.log(`MongoDB connected : ${con.connection.host}`);
+    }catch(err){
+        console.log(err);
+        process.exit(1);
+    }
+}
 connectDB();
 
 //parse request to body-parser

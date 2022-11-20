@@ -8,6 +8,10 @@ const connectDB = require('./server/database/connection')
 
 const app = express();
 
+app.get('/',(req,res)=>{
+    res.render("index");
+})
+
 dotenv.config({path:'config.env'})
 const PORT = process.env.PORT || 8080
 
@@ -21,17 +25,17 @@ connectDB();
 app.use(bodyparser.urlencoded({extended:true}))
 
 //set view engine
-app.set("view engine", "html")  //pode ser html
-//app.set("views",path.resolve(__dirname,"views/html"))
+app.set("view engine", "ejs")  //pode ser html
+//app.set("views",path.resolve(__dirname,"views/ejs"))
 
 //load assets
 app.use('/css', express.static(path.resolve(__dirname,"assets/css")))
 app.use('/img', express.static(path.resolve(__dirname,"assets/img")))
 app.use('/js', express.static(path.resolve(__dirname,"assets/js")))
-app.use(express.static(path.join(__dirname, 'views')));
+//app.use(express.static(path.join(__dirname, 'views')));
 
 //load routes
-app.use('/',require('./server/routes/router'))
+//app.use('/',require('./server/routes/router'))
 
 app.listen(PORT, ()=> {
     console.log('Server is running on http://localhost:3000')

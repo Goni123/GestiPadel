@@ -23,6 +23,14 @@ let tournamentSchema = new mongoose.Schema({
             end_time:Number,
         }
     ],
+    type: {
+        type: String,
+        enum: [
+            'M','F','MF'
+        ],
+        maxLength:2,
+    },
+    hasGroup: Boolean
 })
 
 let Tournament = mongoose.model('tournamentdb', tournamentSchema);

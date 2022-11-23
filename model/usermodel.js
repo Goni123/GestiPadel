@@ -19,7 +19,6 @@ let userSchema = new mongoose.Schema({
         type:String,
         enum:['M','F','x'],
         required:true,
-
     },
     age: Number,
     nif:{

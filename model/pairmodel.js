@@ -1,5 +1,23 @@
 let mongoose = require('mongoose');
 
+let tournamentReferenceSchema= new mongoose.Schema({
+    id: mongoose.Schema.Types.ObjectID,
+    pago: {
+        type: Boolean,
+        default: false
+    },
+    level:mongoose.Schema.Types.ObjectID,
+    group: String,
+    group_position: Number,
+    unavailability:
+        [
+            {
+                time:    Date,
+                user: mongoose.Schema.Types.ObjectId,
+
+            }
+        ],
+})
 let pairSchema = new mongoose.Schema({
     user1:{
         type: mongoose.Schema.Types.ObjectID,
@@ -13,20 +31,9 @@ let pairSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    tournaments:[
-            {
-                id: mongoose.Schema.Types.ObjectID,
-                pago: {
-                    type: Boolean,
-                    default: false
-                },
-                level:mongoose.Schema.Types.ObjectID,
-                group: String,
-                group_position: Number,
-            }
-    ]
+    tournaments:[ tournamentReferenceSchema ]
 })
 
 let Pair = mongoose.model('pairdb', pairSchema);
-
-module.exports = Pair;
+let TourRefModel = mongoose.model('tournamentRef',tournamentReferenceSchema)
+module.exports = {Pair,TourRefModel};

@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const bodyparser = require("body-parser");
 const path = require('path');
 const mongoose = require('mongoose');
+const { create } = require('./model/usermodel');
 const User = require('./model/usermodel')
 
 const app = express();
@@ -84,8 +85,28 @@ app.get('/registo', (req,res) =>{
 app.post('/registo', (req,res) =>{
     let username = req.body.username;
     let password = req.body.password;
+ 
+    var useradminSchema = new mongoose.Schema({
+        username:{
+            type:String,
+            required:true,
+            unique:true
+        },
+        password:{
+            type:String,
+            required:true,
+        }
+    })
 
-    console.log(username)
+    var UserAdmin = mongoose.model('user_admins',useradminSchema)
+    var new_user_admin = new UserAdmin({
+        "username": username,
+        "password":password
+    })
+
+    new_user_admin.save(function (err, doc) {
+        console.log(doc._id);
+    });
 
 })
 

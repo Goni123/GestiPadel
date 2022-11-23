@@ -8,6 +8,14 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+app.get('/',(req,res)=>{
+    res.render("index");
+})
+
+app.get('/inscricoes',(req,res)=>{
+    res.render("usersinsc");
+})
+
 dotenv.config({path:'config.env'})
 const PORT = process.env.PORT || 8080
 

@@ -1,0 +1,82 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+    <!-- Main Site -->
+    <div id="users_insc">
+       <div class="imagem_torneio">
+            <img src="../../img/Torneio.jpg">
+       </div>
+       <div class="infos">
+       </div>
+       <div class="formulario">
+        <form>
+            <label for="ltorneio">Escolha o torneio:</label><br>
+            <select name="torneio" id="torneio">
+                <option value="torneio1">Torneio 1</option>
+                <option value="torneio2">Torneio 2</option>
+            </select>
+            <br>
+            <br>
+            <label for="listaespera">Pretende ficar em lista de espera?</label><br>
+            <input type="radio" id="yes" name="yes" value="HTML">
+            <label for="html">Sim</label><br>
+            <input type="radio" id="no" name="no" value="CSS">
+            <label for="css">Não</label>
+            <br>
+            <br>
+            <label for="disponibilidade">Disponibilidade hóraria:</label><br>
+            <input type="date" id="disponibilidade" name="disponibilidade">
+            <br>
+            <br>
+            <label for="fname">Primeiro nome:</label><br>
+            <input type="text" id="fname" name="fname"><br>
+            <label for="lname">Último nome:</label><br>
+            <input type="text" id="lname" name="lname">
+            <br>
+            <br>
+            <label for="playerlevel">Selecione o seu nível:</label><br>
+            <select name="level" id="level">
+                <option value="level1">Nível 1</option>
+                <option value="level2">Nível 2</option>
+                <option value="level3">Nível 3</option>
+                <option value="level4">Nível 4</option>
+            </select>
+            <br>
+            <br>
+            <label for="nif">NIF:</label><br>
+            <input type="text" maxlength="9" id="nif" name="nif">
+            <br>
+            <br>
+            <label for="email">Email:</label><br>
+            <input type="text" maxlength="9" id="email" name="email">
+            <br>
+            <br>
+            <label for="tel">Telemóvel:</label><br>
+            <input type="text" maxlength="9" id="tel" name="tel">
+            <br>
+            <br>
+            <input type="submit">
+        </form>
+       </div>
+       
+    
+
+            
+    </div>
+</html>
+<!-- /Main Site -->
+
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

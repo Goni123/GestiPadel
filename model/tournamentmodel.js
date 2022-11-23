@@ -16,13 +16,11 @@ let tournamentSchema = new mongoose.Schema({
                 ]
             }
         ],
-    schedule:[
+    schedule:
         {
-            day:Date,
-            start_time:Number,
-            end_time:Number,
-        }
-    ],
+            start_time:Date,
+            end_time:Date,
+        },
     type: {
         type: String,
         enum: [

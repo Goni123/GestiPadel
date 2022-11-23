@@ -8,10 +8,6 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-app.get('/',(req,res)=>{
-    res.render("index");
-})
-
 dotenv.config({path:'config.env'})
 const PORT = process.env.PORT || 8080
 
@@ -51,7 +47,39 @@ app.use('/js', express.static(path.resolve(__dirname,"assets/js")))
 //app.use(express.static(path.join(__dirname, 'views')));
 
 //load routes
-//app.use('/',require('./server/routes/router'))
+app.get('/',(req,res)=>{
+    res.render("index");
+})
+
+//ROTAS LOGIN
+app.get('/login',(req,res)=>{
+    res.render("login");
+})
+
+app.post('/login', (req,res) =>{
+    let username = req.body.username;
+    let password = req.body.password;
+
+    console.log(username)
+    console.log(password)
+
+    if(username && password){
+
+    }
+})
+
+//ROTAS REGISTO
+app.get('/registo', (req,res) =>{
+    res.render("registo");
+})
+
+app.post('/registo', (req,res) =>{
+    let username = req.body.username;
+    let password = req.body.password;
+
+    console.log(username)
+
+})
 
 app.listen(PORT, ()=> {
     console.log('Server is running on http://localhost:3000')

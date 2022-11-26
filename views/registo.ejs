@@ -4,18 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registo</title>
+    <title>Login</title>
 </head>
 <body>
     <h1>Registo</h1>
- 
+    
     <form action="/registo" method="POST">
-        <input type="text" name="username"
-            placeholder="username">
-        <input type="password" name="password"
-            placeholder="password">
-        <button>Registar</button>
+        <label for="name">Nome:</label><br>
+        <input type="text" name="username" placeholder="Nome" pattern="[A-Za-z\W+]{1,25}" required>
+        <br>
+        <br>
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" placeholder="Email" required>
+        <br>
+        <br>
+        <label for="nif">NIF:</label><br>
+        <input type="text" name="nif" placeholder="NIF" maxlength="9" pattern="[0-9]+" title="O NIF deve de conter apenas números" required>
+        <br>
+        <br>
+        <label for="contacto">Contacto de telemóvel:</label><br>
+        <input type="text" name="contacto" placeholder="Contacto de telemóvel" maxlength="9" pattern="[0-9]+" title="O número de telemóvel deve de conter apenas números" required>
+        <br>
+        <br>
+        <label for="password">Password:</label><br>
+        <input type="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A password tem de conter pelo menos um número, uma letra maiúscula, uma letra minúscula, e pelo menos 8 caracteres ou mais" required>
+        <br>
+        <br>
+        <label for="confirmpassword">Confirmar Password:</label><br>
+        <input type="password" name="confirmpassword" placeholder="Confirmar Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A password tem de conter pelo menos um número, uma letra maiúscula, uma letra minúscula, e pelo menos 8 caracteres ou mais" required>
+        <br>
+        <br>
+        <button>Registar-se</button>
     </form>
- 
+    
 </body>
 </html>

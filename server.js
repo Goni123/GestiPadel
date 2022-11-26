@@ -136,32 +136,31 @@ app.post('/criartorneio', (req,res) =>{
     let nometorneio = req.body.nometorneio;
     let datainicio = req.body.datainicio;
     let datafim= req.body.datafim;
-    let numeroparticipantes = req.body.numeroparticipantes;
-    let tipo = req.body.tipo;
+    let nparticipantes = req.body.numeroparticipantes;
+    let preco = req.body.preco;
+    let localizacao = req.body.localizacao;
+    let nivel = req.body.nivel1;
+    let tipo = req.body.tipo1;
     let formato = req.body.formato;
     let img = req.body.img;
+   
+    var new_tournament = new Tournament({
+        "nometorneio": nometorneio,
+        "localizacao": localizacao,
+        "datainicio": datainicio,
+        "datafim": datafim,
+        "nparticipantes": nparticipantes,
+        "preco": preco,
+        "nivel": nivel,
+        "formato": formato,
+        "tipo": tipo,
+        "img": img
+    })
 
-        var tournamentSchema = new mongoose.Schema({
-            username:{
-                type:String,
-                required:true,
-                unique:true
-            },
-            password:{
-                type:String,
-                required:true,
-            }
-        })
-
-        var UserAdmin = mongoose.model('user_admins',useradminSchema)
-        var new_user_admin = new UserAdmin({
-            "username": username,
-            "password":password
-        })
-
-        new_user_admin.save(function (err, doc) {
-            console.log(doc._id);
-        });
+    debugger
+    new_tournament.save(function (err, doc) {
+       console.log(err);
+    });
 
     })
 
@@ -182,15 +181,18 @@ app.post('/insctorneio', (req,res) =>{
     let email = req.body.email;
     let tel = req.body.tel;
 
-    console.log(torneio)
-    console.log(listaespera)
-    console.log(disponibilidade)
-    console.log(fnome)
-    console.log(lnome)
-    console.log(playerlevel)
-    console.log(nif)
-    console.log(email)
-    console.log(tel)
+    var new_tournament = new Tournament({
+        "nometorneio": nometorneio,
+        "localizacao": localizacao,
+        "datainicio": datainicio,
+        "datafim": datafim,
+        "nparticipantes": nparticipantes,
+        "preco": preco,
+        "nivel": nivel,
+        "formato": formato,
+        "tipo": tipo,
+        "img": img
+    })
 
 })
 

@@ -73,12 +73,65 @@ app.post('/login', (req,res) =>{
     console.log(username)
     console.log(password)
 
-    if(username && password){
+    UserAdmin.exists({username:username, password:password}, function (err, doc) {
+        if (err){
+            console.log(err)
+        }else{
+            if(doc){
+                console.log("O Login foi realizado com sucesso.")
+            }
+            else{
+                console.log("Os dados introduzidos não estão corretos.")
+            }
 
-    }
+        }
+    });
 })
 
 //ROTAS REGISTO
+app.get('/registo', (req,res) =>{
+    res.render("registo");
+})
+
+app.post('/registo', (req,res) =>{
+    let username = req.body.username;
+    let email = req.body.email;
+    let nif = req.body.nif;
+    let contacto = req.body.contacto;
+    let password = req.body.password;
+    let password2 = req.body.confirmpassword;
+
+    if(password == password2){
+        User.exists({username:username,email: email, nif:nif, contacto:contacto}, function (err, doc) {
+            if (err){
+                console.log(err)
+            }else{
+                if(doc){
+                    console.log("O dados que escolheu estão incorretos.")
+                }
+                else{
+                    var new_user = new User({
+                        "username": username,
+                        "email": email,
+                        "nif": nif,
+                        "contacto": contacto,
+                        "password":password
+                    })
+
+                    new_user.save(function (err, doc) {
+                        console.log(err)
+                    });
+                }
+
+            }
+        });
+    }
+    else{
+        console.log("As passwords não são idênticas.")
+    }
+})
+
+
 app.get('/registo_admin', (req,res) =>{
     res.render("registo_admin");
 })
@@ -92,17 +145,22 @@ app.post('/registo_admin', (req,res) =>{
 
         UserAdmin.exists({username:username}, function (err, doc) {
             if (err){
-                console.log("O username que escolheu já existe.")
+                console.log(err)
             }else{
-                var new_user_admin = new UserAdmin({
-                    "username": username,
-                    "password":password
-                })
+                if(doc){
+                    console.log("O username que escolheu já existe.")
+                }
+                else{
+                    var new_user_admin = new UserAdmin({
+                        "username": username,
+                        "password":password
+                    })
 
-                new_user_admin.save(function (err, doc) {
-                    //console.log(doc._id);
-                    console.log(err)
-                });
+                    new_user_admin.save(function (err, doc) {
+                        console.log(err)
+                    });
+                }
+
             }
         });
     }
@@ -121,32 +179,31 @@ app.post('/criartorneio', (req,res) =>{
     let nometorneio = req.body.nometorneio;
     let datainicio = req.body.datainicio;
     let datafim= req.body.datafim;
-    let numeroparticipantes = req.body.numeroparticipantes;
-    let tipo = req.body.tipo;
+    let nparticipantes = req.body.numeroparticipantes;
+    let preco = req.body.preco;
+    let localizacao = req.body.localizacao;
+    let nivel = req.body.nivel1;
+    let tipo = req.body.tipo1;
     let formato = req.body.formato;
     let img = req.body.img;
 
-        var tournamentSchema = new mongoose.Schema({
-            username:{
-                type:String,
-                required:true,
-                unique:true
-            },
-            password:{
-                type:String,
-                required:true,
-            }
-        })
+    var new_tournament = new Tournament({
+        "nometorneio": nometorneio,
+        "localizacao": localizacao,
+        "datainicio": datainicio,
+        "datafim": datafim,
+        "nparticipantes": nparticipantes,
+        "preco": preco,
+        "nivel": nivel,
+        "formato": formato,
+        "tipo": tipo,
+        "img": img
+    })
 
-        var UserAdmin = mongoose.model('user_admins',useradminSchema)
-        var new_user_admin = new UserAdmin({
-            "username": username,
-            "password":password
-        })
-
-        new_user_admin.save(function (err, doc) {
-            console.log(doc._id);
-        });
+    debugger
+    new_tournament.save(function (err, doc) {
+       console.log(err);
+    });
 
     })
 
@@ -156,7 +213,7 @@ app.get('/insctorneio', (req,res) =>{
     res.render("inscricao_torneio");
 })
 
-app.post('/insctorneio', (req,res) =>{
+app.post('/inscricoes', async (req,res) =>{
     let torneio = req.body.torneio;
     let listaespera = req.body.listaespera;
     let disponibilidade= req.body.disponibilidade;
@@ -167,18 +224,21 @@ app.post('/insctorneio', (req,res) =>{
     let email = req.body.email;
     let tel = req.body.tel;
 
-    console.log(torneio)
-    console.log(listaespera)
-    console.log(disponibilidade)
-    console.log(fnome)
-    console.log(lnome)
-    console.log(playerlevel)
-    console.log(nif)
-    console.log(email)
-    console.log(tel)
-
+    var new_tournament = new Tournament({
+        "nometorneio": nometorneio,
+        "localizacao": localizacao,
+        "datainicio": datainicio,
+        "datafim": datafim,
+        "nparticipantes": nparticipantes,
+        "preco": preco,
+        "nivel": nivel,
+        "formato": formato,
+        "tipo": tipo,
+        "img": img
+    })
+    /*let dbuser = await User.where("nif").equals(nif)
+    await dbuser.forEach(console.dir);(PEDRO)*/
 })
-
 app.listen(PORT, ()=> {
     console.log('Server is running on http://localhost:3000')
 });

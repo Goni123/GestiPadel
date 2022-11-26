@@ -5,6 +5,6 @@ let fieldSchema = new mongoose.Schema({
     location:String,
 })
 
-let Field = mongoose.model('fielddb', fieldSchema);
+let Field = mongoose.model('field', fieldSchema);
 
 module.exports = Field;

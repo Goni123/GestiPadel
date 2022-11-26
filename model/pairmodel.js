@@ -17,6 +17,10 @@ let tournamentReferenceSchema= new mongoose.Schema({
 
             }
         ],
+    has_ended: {
+        type: Boolean,
+        default:false
+    }
 })
 let pairSchema = new mongoose.Schema({
     user1:{
@@ -34,6 +38,6 @@ let pairSchema = new mongoose.Schema({
     tournaments:[ tournamentReferenceSchema ]
 })
 
-let Pair = mongoose.model('pairdb', pairSchema);
+let Pair = mongoose.model('pair', pairSchema);
 let TourRefModel = mongoose.model('tournamentRef',tournamentReferenceSchema)
 module.exports = {Pair,TourRefModel};

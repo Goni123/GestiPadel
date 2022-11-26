@@ -1,9 +1,7 @@
 let mongoose = require('mongoose');
 
 let tournamentSchema = new mongoose.Schema({
-    name:{
-            type:String,
-        },
+    name:String,
     levels:
         [
             {
@@ -33,6 +31,6 @@ let tournamentSchema = new mongoose.Schema({
     status:Number,
 })
 
-let Tournament = mongoose.model('tournamentdb', tournamentSchema);
+let Tournament = mongoose.model('tournament', tournamentSchema);
 
 module.exports = Tournament;

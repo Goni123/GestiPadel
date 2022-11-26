@@ -6,6 +6,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const { create } = require('./model/usermodel');
 const User = require('./model/usermodel')
+var UserAdmin = require('./model/user_adminmodel')
 
 const app = express();
 
@@ -78,35 +79,36 @@ app.post('/login', (req,res) =>{
 })
 
 //ROTAS REGISTO
-app.get('/registo', (req,res) =>{
-    res.render("registo");
+app.get('/registo_admin', (req,res) =>{
+    res.render("registo_admin");
 })
 
-app.post('/registo', (req,res) =>{
-    let username = req.body.username;
-    let password = req.body.password;
+app.post('/registo_admin', (req,res) =>{
+    let username = req.body.username_admin;
+    let password = req.body.password_admin;
+    let password2 = req.body.confirmpassword_admin;
  
-    var useradminSchema = new mongoose.Schema({
-        username:{
-            type:String,
-            required:true,
-            unique:true
-        },
-        password:{
-            type:String,
-            required:true,
-        }
-    })
+    if(password == password2){
 
-    var UserAdmin = mongoose.model('user_admins',useradminSchema)
-    var new_user_admin = new UserAdmin({
-        "username": username,
-        "password":password
-    })
+        UserAdmin.exists({username:username}, function (err, doc) {
+            if (err){
+                console.log("O username que escolheu já existe.")
+            }else{
+                var new_user_admin = new UserAdmin({
+                    "username": username,
+                    "password":password
+                })
 
-    new_user_admin.save(function (err, doc) {
-        console.log(doc._id);
-    });
+                new_user_admin.save(function (err, doc) {
+                    //console.log(doc._id);
+                    console.log(err)
+                });
+            }
+        });
+    }
+    else{
+        console.log("As passwords não são idênticas.")
+    }
 
 })
 
@@ -154,7 +156,7 @@ app.get('/insctorneio', (req,res) =>{
     res.render("inscricao_torneio");
 })
 
-app.post('/instorneio', (req,res) =>{
+app.post('/insctorneio', (req,res) =>{
     let torneio = req.body.torneio;
     let listaespera = req.body.listaespera;
     let disponibilidade= req.body.disponibilidade;

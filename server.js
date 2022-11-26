@@ -9,15 +9,15 @@ const User = require('./model/usermodel')
 
 const app = express();
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.render("index");
 })
 
-app.get('/inscricoes',(req,res)=>{
+app.get('/inscricoes', (req, res) => {
     res.render("usersinsc");
 })
 
-dotenv.config({path:'config.env'})
+dotenv.config({ path: 'config.env' })
 const PORT = process.env.PORT || 8080
 
 //log requests
@@ -25,7 +25,7 @@ app.use(morgan('tiny'));
 
 //mongodb connection
 const connectDB = async () => {
-    try{
+    try {
         // mongodb connection string
         const con = await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
@@ -35,7 +35,7 @@ const connectDB = async () => {
         })
 
         console.log(`MongoDB connected : ${con.connection.host}`);
-    }catch(err){
+    } catch (err) {
         console.log(err);
         process.exit(1);
     }
@@ -43,65 +43,65 @@ const connectDB = async () => {
 connectDB();
 
 //parse request to body-parser
-app.use(bodyparser.urlencoded({extended:true}))
+app.use(bodyparser.urlencoded({ extended: true }))
 
 //set view engine
 app.set("view engine", "ejs")  //pode ser html
 //app.set("views",path.resolve(__dirname,"views/ejs"))
 
 //load assets
-app.use('/css', express.static(path.resolve(__dirname,"assets/css")))
-app.use('/img', express.static(path.resolve(__dirname,"assets/img")))
-app.use('/js', express.static(path.resolve(__dirname,"assets/js")))
+app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
+app.use('/img', express.static(path.resolve(__dirname, "assets/img")))
+app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 //app.use(express.static(path.join(__dirname, 'views')));
 
 //load routes
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.render("index");
 })
 
 //ROTAS LOGIN
-app.get('/login',(req,res)=>{
+app.get('/login', (req, res) => {
     res.render("login");
 })
 
-app.post('/login', (req,res) =>{
+app.post('/login', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
 
     console.log(username)
     console.log(password)
 
-    if(username && password){
+    if (username && password) {
 
     }
 })
 
 //ROTAS REGISTO
-app.get('/registo', (req,res) =>{
+app.get('/registo', (req, res) => {
     res.render("registo");
 })
 
-app.post('/registo', (req,res) =>{
+app.post('/registo', (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
- 
+
     var useradminSchema = new mongoose.Schema({
-        username:{
-            type:String,
-            required:true,
-            unique:true
+        username: {
+            type: String,
+            required: true,
+            unique: true
         },
-        password:{
-            type:String,
-            required:true,
+        password: {
+            type: String,
+            required: true,
         }
     })
 
-    var UserAdmin = mongoose.model('user_admins',useradminSchema)
+    var UserAdmin = mongoose.model('user_admins', useradminSchema)
     var new_user_admin = new UserAdmin({
         "username": username,
-        "password":password
+        "password": password
     })
 
     new_user_admin.save(function (err, doc) {
@@ -111,53 +111,57 @@ app.post('/registo', (req,res) =>{
 })
 
 //ROTAS CRIAR TORNEIO
-app.get('/criartorneio', (req,res) =>{
+app.get('/criartorneio', (req, res) => {
     res.render("criar_torneio");
 })
 
-app.post('/criartorneio', (req,res) =>{
+app.get('/home', (req, res) => {
+    res.render("home_user");
+})
+
+app.post('/criartorneio', (req, res) => {
     let nometorneio = req.body.nometorneio;
     let datainicio = req.body.datainicio;
-    let datafim= req.body.datafim;
+    let datafim = req.body.datafim;
     let numeroparticipantes = req.body.numeroparticipantes;
     let tipo = req.body.tipo;
     let formato = req.body.formato;
     let img = req.body.img;
 
-        var tournamentSchema = new mongoose.Schema({
-            username:{
-                type:String,
-                required:true,
-                unique:true
-            },
-            password:{
-                type:String,
-                required:true,
-            }
-        })
-
-        var UserAdmin = mongoose.model('user_admins',useradminSchema)
-        var new_user_admin = new UserAdmin({
-            "username": username,
-            "password":password
-        })
-
-        new_user_admin.save(function (err, doc) {
-            console.log(doc._id);
-        });
-
+    var tournamentSchema = new mongoose.Schema({
+        username: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        password: {
+            type: String,
+            required: true,
+        }
     })
+
+    var UserAdmin = mongoose.model('user_admins', useradminSchema)
+    var new_user_admin = new UserAdmin({
+        "username": username,
+        "password": password
+    })
+
+    new_user_admin.save(function (err, doc) {
+        console.log(doc._id);
+    });
+
+})
 
 
 //ROTAS INSCRIÇÃO TORNEIO
-app.get('/insctorneio', (req,res) =>{
+app.get('/insctorneio', (req, res) => {
     res.render("inscricao_torneio");
 })
 
-app.post('/instorneio', (req,res) =>{
+app.post('/instorneio', (req, res) => {
     let torneio = req.body.torneio;
     let listaespera = req.body.listaespera;
-    let disponibilidade= req.body.disponibilidade;
+    let disponibilidade = req.body.disponibilidade;
     let fnome = req.body.fnome;
     let lname = req.body.lname;
     let playerlevel = req.body.playerlevel;
@@ -177,6 +181,6 @@ app.post('/instorneio', (req,res) =>{
 
 })
 
-app.listen(PORT, ()=> {
+app.listen(PORT, () => {
     console.log('Server is running on http://localhost:3000')
 });

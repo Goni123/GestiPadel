@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< Updated upstream
 <html>
 <body>
 
@@ -45,4 +46,116 @@
 </form>
 
 </body>
+=======
+<html lang="en">
+<%- include('include/_header') %>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <h1>Criação do torneio</h1>
+        <div id="criartorneio">
+            <div class="formulario">
+                <form method="POST">
+                    <div class="colunaDupla">
+                        <label for="nometorneio">Nome do torneio:</label>
+                        <br>
+                        <input type="text" id="nometorneio" name="nometorneio">
+                        <br>
+                        <label for="datainicio">Data inicio:</label>
+                        <br>
+                        <input type="date" id="datainicio" name="datainicio">
+                        <br>
+                        <label for="datafim">Data fim:</label>
+                        <br>
+                        <input type="date" id="datafim" name="datafim">
+                    </div>
+
+                    <div class="colunaDupla">
+                        <label for="location">Localização:</label>
+                        <br>
+                        <input type="location" id="location" name="location">
+                        <br>
+                        <label for="numeroparticipantes">Número de participantes:</label>
+                        <br>
+                        <input type="number" id="numeroparticipantes" name="numeroparticipantes" min="1" max="9999">
+                        <br>
+                        <label for="preco">Preço:</label>
+                        <br>
+                        <input type="number" id="preco" name="preco" min="1" max="9999">
+
+                    </div>
+                    <br>
+                    <div class="colunaTripla">
+                        <div class="masculino">
+                            <label for="genero">Masculino</label>
+                            <br>
+                            <input type="checkbox" id="nivel1M" name="nivel1M" value="nivel1M">
+                            <label for="nivel1">Nível 1</label><br>
+                            <input type="checkbox" id="nivel2M" name="nivel2M" value="nivel2M">
+                            <label for="nivel2">Nível 2</label><br>
+                            <input type="checkbox" id="nivel3M" name="nivel3M" value="nivel3M">
+                            <label for="nivel3">Nível 3</label><br>
+                            <input type="checkbox" id="nivel4M" name="nivel4M" value="nivel4M">
+                            <label for="nivel4">Nível 4</label><br><br>
+                        </div>
+                    </div>
+                    <div class="colunaTripla">
+                        <div class="feminino">
+                            <label for="genero">Feminino</label>
+                            <br>
+                            <input type="checkbox" id="nivel1F" name="nivel1F" value="nivel1F">
+                            <label for="nivel1">Nível 1</label><br>
+                            <input type="checkbox" id="nivel2F" name="nivel2F" value="nivel2F">
+                            <label for="nivel1">Nível 2</label><br>
+                            <input type="checkbox" id="nivel3F" name="nivel3F" value="nivel3F">
+                            <label for="nivel1">Nível 3</label><br>
+                            <input type="checkbox" id="nivel4F" name="nivel4F" value="nivel4F">
+                            <label for="nivel1">Nível 4</label><br><br>
+                        </div>
+                    </div>
+                    <div class="colunaTripla">
+                        <div class="misto">
+                            <label for="genero">Misto</label>
+                            <br>
+                            <input type="checkbox" id="nivel1MF" name="nivel1MF" value="nivel1MF">
+                            <label for="nivel1">Nível 1</label><br>
+                            <input type="checkbox" id="nivel2MF" name="nivel2MF" value="nivel2MF">
+                            <label for="nivel1">Nível 2</label><br>
+                            <input type="checkbox" id="nivel3MF" name="nivel3MF" value="nivel3MF">
+                            <label for="nivel1">Nível 3</label><br>
+                            <input type="checkbox" id="nivel4MF" name="nivel4MF" value="nivel4MF">
+                            <label for="nivel1">Nível 4</label><br><br>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="checkbox" id="fasegrupos" name="formato" value="Fase de grupos">
+                    <label for="fasegrupos"> Fase de grupos</label>
+                    <br> <br>
+                    <label for="img">Imagem:</label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                    <br>
+                    <br>
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
+    </body>
+    <!-- include footer -->
+    <%- include('include/_footer') %>
+        <!-- /include footer -->
+
+>>>>>>> Stashed changes
 </html>

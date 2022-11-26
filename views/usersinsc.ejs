@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<<<<<<< Updated upstream
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -75,6 +76,338 @@
     </div>
 </html>
 <!-- /Main Site -->
+=======
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <!-- Main Site -->
+        <div id="users_insc">
+            <div class="torneio">
+                <div class="titulo">
+                    <h1>Torneio São Joaquim</h1>
+                    <!--fazer push do nome db-->
+                </div>
+                <div class="content">
+                    <div class="imagem_torneio">
+                        <img src="../../img/Torneio.jpg">
+                        <!--fazer push do nome db-->
+                    </div>
+                    <div class="infos">
+                        <div class="local">
+                            <div class="numero">
+                                <p>1</p>
+                            </div>
+                            <div class="texto">
+                                <h1>Localização</h1>
+                                <p>Campo de padle em São Joaquim</p>
+                            </div>
+                        </div>
+                        <div class="tipo_torneio">
+                            <div class="numero">
+                                <p>2</p>
+                            </div>
+                            <div class="texto">
+                                <h1>Tipo de Torneio</h1>
+                                <p>tipo de torneio</p>
+                            </div>
+
+
+                        </div>
+                        <div class="preco">
+                            <div class="numero">
+                                <p>3</p>
+                            </div>
+                            <div class="texto">
+                                <h1>Preço</h1>
+                                <p>15 raquetes</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formulario">
+                <div class="titulo_form">
+                    <h1>Inscrição do Torneio</h1>
+                </div>
+                <form>
+
+                    <div class="jgd1">
+                        <h2>Jogador 1</h2>
+                        <br>
+                        <br>
+                        <p>Primeiro nome:</p><br>
+                        <input type="text" id="fname" name="fname">
+                        <br>
+                        <br>
+                        <p>NIF:</p><br>
+                        <input type="text" maxlength="9" id="nif" name="nif">
+                        <br>
+                        <br>
+                        <p>Data de Nascimento:</p><br>
+                        <input type="date" id="BirthDateUm" name="BirthDateUm">
+                        <br>
+                        <br>
+                        <p>Email:</p><br>
+                        <input type="text" maxlength="9" id="email" name="email">
+                        <br>
+                        <br>
+                        <p>Telemóvel:</p><br>
+                        <input type="text" maxlength="9" id="tel" name="tel">
+                        <br>
+                        <br>
+                    </div>
+                    <div class="jgd2">
+                        <h2>Jogador 2</h2>
+                        <br>
+                        <br>
+                        <p>Primeiro nome:</p><br>
+                        <input type="text" id="Sname" name="Sname">
+                        <br>
+                        <br>
+                        <p>NIF:</p><br>
+                        <input type="text" maxlength="9" id="nif" name="nif">
+                        <br>
+                        <br>
+                        <p>Data de Nascimento:</p><br>
+                        <input type="date" id="BirthDateDois" name="BirthDateUm">
+                        <br>
+                        <br>
+                        <p>Email:</p><br>
+                        <input type="text" maxlength="9" id="Semail" name="Semail">
+                        <br>
+                        <br>
+                        <p>Telemóvel:</p><br>
+                        <input type="text" maxlength="9" id="Stel" name="Stel">
+                        <br>
+                        <br>
+                    </div>
+                    <label for="playerslevel">Selecione o seu nível:</label><br>
+                    <select name="level" id="level">
+                        <option value="level1">Nível 1</option>
+                        <option value="level2">Nível 2</option>
+                        <option value="level3">Nível 3</option>
+                        <option value="level4">Nível 4</option>
+                    </select>
+                    <br>
+                    <br>
+
+                    <button class="enviar">
+                        Finalizar Inscrição
+                    </button>
+
+                    <div class="Disponibilidade">
+                        <table class="table">
+                            <th></th>
+                            <th>Segunda-feira</th>
+                            <th>Terça-feira</th>
+                            <th>Quarta-feira</th>
+                            <th>Quinta-feira</th>
+                            <th>Sexta-feira</th>
+                            <th>Sábado</th>
+                            <th>Domingo</th>
+                            <tr>
+                                <td class="hora_tabela">07:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">08:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">09:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">10:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">11:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">12:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">13:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">14:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">15:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">16:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">17:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">18:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">19:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">20:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">21:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="hora_tabela">22:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+
+                        </table>
+                        <script>
+                            var table = document.getElementById('table'), rIndex;
+                            for (var i = 0; i < table.rows.lenght; i++) {
+                                table.rows[i].onClick = function () {
+                                    rIndex = This.rowIndex;
+                                    console.log(rIndex);
+                                }
+
+                            }
+
+                        </script>
+                    </div>
+
+
+                </form>
+            </div>
+
+
+
+
+        </div>
+    </body>
+
+    </html>
+    <!-- /Main Site -->
+>>>>>>> Stashed changes
 
 
 <!-- include footer -->

@@ -73,9 +73,19 @@ app.post('/login', (req,res) =>{
     console.log(username)
     console.log(password)
 
-    if(username && password){
+    UserAdmin.exists({username:username, password:password}, function (err, doc) {
+        if (err){
+            console.log(err)
+        }else{
+            if(doc){
+                console.log("O Login foi realizado com sucesso.")
+            }
+            else{
+                console.log("Os dados introduzidos não estão corretos.")
+            }
 
-    }
+        }
+    });
 })
 
 //ROTAS REGISTO
@@ -92,17 +102,22 @@ app.post('/registo_admin', (req,res) =>{
 
         UserAdmin.exists({username:username}, function (err, doc) {
             if (err){
-                console.log("O username que escolheu já existe.")
+                console.log(err)
             }else{
-                var new_user_admin = new UserAdmin({
-                    "username": username,
-                    "password":password
-                })
-
-                new_user_admin.save(function (err, doc) {
-                    //console.log(doc._id);
-                    console.log(err)
-                });
+                if(doc){
+                    console.log("O username que escolheu já existe.")
+                }
+                else{
+                    var new_user_admin = new UserAdmin({
+                        "username": username,
+                        "password":password
+                    })
+    
+                    new_user_admin.save(function (err, doc) {
+                        console.log(err)
+                    });
+                }
+    
             }
         });
     }

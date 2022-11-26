@@ -239,6 +239,7 @@ app.post('/inscricoes', async (req,res) =>{
     /*let dbuser = await User.where("nif").equals(nif)
     await dbuser.forEach(console.dir);(PEDRO)*/
 })
+
 app.listen(PORT, ()=> {
     console.log('Server is running on http://localhost:3000')
 });

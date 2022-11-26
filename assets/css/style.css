@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-:root{
+:root {
     --dark: #2b2d42;
     --light: #adb5bd;
     --border: #dee2e6;
@@ -11,6 +12,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
 }
 
 a {
@@ -18,145 +20,169 @@ a {
     font-family: 'PT Sans', sans-serif;
 }
 
-.container{
+.container {
     max-width: 1024px;
     margin: auto;
 }
 
-.nav-brand{
+.nav-brand {
     font-size: 1.5em;
     font-weight: bold;
 }
 
-.d-flex{
+.d-flex {
     display: flex;
     flex-wrap: wrap;
 }
 
-.justify-between{
+.justify-between {
     justify-content: space-between;
 }
 
-.text-center{
+.text-center {
     text-align: center;
 }
 
-.border-shadow{
+.border-shadow {
     border: 1px solid var(--border-btn);
     box-shadow: 1px 3px 10px #e9ecef;
 }
 
-.text-dark{
+.text-dark {
     color: var(--dark);
 }
 
-.inline{
+.inline {
     display: inline-block;
 }
 
-.text-light{
+.text-light {
     color: var(--light);
 }
 
-.text-gradient{
+.text-gradient {
     background: linear-gradient(to right, #8e2de2, #4a00e0);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-#header{
+#header {
     background-color: #FFF;
     border-bottom: #2b2d42;
     padding: 1em 0;
     width: 100%;
-    
+
 }
-#header .menu a{
-    font-size: 18px;
-    font-weight: 500;
-   
+
+#header .menu a {
+    font-size: 28px;
+    font-weight: 600;
+
 }
+
 #header .menu {
     display: inline-block;
     margin-right: 8%;
-    padding: 22px;
+    padding: 14px;
     float: right;
 }
-#header .logo{
+
+#header .logo {
     margin-top: 0;
     z-index: 9;
     display: inline-block;
     width: 47%;
     position: relative;
     left: 10%;
-    
+
 }
 
-#header .logo img{
+#header .logo img {
     width: 196px;
 }
 
-#site-main{
+#site-main {
     margin-top: 6em;
     font-family: 'Barlow', sans-serif;
 }
 
-#site-main .container .box-nav > a{
+#site-main .container .box-nav>a {
     font-size: 1em;
     padding: .5em 1em;
 }
 
-#site-main .container form{
+#site-main .container form {
     margin: 2em 0;
 }
 
-table{
+table {
     border-spacing: 0px;
     width: 100%;
 }
 
-.table td, .table th{
+.table td,
+.table th {
     padding: .75em;
     vertical-align: top;
     text-align: center;
-    border-top: 1px solid var(--border);
+    border: 1px solid var(--border);
 }
 
-.table td > a.btn{
+.table td>a.btn {
     padding: .3em 1em;
     font-size: 1.1em;
     margin: 0 .2em;
 }
 
-.table tr:hover{
-    background-color:#06d6a0 ;
+.table td:hover {
+    background-color: #e70909;
 }
 
-.table tr:hover td > a{
+.table td {
+    background-color: #16db9381;
+}
+
+.table tr:hover td>a {
     box-shadow: none;
 }
 
-.table .thead-dark th{
+.table .hora_tabela {
+    background-color: #ffffff;
+}
+
+.table .hora_tabela:hover {
+    background-color: #ffffff;
+}
+
+.table .thead-dark th {
     color: #fff;
-    background-color: var(--dark) ;
+    background-color: var(--dark);
     border-color: #32383e;
 }
 
-@media only screen and (max-width: 1024px){
-    table, thead, tbody, th, td, tr{
+@media only screen and (max-width: 1024px) {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
         display: block;
     }
 
-    thead tr{
+    thead tr {
         position: absolute;
         top: -9999px;
         left: -9999px;
     }
 
-    tr { border: 1px solid var(--border);}
+    tr {
+        border: 1px solid var(--border);
+    }
 
-    td{
+    td {
         border: none;
         position: relative;
     }
@@ -164,26 +190,26 @@ table{
 }
 
 /*  add user & update user template */
-.form-title{
+.form-title {
     margin-top: 2em;
 }
 
-.form-title > h2{
+.form-title>h2 {
     padding: .5em 0;
 }
 
-.new_user{
+.new_user {
     max-width: 786px;
     margin: auto;
 }
 
 #update_user .form-group,
-#add_user .form-group{
+#add_user .form-group {
     margin: .4em 0;
 }
 
 #update_user .form-group input[type="text"],
-#add_user .form-group input[type="text"]{
+#add_user .form-group input[type="text"] {
     width: 100%;
     padding: .6em 1em;
     margin: .5em 0;
@@ -194,17 +220,17 @@ table{
 }
 
 #update_user .form-group .radio,
-#add_user .form-group .radio{
+#add_user .form-group .radio {
     margin: 1em 2em;
 }
 
 /* adding style to radio buttons */
-.radio input[type='radio']{
+.radio input[type='radio'] {
     position: absolute;
     opacity: 0;
 }
 
-.radio input[type='radio'] + .radio-label:before{
+.radio input[type='radio']+.radio-label:before {
     content: "";
     background: var(--border-btn);
     border-radius: 100%;
@@ -222,27 +248,27 @@ table{
     transition: all 250ms ease;
 }
 
-.radio input[type='radio']:checked + .radio-label:before{
+.radio input[type='radio']:checked+.radio-label:before {
     background-color: #16db93;
     box-shadow: inset 0 0 0 4px #e9ecef;
 }
 
-.radio input[type='radio']:focus + .radio-label:before{
+.radio input[type='radio']:focus+.radio-label:before {
     outline: none;
-    border-color:#16db93;
+    border-color: #16db93;
 }
 
-.radio input[type='radio']:disabled + .radio-label:before{
+.radio input[type='radio']:disabled+.radio-label:before {
     box-shadow: inset 0 0 0 4px #e9ecef;
     border-color: #b4b4b4;
     background: #b4b4b4;
 }
 
 #update_user .form-group .btn,
-#add_user .form-group .btn{
+#add_user .form-group .btn {
     width: 100%;
     padding: .9em 1em;
-    background-color:#16db93; 
+    background-color: #16db93;
     border: none;
     font-family: 'PT Sans', sans-serif;
     font-size: 1em;
@@ -252,25 +278,184 @@ table{
 }
 
 #update_user .form-group .btn:hover,
-#add_user .form-group .btn:hover{
+#add_user .form-group .btn:hover {
     background-color: var(--dark);
     color: var(--border);
 }
-#users_insc {
-    background-color:#F5F5FA;
+
+#users_insc .torneio {
+    background-color: #F5F5FA;
     width: 100%;
-    height: 792px; /*teste*/
+    height: auto;
+    padding: 50px 0 93px 0;
+    /*teste*/
 }
-#users_insc .imagem_torneio{
-    
+
+#users_insc .imagem_torneio {
+
     display: inline-block;
-    position: relative;
-    left: 135px;
-    top: 285px;
+    width: 49%;
+    vertical-align: middle;
 }
+
 #users_insc .imagem_torneio img {
-    filter: drop-shadow(0px 34px 54px rgba(0, 0, 0, 0.05));
     border-radius: 20px;
     width: 600px;
-    height: 494px;
+    height: 600px;
+}
+
+#users_insc .infos {
+    display: inline-block;
+    width: 28%;
+    vertical-align: middle;
+    text-align: justify;
+}
+
+#users_insc .infos .numero {
+    display: inline-block;
+    margin-right: 20px;
+
+}
+
+#users_insc .infos .numero p {
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 70px;
+    line-height: 105px;
+}
+
+#users_insc .infos .texto {
+    display: inline-block
+}
+
+#users_insc .content {
+
+    position: relative;
+    text-align: center;
+
+    padding-top: 65px;
+}
+
+#users_insc .titulo {
+    position: relative;
+    text-align: center;
+    width: 69%;
+}
+
+#users_insc .titulo h1 {
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+#users_insc .infos .texto h1 {
+    font-style: normal;
+    line-height: 1.5;
+    font-weight: 600;
+    font-size: 28px;
+}
+
+a,
+h1,
+h2,
+p,
+label,
+button,
+th,
+tr,
+td {
+    font-family: 'Poppins';
+    color: #1A093F;
+}
+
+.formulario .titulo_form h1 {
+    color: #4141A5;
+}
+
+.formulario .titulo_form {
+    text-align: center;
+}
+
+.formulario {
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+.formulario .jgd1 {
+    display: inline-block;
+    width: 49%;
+}
+
+.formulario .jgd2 {
+    display: inline-block;
+    width: 49%;
+}
+
+.formulario input {
+    box-sizing: border-box;
+    width: 80%;
+    border-radius: 6px;
+    height: 46px;
+    margin-bottom: 25px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+.formulario select {
+    box-sizing: border-box;
+    width: 100px;
+    border-radius: 6px;
+    height: 46px;
+    margin-bottom: 25px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+.formulario label {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 2.5;
+}
+
+
+
+form {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.formulario p {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1;
+    line-height: 0px;
+    text-align: initial;
+    padding-left: 10%;
+}
+
+
+
+.formulario .enviar {
+    outline: none;
+    border: 0px;
+    width: 267px;
+    background: #4141A5;
+    box-shadow: 0px 20px 30px -16px rgb(65 65 165 / 30%);
+    border-radius: 35px;
+    font-weight: 700 !important;
+    color: #fff;
+    padding: 17px;
+    font-size: 14px;
+    text-align: center;
+}
+
+
+.formulario .Disponibilidade {
+    margin-top: 40px;
+    padding-right: 40px;
+    padding-left: 40px;
 }

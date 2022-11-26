@@ -1,38 +1,84 @@
 let mongoose = require('mongoose');
 
 let tournamentSchema = new mongoose.Schema({
-    name:{
-            type:String,
+/*    name:{
+        type:String,
+        required:true,
+        unique:true
         },
     levels:
         [
             {
                 id: mongoose.Schema.Types.ObjectId,
-
-                pair:[{
-                    id: mongoose.Schema.Types.ObjectId,
-                    group:String,
-                    }],
-            gender_type: {
-                    type: String,
-                    enum: ['M','F','MF'],
-                    maxLength:2,
-                },
+                groups:[
+                    {
+                        type:String,
+                        maxLength:3,
+                    }
+                ]
             }
         ],
-    start_time:Date,
-    end_time:Date,
     schedule:[
         {
             day:Date,
-            start_time:Number,
-            end_time:Number,
+            start_time:Date,
+            end_time:Date,
         }
     ],
-    hasGroup: Boolean,
-    status:Number,
+    type: {
+        type: String,
+        enum: [
+            'M','F','MF'
+        ],
+        maxLength:2,
+    },
+    hasGroup: Boolean
+})
+*/
+    nometorneio:{
+        type:String
+    },
+    localizacao:{
+        type:String
+    },
+    datainicio:{
+        type:Date
+    },
+    datafim:{
+        type:Date,
+        required:true,
+        
+    },
+    nparticipantes:{
+        type: Number,
+        required:true,
+    },
+    preco:{
+        type: Number,
+        required:true
+    },
+    nivel:[
+        {
+        type:String,
+        required:true
+        }
+    ],
+    tipo:{
+        type:String,
+        required:true,
+    },
+    formato:[
+        {
+        type:String,
+        required:true
+        }
+    ],
+    img:{
+        data: Buffer,
+        contentType: String
+    }
 })
 
-let Tournament = mongoose.model('tournamentdb', tournamentSchema);
+let Tournament = mongoose.model('tournamentdbs', tournamentSchema);
 
 module.exports = Tournament;

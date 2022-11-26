@@ -1,48 +1,63 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<h1>Criação do torneio</h1>
+    <h1>Criação do torneio</h1>
 
-<form method="POST">
-    <label for="nometorneio">Nome do torneio:</label><br>
-    <input type="text" id="nometorneio" name="nometorneio">
-    <br>
-    <br>
-    <label for="datainicio">Data inicio:</label><br>
-    <input type="datetime-local" id="datainicio" name="datainicio">
-    <br>
-    <br>
-    <label for="datafim">Data fim:</label><br>
-    <input type="datetime-local" id="datafim" name="datafim">
-    <br>
-    <br>
-    <label for="numeroparticipantes">Número de participantes:</label><br>
-    <input type="number" id="quantity" name="quantity" min="1" max="9999">
-    <br>
-    <br>
-    <label for="tipo">Tipo do torneio</label><br>
-    <input type="radio" id="masculino" name="tipo1" value="masculino">
-    <label for="masculino">Masculino</label><br>
-    <input type="radio" id="feminino" name="tipo1" value="feminino">
-    <label for="feminio">Feminino</label><br>
-    <input type="radio" id="misto" name="tipo1" value="misto">
-    <label for="misto">Misto</label>
-    <br>
-    <br>
-    <label for="formato">Formato do torneio</label><br>
-    <input type="checkbox" id="fasegrupos" name="fasegrupos" value="Fase de grupos">
-    <label for="fasegrupos"> Fase de grupos</label><br>
-    <input type="checkbox" id="faseeliminatorias" name="faseeliminatorias" value="Fase de eliminatorias">
-    <label for="faseeliminatorias"> Fase de eliminatórias</label>
-    <br>
-    <br>
-    <label for="img">Imagem:</label>
-    <input type="file" id="img" name="img" accept="image/*">
-    <br>
-    <br>
-    <input type="submit">
-</form>
+    <form method="POST">
+        <label for="nometorneio">Nome do torneio:</label><br>
+        <input type="text" id="nometorneio" name="nometorneio">
+        <br>
+        <br>
+        <label for="datainicio">Data inicio:</label><br>
+        <input type="date-local" id="datainicio" name="datainicio">
+        <br>
+        <br>
+        <label for="datafim">Data fim:</label><br>
+        <input type="date-local" id="datafim" name="datafim">
+        <br>
+        <br>
+        <label for="numeroparticipantes">Número de participantes:</label><br>
+        <input type="number" id="quantity" name="quantity" min="1" max="9999">
+        <br>
+        <br>
+        <label for="nivel">Nível do Torneio:</label><br>
+        <input type="checkbox" id="nivel1" name="nivel1" value="nivel1">
+        <label for="nivel1"> Apenas Nível 1</label><br>
+        <input type="checkbox" id="nivel2" name="nivel2" value="nivel2">
+        <label for="nivel2"> Apenas Nível 2</label>
+        <input type="checkbox" id="nivel3" name="nivel3" value="nivel3">
+        <label for="nivel3"> Apenas Nível 3</label><br>
+        <input type="checkbox" id="nivel4" name="nivel4" value="nivel4">
+        <label for="nivel4"> Apenas Nível 4</label>
+        <input type="checkbox" id="todosniveis" name="nivel5" value="nivel5">
+        <label for="todosniveis"> Todos os Níveis</label><br>
+        <br>
+        <br>
+        <label for="tipo">Tipo do torneio</label><br>
+        <input type="radio" id="masculino" name="tipo1" value="masculino">
+        <label for="masculino">Masculino</label><br>
+        <input type="radio" id="feminino" name="tipo1" value="feminino">
+        <label for="feminio">Feminino</label><br>
+        <input type="radio" id="misto" name="tipo1" value="misto">
+        <label for="misto">Misto</label>
+        <br>
+        <br>
+        <label for="formato">Formato do torneio</label><br>
+        <input type="checkbox" id="fasegrupos" name="fasegrupos" value="Fase de grupos">
+        <label for="fasegrupos"> Fase de grupos</label><br>
+        <input type="checkbox" id="faseeliminatorias" name="faseeliminatorias" value="Fase de eliminatorias">
+        <label for="faseeliminatorias"> Fase de eliminatórias</label>
+        <br>
+        <br>
+        <label for="img">Imagem:</label>
+        <input type="file" id="img" name="img" accept="image/*">
+        <br>
+        <br>
+        <input type="submit">
+    </form>
 
 </body>
+
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Registar Administrador</h1>
+    
+    <form action="/registo" method="POST">
+        <label for="name_admin">Nome:</label><br>
+        <input type="text" name="username_admin" placeholder="Nome" pattern="[A-Za-z\W+]{1,25}" required>
+        <br>
+        <br>
+        <label for="password_admin">Password:</label><br>
+        <input type="password" name="password_admin" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A password tem de conter pelo menos um número, uma letra maiúscula, uma letra minúscula, e pelo menos 8 caracteres ou mais" required>
+        <br>
+        <br>
+        <label for="confirmpassword_admin">Confirmar Password:</label><br>
+        <input type="password" name="confirmpassword_admin" placeholder="Confirmar Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A password tem de conter pelo menos um número, uma letra maiúscula, uma letra minúscula, e pelo menos 8 caracteres ou mais" required>
+        <br>
+        <br>
+        <button>Registar-se</button>
+    </form>
+    
+</body>
+</html>

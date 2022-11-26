@@ -89,6 +89,49 @@ app.post('/login', (req,res) =>{
 })
 
 //ROTAS REGISTO
+app.get('/registo', (req,res) =>{
+    res.render("registo");
+})
+
+app.post('/registo', (req,res) =>{
+    let username = req.body.username;
+    let email = req.body.email;
+    let nif = req.body.nif;
+    let contacto = req.body.contacto;
+    let password = req.body.password;
+    let password2 = req.body.confirmpassword;
+
+    if(password == password2){
+        User.exists({username:username,email: email, nif:nif, contacto:contacto}, function (err, doc) {
+            if (err){
+                console.log(err)
+            }else{
+                if(doc){
+                    console.log("O dados que escolheu estão incorretos.")
+                }
+                else{
+                    var new_user = new User({
+                        "username": username,
+                        "email": email,
+                        "nif": nif,
+                        "contacto": contacto,
+                        "password":password
+                    })
+    
+                    new_user.save(function (err, doc) {
+                        console.log(err)
+                    });
+                }
+    
+            }
+        });
+    }
+    else{
+        console.log("As passwords não são idênticas.")
+    }
+})
+
+
 app.get('/registo_admin', (req,res) =>{
     res.render("registo_admin");
 })

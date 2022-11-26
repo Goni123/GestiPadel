@@ -8,12 +8,16 @@ let tournamentSchema = new mongoose.Schema({
         [
             {
                 id: mongoose.Schema.Types.ObjectId,
-                groups:[
-                    {
-                        type:String,
-                        maxLength:1,
-                    }
-                ]
+
+                pair:[{
+                    id: mongoose.Schema.Types.ObjectId,
+                    group:String,
+                    }],
+            gender_type: {
+                    type: String,
+                    enum: ['M','F','MF'],
+                    maxLength:2,
+                },
             }
         ],
     start_time:Date,
@@ -25,14 +29,8 @@ let tournamentSchema = new mongoose.Schema({
             end_time:Number,
         }
     ],
-    type: {
-        type: String,
-        enum: [
-            'M','F','MF'
-        ],
-        maxLength:2,
-    },
-    hasGroup: Boolean
+    hasGroup: Boolean,
+    status:Number,
 })
 
 let Tournament = mongoose.model('tournamentdb', tournamentSchema);

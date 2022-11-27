@@ -79,6 +79,6 @@ let tournamentSchema = new mongoose.Schema({
     }
 })
 
-let Tournament = mongoose.model('tournament', tournamentSchema);
+let Tournament = mongoose.model('tournaments', tournamentSchema);
 
 module.exports = Tournament;

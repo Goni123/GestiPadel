@@ -4,6 +4,6 @@ let levelSchema = new mongoose.Schema({
     name:String,
 })
 
-let Level = mongoose.model('level', levelSchema);
+let Level = mongoose.model('levels', levelSchema);
 
 module.exports = {Level};

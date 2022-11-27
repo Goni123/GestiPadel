@@ -38,6 +38,6 @@ let pairSchema = new mongoose.Schema({
     tournaments:[ tournamentReferenceSchema ]
 })
 
-let Pair = mongoose.model('pair', pairSchema);
+let Pair = mongoose.model('pairs', pairSchema);
 let TourRefModel = mongoose.model('tournamentRef',tournamentReferenceSchema)
 module.exports = {Pair,TourRefModel};

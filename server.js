@@ -6,7 +6,9 @@ const path = require('path');
 const mongoose = require('mongoose');
 const { create } = require('./model/usermodel');
 const User = require('./model/usermodel')
-var UserAdmin = require('./model/user_adminmodel')
+const UserAdmin = require('./model/user_adminmodel')
+const Tournament = require('./model/tournamentmodel')
+const {now} = require("mongoose");
 
 const app = express();
 
@@ -214,17 +216,17 @@ app.get('/insctorneio', (req,res) =>{
 })
 
 app.post('/inscricoes', async (req,res) =>{
-    let torneio = req.body.torneio;
-    let listaespera = req.body.listaespera;
-    let disponibilidade= req.body.disponibilidade;
-    let fnome = req.body.fnome;
-    let lname = req.body.lname;
-    let playerlevel = req.body.playerlevel;
+   // let torneio = req.body.torneio;
+   // let listaespera = req.body.listaespera;
+   // let disponibilidade= req.body.disponibilidade;
+   // let fnome = req.body.fnome;
+   // let lname = req.body.lname;
+   // let playerlevel = req.body.playerlevel;
     let nif = req.body.nif;
     let email = req.body.email;
-    let tel = req.body.tel;
+    //let tel = req.body.tel;
 
-    var new_tournament = new Tournament({
+/*    let new_tournament = new Tournament({
         "nometorneio": nometorneio,
         "localizacao": localizacao,
         "datainicio": datainicio,
@@ -235,7 +237,8 @@ app.post('/inscricoes', async (req,res) =>{
         "formato": formato,
         "tipo": tipo,
         "img": img
-    })
+    })*/
+
     /*let dbuser = await User.where("nif").equals(nif)
     await dbuser.forEach(console.dir);(PEDRO)*/
 })

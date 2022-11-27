@@ -37,6 +37,6 @@ let gameSchema = new mongoose.Schema({
     duration: Number, //how long the game will last
 })
 
-let Game = mongoose.model('game', gameSchema);
+let Game = mongoose.model('games', gameSchema);
 
 module.exports = Game;

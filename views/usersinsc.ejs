@@ -14,6 +14,7 @@
             crossorigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
             rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
@@ -123,6 +124,7 @@
                 </div>
                 <label for="playerslevel">Selecione o seu nível:</label><br>
                 <select name="level" id="level">
+                    <option></option>
                     <option value="level1">Nível 1</option>
                     <option value="level2">Nível 2</option>
                     <option value="level3">Nível 3</option>
@@ -131,9 +133,7 @@
                 <br>
                 <br>
 
-                <button type="submit" class="enviar">
-                    Finalizar Inscrição
-                </button>
+
 
                 <div class="Disponibilidade">
                     <table class="table" id="table">
@@ -308,6 +308,9 @@
 
 
                     </table>
+                    <button type="submit" class="enviar">
+                        Finalizar Inscrição
+                    </button>
                     <script>
                         var table = document.getElementById('table'), rIndex;
                         for (var i = 0; i < table.rows.lenght; i++) {
@@ -317,6 +320,33 @@
                             }
 
                         }
+                        var count = 0;
+
+                        $('table').on('click', 'td', function () {
+                            count++;
+                            if (count == 1) {
+                                if ($(this).css("background-color") == "rgb(128, 30, 6)") {/*verifica se esta verde*/
+                                    $(this).addClass('active');
+                                }
+                                else {
+                                    $(this).removeClass('active');
+                                }
+                            }
+
+                            if (count == 2) {
+                                if ($(this).css("background-color") == "rgb(128, 30, 6)") {
+                                    $(this).addClass('active');
+                                }
+                                else {
+                                    $(this).removeClass('active');
+                                }
+                                count = 0;
+
+                            }
+                        });
+
+
+
 
                     </script>
                 </div>

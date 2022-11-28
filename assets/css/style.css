@@ -136,6 +136,10 @@ table {
 }
 
 .table td:hover {
+    background-color: #801e06;
+}
+
+.table td.active {
     background-color: #e70909;
 }
 
@@ -383,6 +387,18 @@ td {
     margin-bottom: 100px;
 }
 
+.formulario option {
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Poppins';
+}
+
+.formulario input[type=date] {
+    padding-left: 15px;
+    font-size: 15px;
+    font-family: 'Poppins';
+}
+
 .formulario .jgd1 {
     display: inline-block;
     width: 49%;
@@ -451,11 +467,83 @@ form {
     padding: 17px;
     font-size: 14px;
     text-align: center;
+    margin-top: 40px;
 }
+
+.formulario .enviar:hover {
+    background: #4141a5b0;
+}
+
 
 
 .formulario .Disponibilidade {
     margin-top: 40px;
     padding-right: 40px;
     padding-left: 40px;
+}
+
+#footer {
+    background-color: #4141A5;
+    text-align: center;
+    padding: 30px;
+
+}
+
+#footer h1 {
+    font-size: 18px;
+
+}
+
+#footer p {
+    font-size: 16px;
+}
+
+#footer h1,
+#footer p {
+    color: #fff
+}
+
+#footer .contactos,
+#footer .Morada,
+#footer .social_media {
+    display: inline-block;
+    width: 32%;
+
+
+}
+
+#footer .contactos p {
+    text-align: initial;
+    padding-left: 42%;
+}
+
+#footer .Morada p {
+    text-align: initial;
+    padding-left: 43%;
+}
+
+#footer .copy-right .allrights,
+#footer .copy-right .terms {
+    display: inline-block;
+    width: 35%;
+    text-align: center;
+    padding: 56px 0 0 0;
+
+}
+
+#footer .copy-right .allrights p {
+    float: left;
+
+}
+
+#footer .copy-right .terms p {
+    float: right;
+}
+
+#footer .face,
+#footer .insta,
+#footer .twitter,
+#footer .linkedin {
+    display: inline-block;
+    padding: 10px;
 }

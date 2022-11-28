@@ -143,14 +143,16 @@
                     <br>
                     <br>
                     <table class="table" id="table">
-                        <th></th>
-                        <th>Segunda-feira</th>
-                        <th>Terça-feira</th>
-                        <th>Quarta-feira</th>
-                        <th>Quinta-feira</th>
-                        <th>Sexta-feira</th>
-                        <th>Sábado</th>
-                        <th>Domingo</th>
+                        <tr>
+                            <th></th>
+                            <th>Segunda-feira</th>
+                            <th>Terça-feira</th>
+                            <th>Quarta-feira</th>
+                            <th>Quinta-feira</th>
+                            <th>Sexta-feira</th>
+                            <th>Sábado</th>
+                            <th>Domingo</th>
+                        </tr>
                         <tr>
                             <td class="hora_tabela">07:00</td>
                             <td></td>
@@ -318,14 +320,31 @@
                         Finalizar Inscrição
                     </button>
                     <script>
-                        var table = document.getElementById('table'), rIndex;
-                        for (var i = 0; i < table.rows.lenght; i++) {
-                            table.rows[i].onClick = function () {
-                                rIndex = This.rowIndex;
-                                console.log(rIndex);
-                            }
+                        var table = document.getElementById('table');
+                        var hora;
+                        var dia;
+                        for (var i = 1; i < table.rows.length; i++) {
 
+
+                            table.rows[i].onclick = function () {
+
+
+                                //rIndex = this.rowIndex;
+                                hora = this.cells[0].innerHTML;
+                                console.log(hora);
+
+
+
+                            };
                         }
+                        /* for (var j = 1; j < 7; j++) {
+                             table.rows[0].cells[j].onclick = function () {
+                                 console.log(this.rows[0].innerHTML);
+                             };
+                         }*/
+
+
+
                         var count = 0;
 
                         $('table').on('click', 'td', function () {

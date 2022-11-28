@@ -476,8 +476,8 @@ form {
 
 
 
-.formulario .Disponibilidade {
-    margin-top: 40px;
+.formulario .Disponibilidade .table {
+
     padding-right: 40px;
     padding-left: 40px;
 }
@@ -546,4 +546,15 @@ form {
 #footer .linkedin {
     display: inline-block;
     padding: 10px;
+}
+
+.formulario .Disponibilidade h1 {
+    margin-bottom: 20px;
+}
+
+.formulario .Disponibilidade p {
+    font-weight: normal;
+    text-align: center;
+    font-size: 18px;
+    padding-left: 0;
 }

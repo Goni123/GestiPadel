@@ -17,24 +17,18 @@ let userSchema = new mongoose.Schema({
     },
     gender:{
         type:String,
-        enum:['M','F','x'],
+        /*enum:['M','F','x'],*/
         required:true,
     },
-    age: Number,
+    /*age: Number,*/
     nif:{
         type:String,
         unique:true
     },
     photo:{
-        type:String,
-        required:true,
+        type: Buffer,
         unique:true
     },
-    is_admin:{
-            type:Boolean,
-            default:false
-        },
-
 })
 
 let User = mongoose.model('users', userSchema);

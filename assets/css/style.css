@@ -76,7 +76,7 @@ a {
 }
 
 #header .menu a {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
 
 }
@@ -364,6 +364,7 @@ table {
 a,
 h1,
 h2,
+h3,
 p,
 label,
 button,
@@ -557,4 +558,140 @@ form {
     text-align: center;
     font-size: 18px;
     padding-left: 0;
+}
+
+
+#homePage .colunaDuplaHome2 {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+    vertical-align: top;
+}
+
+#homePage .colunaDuplaHome1 {
+    display: inline-block;
+    width: 46%;
+    padding-left: 5%;
+
+}
+
+#homePage .colunaDuplaHomeSegundaLayer {
+    display: inline-block;
+
+}
+
+
+
+#homePage .colunaDuplaHomeSegundaLayer img {
+    padding: 10px;
+}
+
+#homePage .colunaDuplaHome1 h1 {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 76px;
+}
+
+#homePage .colunaDuplaHome1 p {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 2;
+}
+
+#homePage .colunaDuplaHome1 button {
+    outline: none;
+    border: 0px;
+    width: auto;
+    background: #4141A5;
+    box-shadow: 0px 20px 30px -16px rgb(65 65 165 / 30%);
+    border-radius: 35px;
+    padding: 17px;
+    text-align: center;
+    margin: 0px 16%;
+}
+
+#homePage .colunaDuplaHome1 button:hover {
+    background: #4141a5b0;
+}
+
+
+#homePage .colunaDuplaHome1 button p {
+    font-weight: 700 !important;
+    color: #fff;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+#homePage .colunaDuplaHome1 button img {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 16px;
+}
+
+#homePage .colunaDuplaHome1 .desc {
+    margin: 83px 36px;
+}
+
+#homePage .inicio {
+    padding-top: 93px;
+    padding-bottom: 93px;
+}
+
+#homePage .ultimosT {
+    padding: 40px 0 96px 40px;
+}
+
+#homePage .ultimosT h2 {
+    display: inline-block;
+    vertical-align: middle;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    vertical-align: middle;
+    width: 22%;
+    vertical-align: middle;
+}
+
+#homePage .ultimosT img {
+    padding: 40px;
+    vertical-align: middle;
+    width: 24%;
+}
+
+#homePage .howTo {
+    text-align: center;
+}
+
+#homePage .howTo h2 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+#homePage .howTo h3 {
+    font-size: 24px;
+}
+
+#homePage .howTo p {
+    font-size: 16px;
+    line-height: 2;
+}
+
+#homePage .howTo .colunaInscricaoHome {
+
+    display: inline-block;
+    width: 29%;
+    vertical-align: top;
+    margin: 149px 0px;
+    padding: 0px 87px;
+}
+
+.criartorneio .colunaDupla {
+    display: inline-block;
+    width: 49%;
 }

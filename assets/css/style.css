@@ -601,7 +601,7 @@ form {
     line-height: 2;
 }
 
-#homePage .colunaDuplaHome1 button {
+button {
     outline: none;
     border: 0px;
     width: auto;
@@ -613,12 +613,12 @@ form {
     margin: 0px 16%;
 }
 
-#homePage .colunaDuplaHome1 button:hover {
+button:hover {
     background: #4141a5b0;
 }
 
 
-#homePage .colunaDuplaHome1 button p {
+button p {
     font-weight: 700 !important;
     color: #fff;
     padding: 0;
@@ -627,7 +627,7 @@ form {
     font-size: 18px;
 }
 
-#homePage .colunaDuplaHome1 button img {
+button img {
     display: inline-block;
     vertical-align: middle;
     margin-left: 16px;
@@ -694,4 +694,43 @@ form {
 .criartorneio .colunaDupla {
     display: inline-block;
     width: 49%;
+}
+
+#home_admin {
+    padding: 100px;
+    text-align: center;
+}
+
+#home_admin .bloco1 {
+    display: inline-block;
+    width: 49%;
+
+}
+
+#home_admin .bloco2 {
+    display: inline-block;
+    width: 49%;
+
+}
+
+#home_admin .bloco1 h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+
+}
+
+#home_admin .bloco1 .descritivo p {
+    font-style: normal;
+    font-size: 25px;
+}
+
+#home_admin .bloco1 .descritivo {
+
+    margin: 30px 0;
+}
+
+#home_admin .bloco1 .imagem img,
+#home_admin .bloco2 .imagem img {
+    width: 40%;
 }

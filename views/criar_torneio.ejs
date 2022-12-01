@@ -75,8 +75,9 @@
         </head>
 
         <body>
-            <h1>Criação do torneio</h1>
             <div id="criartorneio">
+                <h1>Criação do torneio</h1>
+
                 <div class="formulario">
                     <form method="POST">
                         <div class="colunaDupla">
@@ -108,62 +109,135 @@
 
                         </div>
                         <br>
-                        <div class="colunaTripla">
-                            <div class="masculino">
-                                <label for="niveltipo">Masculino</label>
-                                <br>
-                                <input type="checkbox" id="nivelM" name="niveltipo" value="nivel1M">
-                                <label for="niveltipo">Nível 1</label><br>
-                                <input type="checkbox" id="nivelM" name="niveltipo" value="nivel2M">
-                                <label for="niveltipo">Nível 2</label><br>
-                                <input type="checkbox" id="nivelM" name="niveltipo" value="nivel3M">
-                                <label for="niveltipo">Nível 3</label><br>
-                                <input type="checkbox" id="nivelM" name="niveltipo" value="nivel4M">
-                                <label for="niveltipo">Nível 4</label><br><br>
-                            </div>
+                        <div class="tipo-torneio">
+                            <h1>Tipo de Torneio</h1>
+                            <table class="table">
+                                <tr>
+                                    <th>Masculino</th>
+                                    <th>Feminino</th>
+                                    <th>Misto</th>
+
+                                </tr>
+                                <tr>
+                                    <td>
+
+                                        <label for="niveltipo">Nível 1</label>
+                                        <input type="checkbox" id="nivelM" name="niveltipo" value="nivel1M">
+                                    </td>
+                                    <td>
+
+                                        <label for="niveltipo">Nível 1</label>
+                                        <input type="checkbox" id="nivelF" name="niveltipo" value="nivel1F">
+
+                                    </td>
+                                    <td>
+
+                                        <label for="niveltipo">Nível 1</label>
+                                        <input type="checkbox" id="nivelMF" name="niveltipo" value="nivel1MF">
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="niveltipo">Nível 2</label>
+                                        <input type="checkbox" id="nivelM" name="niveltipo" value="nivel2M">
+
+                                    </td>
+                                    <td>
+                                        <label for="niveltipo">Nível 2</label>
+                                        <input type="checkbox" id="nivelF" name="niveltipo" value="nivel2F">
+
+
+                                    </td>
+                                    <td>
+                                        <label for="niveltipo">Nível 2</label>
+                                        <input type="checkbox" id="nivelMF" name="niveltipo" value="nivel2MF">
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="niveltipo">Nível 3</label>
+                                        <input type="checkbox" id="nivelM" name="niveltipo" value="nivel3M">
+
+                                    </td>
+                                    <td>
+                                        <label for="niveltipo">Nível 3</label>
+                                        <input type="checkbox" id="nivelF" name="niveltipo" value="nivel3F">
+
+
+                                    </td>
+                                    <td>
+                                        <label for="niveltipo">Nível 3</label>
+                                        <input type="checkbox" id="nivelMF" name="niveltipo" value="nivel3MF">
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="niveltipo">Nível 4</label>
+                                        <input type="checkbox" id="nivelM" name="niveltipo" value="nivel4M">
+
+                                    </td>
+                                    <td>
+                                        <label for="niveltipo">Nível 4</label>
+                                        <input type="checkbox" id="nivelF" name="niveltipo" value="nivel4F">
+
+
+                                    </td>
+                                    <td>
+                                        <label for="niveltipo">Nível 4</label>
+                                        <input type="checkbox" id="nivelMF" name="niveltipo" value="nivel4MF">
+
+                                    </td>
+
+                                </tr>
+
+
+
+                            </table>
+
+
+
                         </div>
-                        <div class="colunaTripla">
-                            <div class="feminino">
-                                <label for="niveltipo">Feminino</label>
+                        <div class="fase-de-grupos">
+                            <h2>Fase de Grupos?</h2>
+                            <div class="opcoes">
+                                <div class="sim">
+                                    <label for="fasegrupos1"> Sim</label>
+                                    <input type="checkbox" id="fasegrupos1" name="fasegrupos" value="Sim">
+                                </div>
                                 <br>
-                                <input type="checkbox" id="nivelF" name="niveltipo" value="nivel1F">
-                                <label for="niveltipo">Nível 1</label><br>
-                                <input type="checkbox" id="nivelF" name="niveltipo" value="nivel2F">
-                                <label for="niveltipo">Nível 2</label><br>
-                                <input type="checkbox" id="nivelF" name="niveltipo" value="nivel3F">
-                                <label for="niveltipo">Nível 3</label><br>
-                                <input type="checkbox" id="nivelF" name="niveltipo" value="nivel4F">
-                                <label for="niveltipo">Nível 4</label><br><br>
+                                <div class="nao">
+                                    <label for="fasegrupos2"> Não</label>
+                                    <input type="checkbox" id="fasegrupos2" name="fasegrupos" value="Nao">
+                                </div>
+
+
+
                             </div>
+
+
                         </div>
-                        <div class="colunaTripla">
-                            <div class="misto">
-                                <label for="niveltipo">Misto</label>
-                                <br>
-                                <input type="checkbox" id="nivelMF" name="niveltipo" value="nivel1MF">
-                                <label for="niveltipo">Nível 1</label><br>
-                                <input type="checkbox" id="nivelMF" name="niveltipo" value="nivel2MF">
-                                <label for="niveltipo">Nível 2</label><br>
-                                <input type="checkbox" id="nivelMF" name="niveltipo" value="nivel3MF">
-                                <label for="niveltipo">Nível 3</label><br>
-                                <input type="checkbox" id="nivelMF" name="niveltipo" value="nivel4MF">
-                                <label for="niveltipo">Nível 4</label><br><br>
-                            </div>
+
+
+
+                        <br> <br>
+                        <br> <br>
+                        <div class="fileImage">
+                            <p>Foto do Torneio:</p>
+                            <label for="img">Carrgar Foto +</label>
+                            <input type="file" id="img" name="img" accept="image/*">
                         </div>
-                        <br>
-                        <br> <br>
-                        <label for="fasegrupos">Fase de Grupos?</label>
-                        <input type="checkbox" id="fasegrupos" name="fasegrupos" value="Sim">
-                        <label for="fasegrupos"> Sim</label>
-                        <input type="checkbox" id="fasegrupos" name="fasegrupos" value="Nao">
-                        <label for="fasegrupos"> Não</label>
-                        <br> <br>
-                        <br> <br>
-                        <label for="img">Imagem:</label>
-                        <input type="file" id="img" name="img" accept="image/*">
+
                         <br>
                         <br>
-                        <input type="submit">
+                        <button type="submit" class="enviar">
+                            Criar Torneio
+                        </button>
                     </form>
                 </div>
             </div>

@@ -121,10 +121,10 @@ app.post('/registo', (req, res) => {
                 }
                 else {
                     var new_user = new User({
-                        "username": username,
+                        "name": username,
                         "email": email,
                         "nif": nif,
-                        "contacto": contacto,
+                        "phone": contacto,
                         "password": password
                     })
 

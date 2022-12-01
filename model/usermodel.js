@@ -6,28 +6,15 @@ let userSchema = new mongoose.Schema({
     },
     email:{
         type:String,
-        unique:true
     },
     password:{
         type:String,
     },
     phone:{
         type:String,
-        unique:true
     },
-    gender:{
-        type:String,
-        /*enum:['M','F','x'],*/
-        required:true,
-    },
-    /*age: Number,*/
     nif:{
-        type:String,
-        unique:true
-    },
-    photo:{
-        type: Buffer,
-        unique:true
+        type:String
     },
 })
 

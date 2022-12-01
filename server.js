@@ -189,12 +189,12 @@ app.post('/criartorneio', (req, res) => {
     let nometorneio = req.body.nometorneio;
     let datainicio = req.body.datainicio;
     let datafim = req.body.datafim;
-    let nparticipantes = req.body.numeroparticipantes;
+    let nparticipantes = req.body.nparticipantes;
     let preco = req.body.preco;
     let localizacao = req.body.localizacao;
-    let nivel = req.body.nivel1;
-    let tipo = req.body.tipo1;
-    let formato = req.body.formato;
+    let niveltipo = req.body.niveltipo;
+    //let tipo = req.body.tipo1;
+    let fasegrupos = req.body.fasegrupos;
     let img = req.body.img;
 
     var new_tournament = new Tournament({
@@ -204,9 +204,9 @@ app.post('/criartorneio', (req, res) => {
         "datafim": datafim,
         "nparticipantes": nparticipantes,
         "preco": preco,
-        "nivel": nivel,
-        "formato": formato,
-        "tipo": tipo,
+        "niveltipo": niveltipo,
+        "fasegrupos": fasegrupos,
+        //"tipo": tipo,
         "img": img
     })
 

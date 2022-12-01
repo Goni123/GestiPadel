@@ -57,22 +57,18 @@ let tournamentSchema = new mongoose.Schema({
         type: Number,
         required:true
     },
-    nivel:[
+    niveltipo:[
         {
         type:String,
         required:true
         }
     ],
-    tipo:{
-        type:String,
-        required:true,
-    },
-    formato:[
+    fasegrupos:
         {
         type:String,
         required:true
         }
-    ],
+    ,
     img:{
         data: Buffer,
         contentType: String

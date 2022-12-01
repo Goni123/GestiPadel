@@ -19,6 +19,9 @@ app.get('/', (req, res) => {
 app.get('/inscricoes', (req, res) => {
     res.render("usersinsc");
 })
+app.get('/EditarTorneioMenu', (req, res) => {
+    res.render("menu_editar_torneio");
+})
 
 app.get('/home', (req, res) => {
     res.render("home_user");

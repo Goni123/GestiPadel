@@ -718,7 +718,6 @@ button img {
     font-style: normal;
     font-weight: 700;
     font-size: 50px;
-
 }
 
 #home_admin .bloco1 .descritivo p {
@@ -727,7 +726,6 @@ button img {
 }
 
 #home_admin .bloco1 .descritivo {
-
     margin: 30px 0;
 }
 
@@ -748,8 +746,6 @@ button img {
 
 #criartorneio .table {
     padding: 100px;
-
-
 }
 
 #criartorneio .table td {
@@ -760,7 +756,6 @@ button img {
 #criartorneio .table th {
     border: 1px solid #454748;
     background-color: #17448b52;
-
 }
 
 #criartorneio .tipo-torneio {
@@ -772,12 +767,10 @@ button img {
     width: 26%;
     vertical-align: middle;
     height: 37px;
-
 }
 
 #criartorneio .fase-de-grupos {
     text-align: center;
-
 }
 
 #criartorneio .formulario .fase-de-grupos input {
@@ -785,7 +778,6 @@ button img {
     height: 37px;
     vertical-align: middle;
     margin: 0;
-
 }
 
 #criartorneio .formulario .fase-de-grupos p {
@@ -799,8 +791,6 @@ button img {
 
 .fileImage input {
     display: none;
-
-
 }
 
 .fileImage label {
@@ -811,7 +801,6 @@ button img {
     border-radius: 10px;
     padding: 10px 60px;
     color: #6F6681;
-
 }
 
 .fileImage p {
@@ -821,4 +810,22 @@ button img {
     line-height: 2.5;
     text-align: center;
     padding: 0;
+}
+
+#menu_editar {
+    padding-top: 50px;
+}
+
+#menu_editar h1 {
+    text-align: center;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    color: #4141A5;
+}
+
+#menu_editar .formulario .enviar {
+    font-size: 19px;
+    width: 332px;
+    padding: 42px 18px;
 }

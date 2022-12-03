@@ -12,6 +12,7 @@ const User = require('./model/usermodel')
 const UserAdmin = require('./model/user_adminmodel')
 const Tournament = require('./model/tournamentmodel')
 const { now } = require("mongoose");
+const {Pair} = require('./model/pairmodel')
 var upload = require('./multerConfig')
 
 var app = express();
@@ -197,7 +198,7 @@ app.post('/registo_admin', (req, res) => {
     let password = req.body.password_admin;
     let password2 = req.body.confirmpassword_admin;
 
-    if (password == password2) {
+    if (password === password2) {
 
         UserAdmin.exists({ username: username }, function (err, doc) {
             if (err) {
@@ -288,31 +289,66 @@ app.get('/insctorneio', (req, res) => {
 })
 
 app.post('/inscricoes', async (req, res) => {
-    // let torneio = req.body.torneio;
+    let torneio = req.body.torneio;
     // let listaespera = req.body.listaespera;
     // let disponibilidade= req.body.disponibilidade;
-    // let fnome = req.body.fnome;
-    // let lname = req.body.lname;
-    // let playerlevel = req.body.playerlevel;
-    let nif = req.body.nif;
-    let email = req.body.email;
-    //let tel = req.body.tel;
+    let nome1 = req.body.nomeum;
+    let nome2 = req.body.nomedois;
+    let level = req.body.playerlevel;
+    let nif1 = req.body.nifum;
+    let nif2 = req.body.nifdois;
+    let email1 = req.body.emailum;
+    let email2 = req.body.emaildois;
+    let tel1 = req.body.telum;
+    let tel2 = req.body.teldois;
 
-    /*    let new_tournament = new Tournament({
-            "nometorneio": nometorneio,
-            "localizacao": localizacao,
-            "datainicio": datainicio,
-            "datafim": datafim,
-            "nparticipantes": nparticipantes,
-            "preco": preco,
-            "nivel": nivel,
-            "formato": formato,
-            "tipo": tipo,
-            "img": img
-        })*/
 
-    /*let dbuser = await User.where("nif").equals(nif)
-    await dbuser.forEach(console.dir);(PEDRO)*/
+    let dbuser1 = await User.where("nif").equals(nif1).exec()
+    let dbuser2 = await User.where("nif").equals(nif2).exec()
+    console.log(dbuser1)
+    console.log(dbuser2)
+// caso um dos users nao existir, adicionar á tabela de user
+    if(dbuser1.length===0){
+        dbuser1= await new User(
+            {
+                "name"  : nome1,
+                "email" : email1,
+                "phone" : tel1,
+                "nif"   : nif1
+            }).save()
+        dbuser1 = await User.where("nif").equals(nif1).exec()
+    }
+    if(dbuser2.length===0){
+        dbuser2= await new User(
+            {
+                "name"  : nome2,
+                "email" : email2,
+                "phone" : tel2,
+                "nif"   : nif2
+            }).save()
+        dbuser2 = await User.where("nif").equals(nif2).exec()
+    }
+
+//caso ambos os users existem
+    const pair = await Pair.find({users : { "$in":  [ dbuser1[0]._id , dbuser2[0]._id ]}})
+    //const pair2 =
+    if (pair.size === 0 ){ //this means they have no active pair
+        let new_pair= new Pair({
+            "users": [ dbuser1[0]._id , dbuser2[0]._id],
+            "tournaments": [ {"id": "6388a37e9f6259e39e9c66dc"}],
+        })
+        await new_pair.save()//*/
+    }else if (pair[0].tournaments.some(element => {return element.id === "6388a37e9f6259e39e9c66dc";})){ //caso os users ja tenham um par em conjunto
+        console.log("dentro")
+        //pair.tournaments.push({"id":   "6388a30d9f6259e39e9c66da"})
+        await Pair.updateOne({_id: pair[0]._id },{$addToSet:{tournaments:{"id":   "6388a30d9f6259e39e9c66da"}}})
+
+    }else{
+        res.status(409)/*.send({
+            message: 'Este par ja se encontra incrito neste torneio'
+        })*/;
+    }
+
 })
 
 app.get('/brackets', (req, res) => {

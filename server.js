@@ -14,14 +14,29 @@ const User = require('./model/usermodel')
 const UserAdmin = require('./model/user_adminmodel')
 const Tournament = require('./model/tournamentmodel')
 const { now } = require("mongoose");
+var upload = require('./multerConfig')
 
-const app = express();
+var app = express();
+require('dotenv/config');
+
+//
+
+//
+//set up multer for storing uploaded files
+
+
+const imgModel = require('./model/tournamentmodel');
+
+
+
+
 app.use(cookieParser());
 app.use(session({
     secret: "gestipadel",
     saveUninitialized: true,
     resave: true
 }));
+
 
 app.get('/', (req, res) => {
     res.render("index");
@@ -32,6 +47,10 @@ app.get('/inscricoes', (req, res) => {
 })
 app.get('/editar_torneio_menu', (req, res) => {
     res.render("menu_editar_torneio");
+})
+
+app.get('/eliminatorias', (req, res) => {
+    res.render("brackets");
 })
 
 app.get('/home', (req, res) => {
@@ -211,57 +230,58 @@ app.post('/registo_admin', (req, res) => {
 
 })
 
+
+
+
+
+
 //ROTAS CRIAR TORNEIO
 app.get('/criartorneio', (req, res) => {
     res.render("criar_torneio");
-    console.log(req.session.user)
+
+    imgModel.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.render('criar_torneio', { items: items });
+        }
+    })
 })
 
-app.post('/criartorneio', (req, res) => {
-    let nometorneio = req.body.nometorneio;
-    let datainicio = req.body.datainicio;
-    let datafim = req.body.datafim;
-    let nparticipantes = req.body.nparticipantes;
-    let preco = req.body.preco;
-    let localizacao = req.body.localizacao;
-    let niveltipo = req.body.niveltipo;
-    //let tipo = req.body.tipo1;
-    let fasegrupos = req.body.fasegrupos;
-    let img = req.file;
-    console.log(img)
+app.post('/criartorneio', upload.single('img'), function (req, res) {
+    var new_tournament = new Tournament({
+        nometorneio: req.body.nometorneio,
+        localizacao: req.body.localizacao,
+        datainicio: req.body.datainicio,
+        datafim: req.body.datafim,
+        nparticipantes: req.body.nparticipantes,
+        preco: req.body.preco,
+        niveltipo: req.body.niveltipo,
+        fasegrupos: req.body.fasegrupos,
+        img: req.body.imagem,
 
-    img.mv(__dirname + '/assets/img/img_Torneios', function (err){  // faz o upload da foto para a pasta do projeto
-        if (err){
-            console.log("Ocorreu um erro durante o uplado da foto")
-            res.redirect('./criartorneio');
-        }
+  
+})
 
-        else { // se não ocorrer nenhum erro durante o upload, então insere o caminho na base de dados
-            var new_tournament = new Tournament({
-                "nometorneio": nometorneio,
-                "localizacao": localizacao,
-                "datainicio": datainicio,
-                "datafim": datafim,
-                "nparticipantes": nparticipantes,
-                "preco": preco,
-                "niveltipo": niveltipo,
-                "fasegrupos": fasegrupos,
-                "img": img
-            })
-
-            new_tournament.save(function (err, doc) {
-                console.log(err);
-            });
-        }
 
     })
-
-    debugger
-    new_tournament.save(function (err, doc) {
-        console.log(err);
-    });
-
+    new_tournament.save(function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.redirect('/admin')
+        }
+    })
 })
+
+
+
+
+
+
+
 
 
 //ROTAS INSCRIÇÃO TORNEIO

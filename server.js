@@ -4,6 +4,9 @@ const cookieParser = require("cookie-parser");
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyparser = require("body-parser");
+var formidable = require('formidable');
+const upload = require('express-fileupload')
+const fs = require('fs')
 const path = require('path');
 const mongoose = require('mongoose');
 const { create } = require('./model/usermodel');
@@ -27,7 +30,7 @@ app.get('/', (req, res) => {
 app.get('/inscricoes', (req, res) => {
     res.render("usersinsc");
 })
-app.get('/EditarTorneioMenu', (req, res) => {
+app.get('/editar_torneio_menu', (req, res) => {
     res.render("menu_editar_torneio");
 })
 
@@ -224,19 +227,33 @@ app.post('/criartorneio', (req, res) => {
     let niveltipo = req.body.niveltipo;
     //let tipo = req.body.tipo1;
     let fasegrupos = req.body.fasegrupos;
-    let img = req.body.img;
+    let img = req.file;
+    console.log(img)
 
-    var new_tournament = new Tournament({
-        "nometorneio": nometorneio,
-        "localizacao": localizacao,
-        "datainicio": datainicio,
-        "datafim": datafim,
-        "nparticipantes": nparticipantes,
-        "preco": preco,
-        "niveltipo": niveltipo,
-        "fasegrupos": fasegrupos,
-        //"tipo": tipo,
-        "img": img
+    img.mv(__dirname + '/assets/img/img_Torneios', function (err){  // faz o upload da foto para a pasta do projeto
+        if (err){
+            console.log("Ocorreu um erro durante o uplado da foto")
+            res.redirect('./criartorneio');
+        }
+
+        else { // se não ocorrer nenhum erro durante o upload, então insere o caminho na base de dados
+            var new_tournament = new Tournament({
+                "nometorneio": nometorneio,
+                "localizacao": localizacao,
+                "datainicio": datainicio,
+                "datafim": datafim,
+                "nparticipantes": nparticipantes,
+                "preco": preco,
+                "niveltipo": niveltipo,
+                "fasegrupos": fasegrupos,
+                "img": img
+            })
+
+            new_tournament.save(function (err, doc) {
+                console.log(err);
+            });
+        }
+
     })
 
     debugger

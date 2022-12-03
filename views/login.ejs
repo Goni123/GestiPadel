@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <title>Login</title>
 </head>
-<body>
-    <h1>Login</h1>
-    
-    <form method="POST">
-        <label for="username">Username:</label><br>
-        <input type="text" name="username" placeholder="Username" required>
-        <br>
-        <br>
-        <label for="password">Password:</label><br>
-        <input type="password" name="password" placeholder="Password" required>
-        <br>
-        <br>
-        <button>Login</button>
-        <a href="/registo_admin">Registo</a>
-        <br>
-        <br>
-        <a href="">Recuperar password</a>
-    </form>
-    
+
+<body style="background-color:#4141A5;">
+    <div id="login">
+        <div class="container">
+            <h1>Login</h1>
+            <div class="logo">
+                <img src="../img/logo_bola.png">
+            </div>
+            <form method="POST">
+
+
+                <input type="text" name="username" placeholder="Username" size="20" required>
+                <br>
+                <br>
+                <input type="password" name="password" placeholder="Password" size="20" required>
+                <br>
+                <br>
+                <button>Login</button>
+                <br>
+                <button>Voltar</button>
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+
 </body>
+
 </html>

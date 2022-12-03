@@ -9,8 +9,20 @@ const User = require('./model/usermodel')
 const UserAdmin = require('./model/user_adminmodel')
 const Tournament = require('./model/tournamentmodel')
 const { now } = require("mongoose");
+var upload = require('./multerConfig')
 
-const app = express();
+var app = express();
+require('dotenv/config');
+
+//
+
+//
+//set up multer for storing uploaded files
+
+
+const imgModel = require('./model/tournamentmodel');
+
+
 
 app.get('/', (req, res) => {
     res.render("index");
@@ -21,6 +33,10 @@ app.get('/inscricoes', (req, res) => {
 })
 app.get('/EditarTorneioMenu', (req, res) => {
     res.render("menu_editar_torneio");
+})
+
+app.get('/eliminatorias', (req, res) => {
+    res.render("brackets");
 })
 
 app.get('/home', (req, res) => {
@@ -183,42 +199,62 @@ app.post('/registo_admin', (req, res) => {
 
 })
 
+
+
+
+
+
 //ROTAS CRIAR TORNEIO
 app.get('/criartorneio', (req, res) => {
     res.render("criar_torneio");
-})
-
-app.post('/criartorneio', (req, res) => {
-    let nometorneio = req.body.nometorneio;
-    let datainicio = req.body.datainicio;
-    let datafim = req.body.datafim;
-    let nparticipantes = req.body.nparticipantes;
-    let preco = req.body.preco;
-    let localizacao = req.body.localizacao;
-    let niveltipo = req.body.niveltipo;
-    //let tipo = req.body.tipo1;
-    let fasegrupos = req.body.fasegrupos;
-    let img = req.body.img;
-
-    var new_tournament = new Tournament({
-        "nometorneio": nometorneio,
-        "localizacao": localizacao,
-        "datainicio": datainicio,
-        "datafim": datafim,
-        "nparticipantes": nparticipantes,
-        "preco": preco,
-        "niveltipo": niveltipo,
-        "fasegrupos": fasegrupos,
-        //"tipo": tipo,
-        "img": img
+    imgModel.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.render('criar_torneio', { items: items });
+        }
     })
-
-    debugger
-    new_tournament.save(function (err, doc) {
-        console.log(err);
-    });
-
 })
+
+app.post('/criartorneio', upload.single('img'), function (req, res) {
+    var new_tournament = new Tournament({
+        nometorneio: req.body.nometorneio,
+        localizacao: req.body.localizacao,
+        datainicio: req.body.datainicio,
+        datafim: req.body.datafim,
+        nparticipantes: req.body.nparticipantes,
+        preco: req.body.preco,
+        niveltipo: req.body.niveltipo,
+        fasegrupos: req.body.fasegrupos,
+        img: req.body.imagem,
+
+
+    })
+    new_tournament.save(function (err) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.redirect('/admin')
+        }
+    })
+})
+
+/*let nometorneio = req.body.nometorneio;
+let datainicio = req.body.datainicio;
+let datafim = req.body.datafim;
+let nparticipantes = req.body.nparticipantes;
+let preco = req.body.preco;
+let localizacao = req.body.localizacao;
+let niveltipo = req.body.niveltipo;
+let fasegrupos = req.body.fasegrupos;
+let img = req.body.img;*/
+
+
+
+
+
 
 
 //ROTAS INSCRIÇÃO TORNEIO

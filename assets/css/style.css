@@ -829,3 +829,57 @@ button img {
     width: 332px;
     padding: 42px 18px;
 }
+
+#login h1 {
+    text-align: center;
+    font-size: 50px;
+
+}
+
+#login {
+    background-color: #4141A5;
+    height: 100%;
+    margin: 0;
+}
+
+#login .container {
+    height: fit-content;
+    background-color: #fff;
+    border-radius: 14px;
+    margin-top: 10%;
+    padding: 40px;
+    width: fit-content;
+}
+
+#login button {
+    text-align: center;
+    color: #fff;
+    padding: 18px 58px;
+    margin: 23px 0 0 0;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+#login input[type=text],
+#login input[type=password] {
+    border: none;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    font-size: 22px;
+    margin: 15px;
+}
+
+#login input[type=text]:focus-visible,
+#login input[type=password]:focus-visible {
+    border: none;
+    border-bottom: 2px solid rgb(65 65 165);
+    outline: 0;
+}
+
+#login .logo {
+    text-align: center;
+}
+
+#login .logo img {
+    width: auto;
+    height: 117px;
+}

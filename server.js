@@ -1,7 +1,12 @@
 const express = require('express');
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyparser = require("body-parser");
+var formidable = require('formidable');
+const upload = require('express-fileupload')
+const fs = require('fs')
 const path = require('path');
 const mongoose = require('mongoose');
 const { create } = require('./model/usermodel');
@@ -24,6 +29,15 @@ const imgModel = require('./model/tournamentmodel');
 
 
 
+
+app.use(cookieParser());
+app.use(session({
+    secret: "gestipadel",
+    saveUninitialized: true,
+    resave: true
+}));
+
+
 app.get('/', (req, res) => {
     res.render("index");
 })
@@ -31,7 +45,7 @@ app.get('/', (req, res) => {
 app.get('/inscricoes', (req, res) => {
     res.render("usersinsc");
 })
-app.get('/EditarTorneioMenu', (req, res) => {
+app.get('/editar_torneio_menu', (req, res) => {
     res.render("menu_editar_torneio");
 })
 
@@ -41,10 +55,12 @@ app.get('/eliminatorias', (req, res) => {
 
 app.get('/home', (req, res) => {
     res.render("home_user");
+    console.log(req.session.user)
 })
 
 app.get('/admin', (req, res) => {
     res.render("home_admin");
+    console.log(req.session.user)
 })
 
 dotenv.config({ path: 'config.env' })
@@ -92,7 +108,9 @@ app.get('/', (req, res) => {
 
 //ROTAS LOGIN
 app.get('/login', (req, res) => {
-    res.render("login");
+
+    console.log(req.session.user)
+    res.render("login")
 })
 
 app.post('/login', (req, res) => {
@@ -108,6 +126,15 @@ app.post('/login', (req, res) => {
         } else {
             if (doc) {
                 console.log("O Login foi realizado com sucesso.")
+                const user = {
+                    username : username,
+                    password : password
+                }
+                req.session.user = user;
+                req.session.save();
+                console.log(req.session.user)
+
+                res.redirect('/admin');
             }
             else {
                 console.log("Os dados introduzidos não estão corretos.")
@@ -150,6 +177,8 @@ app.post('/registo', (req, res) => {
                     new_user.save(function (err, doc) {
                         console.log(err)
                     });
+
+                    res.redirect('home_user')
                 }
 
             }
@@ -188,6 +217,8 @@ app.post('/registo_admin', (req, res) => {
                     new_user_admin.save(function (err, doc) {
                         console.log(err)
                     });
+
+                    res.redirect('home_admin')
                 }
 
             }
@@ -207,6 +238,7 @@ app.post('/registo_admin', (req, res) => {
 //ROTAS CRIAR TORNEIO
 app.get('/criartorneio', (req, res) => {
     res.render("criar_torneio");
+
     imgModel.find({}, (err, items) => {
         if (err) {
             console.log(err);
@@ -230,6 +262,9 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         fasegrupos: req.body.fasegrupos,
         img: req.body.imagem,
 
+  
+})
+
 
     })
     new_tournament.save(function (err) {
@@ -241,15 +276,7 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
     })
 })
 
-/*let nometorneio = req.body.nometorneio;
-let datainicio = req.body.datainicio;
-let datafim = req.body.datafim;
-let nparticipantes = req.body.nparticipantes;
-let preco = req.body.preco;
-let localizacao = req.body.localizacao;
-let niveltipo = req.body.niveltipo;
-let fasegrupos = req.body.fasegrupos;
-let img = req.body.img;*/
+
 
 
 
@@ -288,6 +315,10 @@ app.post('/inscricoes', async (req, res) => {
 
     /*let dbuser = await User.where("nif").equals(nif)
     await dbuser.forEach(console.dir);(PEDRO)*/
+})
+
+app.get('/brackets', (req, res) => {
+    res.render("brackets");
 })
 
 app.listen(PORT, () => {

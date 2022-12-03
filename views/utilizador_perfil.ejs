@@ -1,0 +1,203 @@
+<!-- include header -->
+<%- include('include/_header') %>
+    <!-- /include header -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="C:\Users\Raul Gonçalves\Desktop\GestiPadel\assets\css\style.css">
+    </head>
+    <style>
+
+        .imagem_perfil img {
+            border-radius: 20px;
+            width: 300px;
+            height: 300px;
+        }
+        
+    </style>
+    <!-- Main Site -->
+    <div id="users_insc">
+        <div class="torneio">
+            <div class="titulo">
+                <h1>Jusefino Albino da Mota Freitas</h1>
+                <!--fazer push do nome db-->
+            </div>
+            <div class="content">
+                <div class="imagem_perfil">
+                    <img src="C:\Users\Raul Gonçalves\Desktop\GestiPadel\assets\img\gajo.png">
+                    <!--fazer push do nome db-->
+                </div>
+                <div class="infos">
+                </div>
+            </div>
+        </div>
+
+        <div class="formulario">
+            <div class="titulo_form">
+                <h1>Estatísticas</h1>
+            </div>
+            <form method="POST">
+
+                <div class="jgd1">
+                    <div class="texto">
+                        <h1>Nível</h1>
+                        <p><h2>4</h2></p>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="jogos_ganhos">
+                        <div class="texto">
+                            <h1>Jogos Ganhos</h1>
+                            <p><h3>900</h3></p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="percentagem_vitoria">
+                        <div class="texto">
+                            <h1>Percentagem de Vitórias</h1>
+                            <p><h3>90%</h3></p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="participacoes_torneios">
+                        <div class="texto">
+                            <h1>Torneios Disputados</h1>
+                            <p><h3>20</h3></p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <div class="jgd2">
+                    <div class="jogos_realizados">
+                        <div class="texto">
+                            <h1>Jogos Realizados</h1>
+                            <p><h3>1000</h3></p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="jogos_perdidos">
+                        <div class="texto">
+                            <h1>Jogos Perdidos</h1>
+                            <p><h3>100</h3></p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="percentagem_vitoria">
+                        <div class="texto">
+                            <h1>Percentagem de Derrotas</h1>
+                            <p><h3>10%</h3></p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="torneios_ganhos">
+                        <div class="texto">
+                            <h1>Torneios Ganhos</h1>
+                            <p><h3>10</h3></p>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <div class="data_membro">
+                    <div class="texto">
+                        <h1>Membro desde</h1>
+                        <p><h3>05/06/2015</h3></p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                    <button type="submit" class="enviar">
+                        Alterar dados pessoais
+                    </button>
+                    <script>
+                        var table = document.getElementById('table');
+                        var hora;
+                        var dia;
+                        for (var i = 1; i < table.rows.length; i++) {
+
+
+                            table.rows[i].onclick = function () {
+
+
+                                //rIndex = this.rowIndex;
+                                hora = this.cells[0].innerHTML;
+                                console.log(hora);
+
+
+
+                            };
+                        }
+                        /* for (var j = 1; j < 7; j++) {
+                             table.rows[0].cells[j].onclick = function () {
+                                 console.log(this.rows[0].innerHTML);
+                             };
+                         }*/
+
+
+
+                        var count = 0;
+
+                        $('table').on('click', 'td', function () {
+                            count++;
+                            if (count == 1) {
+                                if ($(this).css("background-color") == "rgb(128, 30, 6)") {/*verifica se esta verde*/
+                                    $(this).addClass('active');
+                                }
+                                else {
+                                    $(this).removeClass('active');
+                                }
+                            }
+
+                            if (count == 2) {
+                                if ($(this).css("background-color") == "rgb(128, 30, 6)") {
+                                    $(this).addClass('active');
+                                }
+                                else {
+                                    $(this).removeClass('active');
+                                }
+                                count = 0;
+
+                            }
+                        });
+
+
+
+
+                    </script>
+                </div>
+
+
+            </form>
+        </div>
+
+
+
+
+    </div>
+
+    </html>
+    <!-- /Main Site -->
+
+
+    <!-- include footer -->
+    <%- include('include/_footer') %>
+        <!-- /include footer -->

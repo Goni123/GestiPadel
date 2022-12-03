@@ -4,8 +4,6 @@ const cookieParser = require("cookie-parser");
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyparser = require("body-parser");
-var formidable = require('formidable');
-const upload = require('express-fileupload')
 const fs = require('fs')
 const path = require('path');
 const mongoose = require('mongoose');
@@ -127,8 +125,8 @@ app.post('/login', (req, res) => {
             if (doc) {
                 console.log("O Login foi realizado com sucesso.")
                 const user = {
-                    username : username,
-                    password : password
+                    username: username,
+                    password: password
                 }
                 req.session.user = user;
                 req.session.save();
@@ -262,11 +260,11 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         fasegrupos: req.body.fasegrupos,
         img: req.body.imagem,
 
-  
-})
-
 
     })
+
+
+
     new_tournament.save(function (err) {
         if (err) {
             console.log(err)

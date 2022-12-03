@@ -1,4 +1,6 @@
 const express = require('express');
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const bodyparser = require("body-parser");
@@ -11,6 +13,12 @@ const Tournament = require('./model/tournamentmodel')
 const { now } = require("mongoose");
 
 const app = express();
+app.use(cookieParser());
+app.use(session({
+    secret: "gestipadel",
+    saveUninitialized: true,
+    resave: true
+}));
 
 app.get('/', (req, res) => {
     res.render("index");
@@ -25,10 +33,12 @@ app.get('/EditarTorneioMenu', (req, res) => {
 
 app.get('/home', (req, res) => {
     res.render("home_user");
+    console.log(req.session.user)
 })
 
 app.get('/admin', (req, res) => {
     res.render("home_admin");
+    console.log(req.session.user)
 })
 
 dotenv.config({ path: 'config.env' })
@@ -76,7 +86,9 @@ app.get('/', (req, res) => {
 
 //ROTAS LOGIN
 app.get('/login', (req, res) => {
-    res.render("login");
+
+    console.log(req.session.user)
+    res.render("login")
 })
 
 app.post('/login', (req, res) => {
@@ -92,6 +104,15 @@ app.post('/login', (req, res) => {
         } else {
             if (doc) {
                 console.log("O Login foi realizado com sucesso.")
+                const user = {
+                    username : username,
+                    password : password
+                }
+                req.session.user = user;
+                req.session.save();
+                console.log(req.session.user)
+
+                res.redirect('/admin');
             }
             else {
                 console.log("Os dados introduzidos não estão corretos.")
@@ -134,6 +155,8 @@ app.post('/registo', (req, res) => {
                     new_user.save(function (err, doc) {
                         console.log(err)
                     });
+
+                    res.redirect('home_user')
                 }
 
             }
@@ -172,6 +195,8 @@ app.post('/registo_admin', (req, res) => {
                     new_user_admin.save(function (err, doc) {
                         console.log(err)
                     });
+
+                    res.redirect('home_admin')
                 }
 
             }
@@ -186,6 +211,7 @@ app.post('/registo_admin', (req, res) => {
 //ROTAS CRIAR TORNEIO
 app.get('/criartorneio', (req, res) => {
     res.render("criar_torneio");
+    console.log(req.session.user)
 })
 
 app.post('/criartorneio', (req, res) => {
@@ -252,6 +278,10 @@ app.post('/inscricoes', async (req, res) => {
 
     /*let dbuser = await User.where("nif").equals(nif)
     await dbuser.forEach(console.dir);(PEDRO)*/
+})
+
+app.get('/brackets', (req, res) => {
+    res.render("brackets");
 })
 
 app.listen(PORT, () => {

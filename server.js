@@ -151,7 +151,7 @@ app.post('/login', (req, res) => {
     });
 })
 
-//ROTAS REGISTO
+//ROTAS REGIS
 app.get('/registo', (req, res) => {
     res.render("registo");
 })

@@ -100,10 +100,19 @@ app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 //app.use(express.static(path.join(__dirname, 'views')));
 
 //load routes
+
+
 app.get('/', (req, res) => {
     res.render("index");
 })
 
+
+
+app.get('/TorneiosAdmin', function (req, res) {
+    Tournament.find({}).exec(function (err, docs) {
+        res.render('Torneios_admin', { Tournament: docs })
+    })
+})
 //ROTAS LOGIN
 app.get('/login', (req, res) => {
 
@@ -237,7 +246,7 @@ app.post('/registo_admin', (req, res) => {
 app.get('/criartorneio', (req, res) => {
     res.render("criar_torneio");
 
-    imgModel.find({}, (err, items) => {
+    /*imgModel.find({}, (err, items) => {
         if (err) {
             console.log(err);
             res.status(500).send('An error occurred', err);
@@ -245,7 +254,7 @@ app.get('/criartorneio', (req, res) => {
         else {
             res.render('criar_torneio', { items: items });
         }
-    })
+    })*/
 })
 
 app.post('/criartorneio', upload.single('img'), function (req, res) {
@@ -258,7 +267,7 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         preco: req.body.preco,
         niveltipo: req.body.niveltipo,
         fasegrupos: req.body.fasegrupos,
-        img: req.body.imagem,
+        img: __dirname + "/" + req.file.img,
 
 
     })

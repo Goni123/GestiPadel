@@ -271,15 +271,8 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         preco: req.body.preco,
         niveltipo: req.body.niveltipo,
         fasegrupos: req.body.fasegrupos,
-
-        img: __dirname + "/" + req.file.img,
-
-
-
-    })
-
-
-
+        img: __dirname + "/" + req.file.filename,
+})
 
 
     new_tournament.save(function (err) {

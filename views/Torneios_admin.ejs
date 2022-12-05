@@ -20,9 +20,19 @@
     <body>
 
         <div id="torneios_admin">
-            <h1>Gerir Torneios</h1>
+            <h1>Lista de Torneios</h1>
+            <%for(tournment of Tournament){%>
+                <div class="block_torneios">
+                    <!--<img class="foto_torneio" src="/img/img_Torneios/<%=tournment.img%>">-->
+                    <p>
+                        <%=tournment.nometorneio%>
+                    </p>
 
 
+
+
+                </div>
+                <% } %>
         </div>
     </body>
 

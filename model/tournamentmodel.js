@@ -70,8 +70,9 @@ let tournamentSchema = new mongoose.Schema({
         }
     ,
     img:{
-        data: Buffer,
-        contentType: String
+        //data: Buffer,
+        //contentType: String
+        type: String
     }
 })
 

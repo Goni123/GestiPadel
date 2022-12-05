@@ -271,7 +271,7 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         preco: req.body.preco,
         niveltipo: req.body.niveltipo,
         fasegrupos: req.body.fasegrupos,
-        img: __dirname + "/" + req.file.filename,
+        img: req.file.filename,
 })
 
 

@@ -274,6 +274,7 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
 
 
 
+
     new_tournament.save(function (err) {
         if (err) {
             console.log(err)

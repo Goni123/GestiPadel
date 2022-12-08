@@ -11,10 +11,10 @@ const { create, db } = require('./model/usermodel');
 const User = require('./model/usermodel')
 const UserAdmin = require('./model/user_adminmodel')
 const Tournament = require('./model/tournamentmodel')
+const Pair = require('./model/pairmodel')
 const { now } = require("mongoose");
-const {Pair} = require('./model/pairmodel')
 var upload = require('./multerConfig')
-
+const url = require('url');
 var app = express();
 require('dotenv/config');
 
@@ -38,14 +38,25 @@ app.use(session({
 
 
 app.get('/', (req, res) => {
-    res.render("index");
+    User.find({}).exec(function (err, docs) {
+        res.render('alterar_inscricoes', { User: docs })
+    })
 })
 
 app.get('/inscricoes', (req, res) => {
     res.render("usersinsc");
 })
+
 app.get('/editar_torneio_menu', (req, res) => {
     res.render("menu_editar_torneio");
+    //console.log(torneio)
+
+})
+
+app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
+    res.render("menu_editar_torneio");
+    //console.log(torneio)
+
 })
 
 app.get('/eliminatorias', (req, res) => {
@@ -61,11 +72,6 @@ app.get('/admin', (req, res) => {
     res.render("home_admin");
     console.log(req.session.user)
 })
-
-/*app.get('/listatorneiosadmin', (req, res) => {
-    res.render("listatorneios_admin");
-    console.log(req.session.user)
-})*/
 
 dotenv.config({ path: 'config.env' })
 const PORT = process.env.PORT || 8080
@@ -103,6 +109,8 @@ app.set("view engine", "ejs")  //pode ser html
 app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
 app.use('/img', express.static(path.resolve(__dirname, "assets/img")))
 app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
+//app.use(express.urlenconded({extended:false}))
+app.use(express.json())
 //app.use(express.static(path.join(__dirname, 'views')));
 
 //load routes
@@ -114,11 +122,22 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/TorneiosAdmin', function (req, res) {
+app.post('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {
         res.render('Torneios_admin', { Tournament: docs })
     })
 })
+
+app.get('/alterar_inscricoes', (req, res) => {
+    res.render("alterar_inscricoes");
+})
+
+app.get('/apagar_inscricao', (req,res) => {
+    console.log("bruno é gay")
+    
+    //res.render("alterar_inscricoes");
+})
+
 //ROTAS LOGIN
 app.get('/login', (req, res) => {
 
@@ -191,7 +210,7 @@ app.post('/registo', (req, res) => {
                         console.log(err)
                     });
 
-                    res.redirect('home_user')
+                    res.redirect('home')
                 }
 
             }
@@ -363,38 +382,6 @@ app.post('/inscricoes', async (req, res) => {
 app.get('/brackets', (req, res) => {
     res.render("brackets");
 })
-
-
-app.get('/listatorneiosadmin', function(req, res) {
-
-    const query = tournament.select("name age");
-    
-    query.exec((err, tournament) => {
-      if (err) return handleError(err);
-    });
-
-    res.render("listatorneios_admin.ejs");
-
-});
-/*
-app.post('/listatorneios_admin', async (req, res) => {
-    try {
-        const tournament = await tournament.find({}, function(err, data) {
-            // note that data is an array of objects, not a single object!
-            res.render('listatorneios_admin.ejs', {
-                nometorneio: req.nometorneio
-            });
-        });
-    }
-        catch (error) {
-        res.status(500).json({message : "Une erreur est survenue"})
-    }
-})*/   
-
-
-
-
-
 
 app.listen(PORT, () => {
     console.log('Server is running on http://localhost:3000')

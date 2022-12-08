@@ -1,101 +1,44 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+
 <!DOCTYPE html>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-    body {font-family: Arial, Helvetica, sans-serif;}
+<html lang="en">
 
-    h1 {
-        text-align: center;
-        color: blueviolet;
-        font-weight: bold;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .navbar a {
-        float: left;
-        padding: 30px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        background-color: blueviolet;
-        border-radius: 25px;
-        position: absolute;
-        left: 200px;
-        top: 190px;
-    }
-
-    .navbar a:hover {
-        background-color: #a972dd;
-    }
-
-    .navbar2 a {
-        float: left;
-        padding: 30px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        background-color: #8a2be2;
-        border-radius: 25px;
-        position: absolute;
-        right: 200px;
-        top: 190px;
-    }
-
-    .navbar2 a:hover {
-        background-color: #994edf;
-    }
-
-    .navbar3 a {
-        float: right;
-        padding: 30px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        background-color: blueviolet;
-        border-radius: 25px;
-        position: absolute;
-        left: 235px;
-        top: 360px;
-    }
-
-    .navbar3 a:hover {
-        background-color: #994edf;
-    }
-
-    .navbar4 a {
-        float: right;
-        padding: 30px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        background-color: blueviolet;
-        border-radius: 25px;
-        position: absolute;
-        right: 260px;
-        top: 360px;
-    }
-
-    .navbar4 a:hover {
-        background-color: #994edf;
-    }
-</style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-    <h1>Editar torneio</h1>
-    <td>
-        <div class="navbar">
-            <a class="active" href="#"><i class="fa fa-fw fa-pencil"></i> Editar dados do torneio</a>
+    <div id="editar_torneio_admin">
+        <div class="titulo">
+            <h1>Editar torneio</h1>
         </div>
-        <div class="navbar2">
-            <a href="#"><i class="fa fa-fw fa-calendar"></i> Editar Horário/Calendário de jogos</a>
-        </div>
-    </td>
-    <td>
-        <div class="navbar3">
-            <a href="#"><i class="fa fa-fw fa-pencil"></i> Editar bracket</a>
-        </div>
-        <div class="navbar4">
-            <a href="#"><i class="fa fa-fw fa-list"></i> Alterar inscrições</a> 
-        </div>
-    </td>
+        <form method="POST">
+            <button type="submit" class="enviar">
+                Editar Horário/Calendário de jogos
+            </button>
+            <button type="submit" class="enviar">
+                Editar jogos
+            </button>
+            <button type="submit" class="enviar">
+                Alterar inscrições
+            </button>
+        </form>
+    </div>
 </body>
-</html> 
+</html>
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

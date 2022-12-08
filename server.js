@@ -122,7 +122,7 @@ app.get('/', (req, res) => {
 
 
 
-app.post('/TorneiosAdmin', function (req, res) {
+app.get('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {
         res.render('Torneios_admin', { Tournament: docs })
     })
@@ -132,9 +132,9 @@ app.get('/alterar_inscricoes', (req, res) => {
     res.render("alterar_inscricoes");
 })
 
-app.get('/apagar_inscricao', (req,res) => {
+app.get('/apagar_inscricao', (req, res) => {
     console.log("bruno é gay")
-    
+
     //res.render("alterar_inscricoes");
 })
 
@@ -291,7 +291,7 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         niveltipo: req.body.niveltipo,
         fasegrupos: req.body.fasegrupos,
         img: req.file.filename,
-})
+    })
 
 
     new_tournament.save(function (err) {
@@ -335,43 +335,43 @@ app.post('/inscricoes', async (req, res) => {
     let dbuser2 = await User.where("nif").equals(nif2).exec()
     console.log(dbuser1)
     console.log(dbuser2)
-// caso um dos users nao existir, adicionar á tabela de user
-    if(dbuser1.length===0){
-        dbuser1= await new User(
+    // caso um dos users nao existir, adicionar á tabela de user
+    if (dbuser1.length === 0) {
+        dbuser1 = await new User(
             {
-                "name"  : nome1,
-                "email" : email1,
-                "phone" : tel1,
-                "nif"   : nif1
+                "name": nome1,
+                "email": email1,
+                "phone": tel1,
+                "nif": nif1
             }).save()
         dbuser1 = await User.where("nif").equals(nif1).exec()
     }
-    if(dbuser2.length===0){
-        dbuser2= await new User(
+    if (dbuser2.length === 0) {
+        dbuser2 = await new User(
             {
-                "name"  : nome2,
-                "email" : email2,
-                "phone" : tel2,
-                "nif"   : nif2
+                "name": nome2,
+                "email": email2,
+                "phone": tel2,
+                "nif": nif2
             }).save()
         dbuser2 = await User.where("nif").equals(nif2).exec()
     }
 
-//caso ambos os users existem
-    const pair = await Pair.find({users : { "$in":  [ dbuser1[0]._id , dbuser2[0]._id ]}})
+    //caso ambos os users existem
+    const pair = await Pair.find({ users: { "$in": [dbuser1[0]._id, dbuser2[0]._id] } })
     //const pair2 =
-    if (pair.size === 0 ){ //this means they have no active pair
-        let new_pair= new Pair({
-            "users": [ dbuser1[0]._id , dbuser2[0]._id],
-            "tournaments": [ {"id": "6388a37e9f6259e39e9c66dc"}],
+    if (pair.size === 0) { //this means they have no active pair
+        let new_pair = new Pair({
+            "users": [dbuser1[0]._id, dbuser2[0]._id],
+            "tournaments": [{ "id": "6388a37e9f6259e39e9c66dc" }],
         })
         await new_pair.save()//*/
-    }else if (pair[0].tournaments.some(element => {return element.id === "6388a37e9f6259e39e9c66dc";})){ //caso os users ja tenham um par em conjunto
+    } else if (pair[0].tournaments.some(element => { return element.id === "6388a37e9f6259e39e9c66dc"; })) { //caso os users ja tenham um par em conjunto
         console.log("dentro")
         //pair.tournaments.push({"id":   "6388a30d9f6259e39e9c66da"})
-        await Pair.updateOne({_id: pair[0]._id },{$addToSet:{tournaments:{"id":   "6388a30d9f6259e39e9c66da"}}})
+        await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": "6388a30d9f6259e39e9c66da" } } })
 
-    }else{
+    } else {
         res.status(409)/*.send({
             message: 'Este par ja se encontra incrito neste torneio'
         })*/;

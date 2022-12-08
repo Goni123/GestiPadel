@@ -1,77 +1,75 @@
 let mongoose = require('mongoose');
 
 let tournamentSchema = new mongoose.Schema({
-/*    name:{
-        type:String,
-        required:true,
-        unique:true
-        },
-    levels:
-        [
+    /*    name:{
+            type:String,
+            required:true,
+            unique:true
+            },
+        levels:
+            [
+                {
+                    id: mongoose.Schema.Types.ObjectId,
+                    groups:[
+                        {
+                            type:String,
+                            maxLength:3,
+                        }
+                    ]
+                }
+            ],
+        schedule:[
             {
-                id: mongoose.Schema.Types.ObjectId,
-                groups:[
-                    {
-                        type:String,
-                        maxLength:3,
-                    }
-                ]
+                day:Date,
+                start_time:Date,
+                end_time:Date,
             }
         ],
-    schedule:[
-        {
-            day:Date,
-            start_time:Date,
-            end_time:Date,
-        }
-    ],
-    type: {
-        type: String,
-        enum: [
-            'M','F','MF'
-        ],
-        maxLength:2,
+        type: {
+            type: String,
+            enum: [
+                'M','F','MF'
+            ],
+            maxLength:2,
+        },
+        hasGroup: Boolean
+    })
+    */
+    nometorneio: {
+        type: String
     },
-    hasGroup: Boolean
-})
-*/
-    nometorneio:{
-        type:String
+    localizacao: {
+        type: String
     },
-    localizacao:{
-        type:String
+    datainicio: {
+        type: Date
     },
-    datainicio:{
-        type:Date
+    datafim: {
+        type: Date,
+        required: true,
+
     },
-    datafim:{
-        type:Date,
-        required:true,
-        
-    },
-    nparticipantes:{
+    nparticipantes: {
         type: Number,
-        required:true,
+        required: true,
     },
-    preco:{
+    preco: {
         type: Number,
-        required:true
+        required: true
     },
-    niveltipo:[
+    niveltipo: [
         {
-        type:String,
-        required:true
+            type: String,
+            required: true
         }
     ],
     fasegrupos:
-        {
-        type:String,
-        required:true
-        }
+    {
+        type: String,
+        required: true
+    }
     ,
-    img:{
-        //data: Buffer,
-        //contentType: String
+    img: {
         type: String
     }
 })

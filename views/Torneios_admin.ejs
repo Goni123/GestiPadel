@@ -14,6 +14,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
             rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <title>Torneios Gerir</title>
     </head>
 
@@ -23,13 +24,12 @@
             <h1>Lista de Torneios</h1>
             <%for(tournment of Tournament){%>
                 <div class="block_torneios">
-                    <!--<img class="foto_torneio" src="/img/img_Torneios/<%=tournment.img%>">-->
-                    <p>
-                        <%=tournment.nometorneio%>
-                    </p>
-
-
-
+                    <img class="foto_torneio" src="/img/img_Torneios/<%=tournment.img%>">
+                    <div class="overlay">
+                        <button type="submit">
+                            <p>Gerir Torneio</p> <img src="../../img/HomePageUser/Icon_arrow.png">
+                        </button>
+                    </div>
 
                 </div>
                 <% } %>

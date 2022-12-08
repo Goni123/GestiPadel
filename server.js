@@ -14,7 +14,7 @@ const Tournament = require('./model/tournamentmodel')
 const { now } = require("mongoose");
 const {Pair} = require('./model/pairmodel')
 var upload = require('./multerConfig')
-
+const url = require('url');
 var app = express();
 require('dotenv/config');
 
@@ -44,8 +44,17 @@ app.get('/', (req, res) => {
 app.get('/inscricoes', (req, res) => {
     res.render("usersinsc");
 })
+
 app.get('/editar_torneio_menu', (req, res) => {
     res.render("menu_editar_torneio");
+    //console.log(torneio)
+
+})
+
+app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
+    res.render("menu_editar_torneio");
+    //console.log(torneio)
+
 })
 
 app.get('/eliminatorias', (req, res) => {
@@ -98,6 +107,8 @@ app.set("view engine", "ejs")  //pode ser html
 app.use('/css', express.static(path.resolve(__dirname, "assets/css")))
 app.use('/img', express.static(path.resolve(__dirname, "assets/img")))
 app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
+//app.use(express.urlenconded({extended:false}))
+app.use(express.json())
 //app.use(express.static(path.join(__dirname, 'views')));
 
 //load routes
@@ -109,7 +120,7 @@ app.get('/', (req, res) => {
 
 
 
-app.get('/TorneiosAdmin', function (req, res) {
+app.post('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {
         res.render('Torneios_admin', { Tournament: docs })
     })

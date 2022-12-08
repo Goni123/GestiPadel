@@ -11,8 +11,8 @@ const { create, db } = require('./model/usermodel');
 const User = require('./model/usermodel')
 const UserAdmin = require('./model/user_adminmodel')
 const Tournament = require('./model/tournamentmodel')
+const Pair = require('./model/pairmodel')
 const { now } = require("mongoose");
-const {Pair} = require('./model/pairmodel')
 var upload = require('./multerConfig')
 
 var app = express();
@@ -38,7 +38,9 @@ app.use(session({
 
 
 app.get('/', (req, res) => {
-    res.render("index");
+    User.find({}).exec(function (err, docs) {
+        res.render('alterar_inscricoes', { User: docs })
+    })
 })
 
 app.get('/inscricoes', (req, res) => {
@@ -102,18 +104,22 @@ app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 
 //load routes
 
-
-app.get('/', (req, res) => {
-    res.render("index");
-})
-
-
-
-app.get('/TorneiosAdmin', function (req, res) {
+app.post('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {
         res.render('Torneios_admin', { Tournament: docs })
     })
 })
+
+app.get('/alterar_inscricoes', (req, res) => {
+    res.render("alterar_inscricoes");
+})
+
+app.get('/apagar_inscricao', (req,res) => {
+    console.log("bruno é gay")
+    
+    //res.render("alterar_inscricoes");
+})
+
 //ROTAS LOGIN
 app.get('/login', (req, res) => {
 
@@ -186,7 +192,7 @@ app.post('/registo', (req, res) => {
                         console.log(err)
                     });
 
-                    res.redirect('home_user')
+                    res.redirect('home')
                 }
 
             }

@@ -359,38 +359,6 @@ app.get('/brackets', (req, res) => {
     res.render("brackets");
 })
 
-
-app.get('/listatorneiosadmin', function(req, res) {
-
-    const query = tournament.select("name age");
-    
-    query.exec((err, tournament) => {
-      if (err) return handleError(err);
-    });
-
-    res.render("listatorneios_admin.ejs");
-
-});
-/*
-app.post('/listatorneios_admin', async (req, res) => {
-    try {
-        const tournament = await tournament.find({}, function(err, data) {
-            // note that data is an array of objects, not a single object!
-            res.render('listatorneios_admin.ejs', {
-                nometorneio: req.nometorneio
-            });
-        });
-    }
-        catch (error) {
-        res.status(500).json({message : "Une erreur est survenue"})
-    }
-})*/   
-
-
-
-
-
-
 app.listen(PORT, () => {
     console.log('Server is running on http://localhost:3000')
 });

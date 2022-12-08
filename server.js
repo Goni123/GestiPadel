@@ -62,10 +62,10 @@ app.get('/admin', (req, res) => {
     console.log(req.session.user)
 })
 
-/*app.get('/listatorneiosadmin', (req, res) => {
-    res.render("listatorneios_admin");
+app.post('/listatorneiosadmin', (req, res) => {
+    res.render("Torneios_admin");
     console.log(req.session.user)
-})*/
+})
 
 dotenv.config({ path: 'config.env' })
 const PORT = process.env.PORT || 8080

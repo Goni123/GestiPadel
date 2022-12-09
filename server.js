@@ -19,15 +19,8 @@ var app = express();
 require('dotenv/config');
 
 //
-
-//
 //set up multer for storing uploaded files
-
-
 const imgModel = require('./model/tournamentmodel');
-
-
-
 
 app.use(cookieParser());
 app.use(session({
@@ -36,27 +29,22 @@ app.use(session({
     resave: true
 }));
 
-
 app.get('/', (req, res) => {
     User.find({}).exec(function (err, docs) {
         res.render('alterar_inscricoes', { User: docs })
     })
 })
 
-app.get('/inscricoes', (req, res) => {
+app.get('/inscricoes/:id_torneio', (req, res) => {
     res.render("usersinsc");
 })
 
 app.get('/editar_torneio_menu', (req, res) => {
-    res.render("menu_editar_torneio");
-    //console.log(torneio)
-
+    res.render("editar_torneio_admin");
 })
 
 app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
-    res.render("menu_editar_torneio");
-    //console.log(torneio)
-
+    res.render("editar_torneio_admin");
 })
 
 app.get('/eliminatorias', (req, res) => {
@@ -114,8 +102,6 @@ app.use(express.json())
 //app.use(express.static(path.join(__dirname, 'views')));
 
 //load routes
-
-
 app.get('/', (req, res) => {
     res.render("index");
 })
@@ -132,6 +118,30 @@ app.get('/TorneiosAdmin', function (req, res) {
     })
 })
 
+
+app.post('/ProxTorneios', function (req, res) {
+    Tournament.find({}).exec(function (err, docs) {
+        res.render('Torneios_User_Prox', { Tournament: docs })
+    })
+})
+
+app.get('/ProxTorneios', function (req, res) {
+    Tournament.find({}).exec(function (err, docs) {
+        res.render('Torneios_User_Prox', { Tournament: docs })
+    })
+})
+
+app.get('/TorneiosAndamento', function (req, res) {
+    Tournament.find({}).exec(function (err, docs) {
+        res.render('Torneios_User_Anda', { Tournament: docs })
+    })
+})
+
+app.post('/TorneiosAndamento', function (req, res) {
+    Tournament.find({}).exec(function (err, docs) {
+        res.render('Torneios_User_Anda', { Tournament: docs })
+    })
+
 app.get('/alterar_inscricoes', (req, res) => {
     res.render("alterar_inscricoes");
 })
@@ -140,6 +150,7 @@ app.get('/apagar_inscricao', (req, res) => {
     console.log("bruno é gay")
 
     //res.render("alterar_inscricoes");
+
 })
 
 //ROTAS LOGIN
@@ -272,16 +283,6 @@ app.post('/registo_admin', (req, res) => {
 //ROTAS CRIAR TORNEIO
 app.get('/criartorneio', (req, res) => {
     res.render("criar_torneio");
-
-    /*imgModel.find({}, (err, items) => {
-        if (err) {
-            console.log(err);
-            res.status(500).send('An error occurred', err);
-        }
-        else {
-            res.render('criar_torneio', { items: items });
-        }
-    })*/
 })
 
 app.post('/criartorneio', upload.single('img'), function (req, res) {
@@ -320,7 +321,7 @@ app.get('/insctorneio', (req, res) => {
     res.render("inscricao_torneio");
 })
 
-app.post('/inscricoes', async (req, res) => {
+app.post('/inscricoes/:id_torneio', async (req, res) => {
     let torneio = req.body.torneio;
     // let listaespera = req.body.listaespera;
     // let disponibilidade= req.body.disponibilidade;

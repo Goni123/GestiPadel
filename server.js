@@ -120,7 +120,11 @@ app.get('/', (req, res) => {
     res.render("index");
 })
 
-
+app.post('/TorneiosAdmin', function (req, res) {
+    Tournament.find({}).exec(function (err, docs) {
+        res.render('Torneios_admin', { Tournament: docs })
+    })
+})
 
 app.get('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {

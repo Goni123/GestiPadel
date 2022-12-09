@@ -40,4 +40,4 @@ let pairSchema = new mongoose.Schema({
 
 let Pair = mongoose.model('pairs', pairSchema);
 //let TourRefModel = mongoose.model('tournamentRef',tournamentReferenceSchema)
-module.exports = {Pair/*,TourRefModel*/};
+module.exports = Pair/*,TourRefModel*/;

@@ -141,6 +141,7 @@ app.post('/TorneiosAndamento', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {
         res.render('Torneios_User_Anda', { Tournament: docs })
     })
+})
 
 app.get('/alterar_inscricoes', (req, res) => {
     res.render("alterar_inscricoes");

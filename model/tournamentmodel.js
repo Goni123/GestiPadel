@@ -71,6 +71,10 @@ let tournamentSchema = new mongoose.Schema({
     ,
     img: {
         type: String
+    },
+    has_ended: {
+        type: Boolean,
+        default:false
     }
 })
 

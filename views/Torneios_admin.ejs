@@ -19,16 +19,17 @@
     </head>
 
     <body>
-
         <div id="torneios_admin">
             <h1>Lista de Torneios</h1>
             <%for(tournment of Tournament){%>
                 <div class="block_torneios">
                     <img class="foto_torneio" src="/img/img_Torneios/<%=tournment.img%>">
                     <div class="overlay">
-                        <button type="submit">
-                            <p>Gerir Torneio</p> <img src="../../img/HomePageUser/Icon_arrow.png">
-                        </button>
+                        <form action="/editar_torneio_menu/<%=tournment._id%>" id="torneio" method="POST">
+                            <button type="submit">
+                                <p>Gerir Torneio</p> <img src="../../img/HomePageUser/Icon_arrow.png">
+                            </button>
+                        </form>
                     </div>
 
                 </div>
@@ -36,13 +37,6 @@
         </div>
     </body>
 
-    <script>
-        function guardarvalor() {
-            var urltorneio = document.getElementById("torneio").value;
-            console.log(urltorneio)
-        }
-
-    </script>
 
 </html>
 <%- include('include/_footer') %>

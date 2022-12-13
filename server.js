@@ -44,7 +44,10 @@ app.get('/editar_torneio_menu', (req, res) => {
 })
 
 app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
-    res.render("editar_torneio_admin");
+    var idtorneio = id_torneio
+    Tournament.find({_id: idtorneio }).exec(function (err, docs) {
+        res.render("editar_torneio_admin", { Tournament: docs }); 
+    })
 })
 
 app.get('/eliminatorias', (req, res) => {
@@ -118,27 +121,26 @@ app.get('/TorneiosAdmin', function (req, res) {
     })
 })
 
-
 app.post('/ProxTorneios', function (req, res) {
-    Tournament.find({}).exec(function (err, docs) {
+    Tournament.find({has_ended: false}).exec(function (err, docs) {
         res.render('Torneios_User_Prox', { Tournament: docs })
     })
 })
 
 app.get('/ProxTorneios', function (req, res) {
-    Tournament.find({}).exec(function (err, docs) {
+    Tournament.find({has_ended: false}).exec(function (err, docs) {
         res.render('Torneios_User_Prox', { Tournament: docs })
     })
 })
 
 app.get('/TorneiosAndamento', function (req, res) {
-    Tournament.find({}).exec(function (err, docs) {
+    Tournament.find({has_ended: true}).exec(function (err, docs) {
         res.render('Torneios_User_Anda', { Tournament: docs })
     })
 })
 
 app.post('/TorneiosAndamento', function (req, res) {
-    Tournament.find({}).exec(function (err, docs) {
+    Tournament.find({has_ended: true}).exec(function (err, docs) {
         res.render('Torneios_User_Anda', { Tournament: docs })
     })
 })
@@ -297,8 +299,8 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         niveltipo: req.body.niveltipo,
         fasegrupos: req.body.fasegrupos,
         img: req.file.filename,
+        inscricoes: req.body.insc
     })
-
 
     new_tournament.save(function (err) {
         if (err) {

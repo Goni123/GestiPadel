@@ -81,6 +81,10 @@ app.get('/admin', (req, res) => {
     console.log(req.session.user)
 })
 
+app.get('/brackets', (req, res) => {
+    res.render("tournament_brackets");
+})
+
 dotenv.config({ path: 'config.env' })
 const PORT = process.env.PORT || 8080
 

@@ -25,29 +25,31 @@
             <div class="titulo">
                 <h1>Editar torneio</h1>
             </div>
-            <form method="POST">
-                <div class="bloco">
-                    <button type="submit" class="enviar">
-                        <p> Editar Horário/Calendário de jogos</p>
-                    </button>
-                    <button type="submit" class="enviar">
-                        <p>Editar jogos</p>
-                    </button>
+            <div class="bloco">
+                <form method="POST" action="/editartorneiomenu/<%=torneioID%>"></form>
+                <button type="submit" class="enviar">
+                    <p> Editar Horário/Calendário de jogos</p>
+                </button>
+                </form>
+                <form method="POST" action="/editartorneiomenu/<%=torneioID%>"></form>
+                <button type="submit" class="enviar">
+                    <p>Editar jogos</p>
+                </button>
+                </form>
+            </div>
 
-                </div>
-
-                <div class="bloco">
-                    <button type="submit" class="enviar">
-                        <p> Alterar inscrições</p>
+            <div class="bloco">
+                <form method="POST" action="/editartorneiomenu/<%=torneioID%>"></form>
+                <button type="submit" class="enviar">
+                    <p> Alterar inscrições</p>
+                </button>
+                </form>
+                <form method="POST" action="/editartorneiomenu/<%=torneioID%>">
+                    <button type="submit" class="enviar1">
+                        <p>Encerrar inscrições</p>
                     </button>
-                    <form method="POST" action="/editartorneiomenu/<%=torneioID%>">
-                        <button type="submit" class="enviar1">
-                            <p> Encerrar inscrições</p>
-                        </button>
-                    </form>
-                </div>
-
-            </form>
+                </form>
+            </div>
         </div>
 
 

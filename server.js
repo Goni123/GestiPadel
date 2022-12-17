@@ -39,13 +39,35 @@ app.get('/inscricoes/:id_torneio', (req, res) => {
     res.render("usersinsc");
 })
 
-app.get('/editar_torneio_menu', (req, res) => {
+app.get('/editar_torneio_menu', async (req, res) => {
     res.render("editar_torneio_admin");
 })
 
+
+app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
+    console.log(req.body)
+    console.log(req.params.id_torneio)
+    //console.log(torneioID) 
+    let torneioID = req.params.id_torneio; 
+    res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );         
+})
+
+app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
+    let torneioID = req.params.id_torneio;
+    Tournament.findOneAndUpdate({_id: torneioID}, {has_ended: true}, {new:true}, (error,data) => {
+        if (error){
+            console.log(error)
+        }
+    })
+    
+    res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} ); 
+
 app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
         res.render("editar_torneio_admin"); 
+
 })
+
+
 
 app.get('/eliminatorias', (req, res) => {
     res.render("brackets");
@@ -278,8 +300,6 @@ app.post('/registo_admin', (req, res) => {
 })
 
 
-
-
 //ROTAS CRIAR TORNEIO
 app.get('/criartorneio', (req, res) => {
     res.render("criar_torneio");
@@ -307,14 +327,6 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         }
     })
 })
-
-
-
-
-
-
-
-
 
 //ROTAS INSCRIÇÃO TORNEIO
 app.get('/insctorneio', (req, res) => {

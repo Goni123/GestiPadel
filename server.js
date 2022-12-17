@@ -62,8 +62,6 @@ app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
     
     res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} ); 
 
-app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
-        res.render("editar_torneio_admin"); 
 
 })
 
@@ -141,25 +139,25 @@ app.get('/TorneiosAdmin', function (req, res) {
 })
 
 app.post('/ProxTorneios', function (req, res) {
-    Tournament.find({has_ended: false}).exec(function (err, docs) {
+    Tournament.find({ has_ended: false }).exec(function (err, docs) {
         res.render('Torneios_User_Prox', { Tournament: docs })
     })
 })
 
 app.get('/ProxTorneios', function (req, res) {
-    Tournament.find({has_ended: false}).exec(function (err, docs) {
+    Tournament.find({ has_ended: false }).exec(function (err, docs) {
         res.render('Torneios_User_Prox', { Tournament: docs })
     })
 })
 
 app.get('/TorneiosAndamento', function (req, res) {
-    Tournament.find({has_ended: true}).exec(function (err, docs) {
+    Tournament.find({ has_ended: true }).exec(function (err, docs) {
         res.render('Torneios_User_Anda', { Tournament: docs })
     })
 })
 
 app.post('/TorneiosAndamento', function (req, res) {
-    Tournament.find({has_ended: true}).exec(function (err, docs) {
+    Tournament.find({ has_ended: true }).exec(function (err, docs) {
         res.render('Torneios_User_Anda', { Tournament: docs })
     })
 })
@@ -329,16 +327,18 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
 })
 
 //ROTAS INSCRIÇÃO TORNEIO
-app.get('/insctorneio', (req, res) => {
-    res.render("inscricao_torneio");
+app.get('/insctorneio/:id_torneio', (req, res) => {
+    Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
+        res.render('usersinsc', { Tournament: docs })
+    })
 })
 
-app.post('/inscricoes/:id_torneio', async (req, res) => {
+app.post('/insctorneio/:id_torneio', async (req, res) => {
     let torneio = req.body.torneio;
     // let listaespera = req.body.listaespera;
     // let disponibilidade= req.body.disponibilidade;
-    let nome1 = req.body.nomeum;
-    let nome2 = req.body.nomedois;
+    let nome1 = req.body.nameum;
+    let nome2 = req.body.namedois;
     let level = req.body.playerlevel;
     let nif1 = req.body.nifum;
     let nif2 = req.body.nifdois;
@@ -375,24 +375,28 @@ app.post('/inscricoes/:id_torneio', async (req, res) => {
     }
 
     //caso ambos os users existem
-    const pair = await Pair.find({ users: { "$in": [dbuser1[0]._id, dbuser2[0]._id] } })
+    //const pair = await Pair.find({ users: { "$in": [dbuser1[0]._id, dbuser2[0]._id] } })
     //const pair2 =
-    if (pair.size === 0) { //this means they have no active pair
-        let new_pair = new Pair({
-            "users": [dbuser1[0]._id, dbuser2[0]._id],
-            "tournaments": [{ "id": "6388a37e9f6259e39e9c66dc" }],
-        })
-        await new_pair.save()//*/
-    } else if (pair[0].tournaments.some(element => { return element.id === "6388a37e9f6259e39e9c66dc"; })) { //caso os users ja tenham um par em conjunto
+    //console.log(pair);
+    //if (pair.size === 0) { //this means they have no active pair
+    let new_pair = new Pair({
+        "users": [dbuser1[0]._id, dbuser2[0]._id],
+        "tournaments": [{ "id": req.params.id_torneio }],
+    })
+    console.log("here")
+    await new_pair.save();//*/
+   /* }else if (pair[0].tournaments.some(element => { return element.id === req.params.id_torneio; })) { //caso os users ja tenham um par em conjunto
         console.log("dentro")
         //pair.tournaments.push({"id":   "6388a30d9f6259e39e9c66da"})
-        await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": "6388a30d9f6259e39e9c66da" } } })
+        await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": req.params.id_torneio } } })
 
     } else {
         res.status(409)/*.send({
             message: 'Este par ja se encontra incrito neste torneio'
         })*/;
-    }
+
+    //}
+    res.redirect('/home');
 
 })
 

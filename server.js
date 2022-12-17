@@ -43,6 +43,7 @@ app.get('/editar_torneio_menu', async (req, res) => {
     res.render("editar_torneio_admin");
 })
 
+
 app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
     console.log(req.body)
     console.log(req.params.id_torneio)
@@ -60,6 +61,10 @@ app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
     })
     
     res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} ); 
+
+app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
+        res.render("editar_torneio_admin"); 
+
 })
 
 

@@ -40,17 +40,23 @@
                     <button type="submit" class="enviar">
                         <p> Alterar inscrições</p>
                     </button>
-                    <button type="submit" name="encerrarInsc" class="enviar">
-                        <p>Encerrar inscrições</p>
+                  <form method="POST" action="/editartorneiomenu/<%=torneioID%>"> 
+                    <button type="submit" class="enviar1">
+                            Encerrar inscrições
                     </button>
+                   </form>
                 </div>
 
             </form>
         </div>
-    </body>
 
-    </html>
+      
+        
 
-    <!-- include footer -->
-    <%- include('include/_footer') %>
-        <!-- /include footer -->
+</body>
+</html>
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->
+

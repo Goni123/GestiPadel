@@ -24,7 +24,6 @@
         <div class="titulo">
             <h1>Editar torneio</h1>
         </div>
-        <form method="POST">
             <button type="submit" class="enviar">
                 Editar Horário/Calendário de jogos
             </button>
@@ -34,10 +33,12 @@
             <button type="submit" class="enviar">
                 Alterar inscrições
             </button>
-            <button type="submit" name="encerrarInsc" class="enviar">
-                Encerrar inscrições
+        <form method="POST" action="/editartorneiomenu/<%=torneioID%>"> 
+            <button type="submit" class="enviar1">
+                    Encerrar inscrições
             </button>
         </form>
+        
     </div>
 </body>
 </html>

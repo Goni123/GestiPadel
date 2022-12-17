@@ -44,10 +44,7 @@ app.get('/editar_torneio_menu', (req, res) => {
 })
 
 app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
-    var idtorneio = id_torneio
-    Tournament.find({_id: idtorneio }).exec(function (err, docs) {
-        res.render("editar_torneio_admin", { Tournament: docs }); 
-    })
+        res.render("editar_torneio_admin"); 
 })
 
 app.get('/eliminatorias', (req, res) => {

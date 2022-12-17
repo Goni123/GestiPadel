@@ -1,47 +1,56 @@
 <!-- include header -->
 <%- include('include/_header') %>
-<!-- /include header -->
+    <!-- /include header -->
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <div id="editar_torneio_admin">
-        <div class="titulo">
-            <h1>Editar torneio</h1>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+
+    <body>
+        <div id="editar_torneio_admin">
+            <div class="titulo">
+                <h1>Editar torneio</h1>
+            </div>
+            <form method="POST">
+                <div class="bloco">
+                    <button type="submit" class="enviar">
+                        <p> Editar Horário/Calendário de jogos</p>
+                    </button>
+                    <button type="submit" class="enviar">
+                        <p>Editar jogos</p>
+                    </button>
+
+                </div>
+
+                <div class="bloco">
+                    <button type="submit" class="enviar">
+                        <p> Alterar inscrições</p>
+                    </button>
+                    <button type="submit" name="encerrarInsc" class="enviar">
+                        <p>Encerrar inscrições</p>
+                    </button>
+                </div>
+
+            </form>
         </div>
-        <form method="POST">
-            <button type="submit" class="enviar">
-                Editar Horário/Calendário de jogos
-            </button>
-            <button type="submit" class="enviar">
-                Editar jogos
-            </button>
-            <button type="submit" class="enviar">
-                Alterar inscrições
-            </button>
-            <button type="submit" name="encerrarInsc" class="enviar">
-                Encerrar inscrições
-            </button>
-        </form>
-    </div>
-</body>
-</html>
+    </body>
 
-<!-- include footer -->
-<%- include('include/_footer') %>
-<!-- /include footer -->
+    </html>
+
+    <!-- include footer -->
+    <%- include('include/_footer') %>
+        <!-- /include footer -->

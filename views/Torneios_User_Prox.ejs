@@ -13,7 +13,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <title>Torneios Gerir</title>
     </head>
 
@@ -24,14 +24,14 @@
                 <div class="block_torneios">
                     <img class="foto_torneio" src="/img/img_Torneios/<%=tournment.img%>">
                     <p>
-                        <form action="/inscricoes/<%=tournment._id%>" id="torneio" method="POST">
-                            <button type="submit">
-                                <%=tournment.nometorneio%>
-                            </button>
-                        </form>
+                    <form action="/insctorneio/<%=tournment._id%>" id="torneio" method="get">
+                        <button type="submit">
+                            <%=tournment.nometorneio%>
+                        </button>
+                    </form>
                     </p>
                 </div>
-            <% } %>
+                <% } %>
         </div>
     </body>
 

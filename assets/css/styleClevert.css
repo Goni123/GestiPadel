@@ -1,0 +1,108 @@
+/*.teamDiv {
+    /*background-color: rgb(141, 141, 141);
+    height: 100px;
+    width: 25%;
+
+    /*border: 1px solid rgb(0, 60, 255);
+}
+
+.teamName {
+    height: 13px;
+}
+
+.teamLine {
+    height: 3px;
+    width: 100%;
+}*/
+
+
+/*:root {
+    --margem: 22%;
+}
+
+.genDiv:nth-child(2) .matchDiv:nth-child(1) {
+    margin-top: var(--margem);
+}
+
+.genDiv:nth-child(n+2) .matchDiv:nth-child(n+1) {
+    margin-top: calc(22% * 2 - 2%);
+}
+
+.genDiv:nth-child(2) .matchDiv:nth-child(1) {
+    margin-top: 22%;
+}*/
+
+.toSelectSlots {}
+
+.bracketSlots {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /*Controlado por javascript*/
+    width: 100%;
+}
+
+.toSelectSlots .teamDiv {
+    width: 15%;
+    border: 3px solid rgb(100, 100, 100);
+    background-color: #ddd;
+    border-radius: .5em;
+    padding: 10px;
+    cursor: move;
+}
+
+.bracketSlots .teamDiv {
+    width: 80%;
+    border: 3px dotted rgba(255, 255, 255, 0);
+    border-radius: .5em;
+    padding: 10px;
+    cursor: move;
+}
+
+.bracketSlots .teamDivNoDrag {
+    width: 80%;
+    border: 3px dotted rgba(255, 255, 255, 0);
+    border-radius: .5em;
+    padding: 10px;
+}
+
+.bracketSlots .genDiv .matchDiv {
+    border: 3px dotted #666;
+}
+
+.bracketSlots .teamDiv.over {
+    border: 3px dotted #666;
+}
+
+.toSelectSlots .teamDiv.over {
+    border: 3px dotted #666;
+}
+
+.teamLine {
+    height: 3px;
+    width: 60%;
+}
+
+.trophy {
+    height: 50px;
+    width: 50px;
+}
+
+.bracketSlots .teamDiv.winner {
+    border: 3px solid rgb(38, 163, 0);
+}
+
+.bracketSlots .teamDiv.loser {
+    border: 3px solid rgb(255, 0, 0);
+}
+
+.bracketSlots .teamDivNoDrag.winner {
+    border: 3px solid rgb(38, 163, 0);
+}
+
+.bracketSlots .teamDivNoDrag.loser {
+    border: 3px solid rgb(255, 0, 0);
+}
+
+.bracketSlots .teamDivNoDrag.bigwinner {
+    border: 3px solid rgb(202, 172, 0);
+}

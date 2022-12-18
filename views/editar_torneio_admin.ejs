@@ -52,13 +52,29 @@
             </div>
         </div>
 
+        <button type="submit" class="enviar">
+            Editar Horário/Calendário de jogos
+         </button>
+        <button type="submit" class="enviar">
+            Editar jogos
+        </button>
+        
+        <%for(tournment of Tournament){%>
+            
+                <form action="/alterar_inscricoes/<%=tournment._id%>" method="post">
+                    <button type="submit">
+                        <p>Alterar inscrições</p>
+                    </button>
+                </form>
+            
+        <% } %>
+        <button type="submit" name="encerrarInsc" class="enviar">
+            Encerrar inscrições
+        </button>
+    </div>
+</body>
+</html>
 
-
-
-    </body>
-
-    </html>
-
-    <!-- include footer -->
-    <%- include('include/_footer') %>
-        <!-- /include footer -->
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

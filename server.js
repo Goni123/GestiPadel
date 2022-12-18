@@ -21,6 +21,7 @@ require('dotenv/config');
 //
 //set up multer for storing uploaded files
 const imgModel = require('./model/tournamentmodel');
+const { array } = require('./multerConfig');
 
 app.use(cookieParser());
 app.use(session({
@@ -35,6 +36,53 @@ app.get('/', (req, res) => {
     })
 })
 
+/*app.get('/alterar_inscricoes/:id_torneio', async (req,res) =>{
+    Tournament.find({}).exec(function (err, docs) {
+        res.render('menu_editar_torneio', { Tournament: docs })
+    })
+})*/
+
+app.post('/alterar_inscricoes/:id_torneio',async (req, res) => {
+    /*Pair.find({tournaments:{$elemMatch:{_id:req.params.id_torneio}}}).exec(function(err,docs){
+        res.render('alterar_inscricoes', {Pair : docs})
+        console.log(docs)
+    })*/
+
+    let id_url = req.params.id_torneio
+    console.log("O id é: "+id_url)
+
+    var array_ids = []
+
+    await Pair.find({tournaments:{$elemMatch:{id:id_url}}}).exec(function(err,docs){
+        //res.render('alterar_inscricoes', {Pair : docs}, {id_url : req.params.id_torneio})
+        console.log("ficheiro:" + docs)
+        
+        //var json = JSON.stringify(docs)
+        for(var i = 0 ; i< docs.length; i++){
+            for(var j =0 ; j< docs[i].users.length; j++){
+                var string = docs[i].users[j].toString()
+                array_ids.push(string)
+            }
+        }
+        console.log(array_ids)
+
+    })
+
+    /*for(var l=0; l< array_ids.length; l++){
+        await User.find({_id : array_ids[l]}).exec(function (err, docs) {
+            console.log(docs)
+            res.render('alterar_inscricoes', { User: docs })
+        })
+    }*/
+
+    await User.find({_id:{$in: ['6391e50313339dd8ef8a38ff','6391e54213339dd8ef8a3902','6391e57b13339dd8ef8a3905','6391e6f513339dd8ef8a3908','6391e71313339dd8ef8a390b','6391e74713339dd8ef8a390e']}}).exec(function(err,docs){
+        if(docs){
+            console.log(docs)
+        }
+        res.render('alterar_inscricoes',{User : docs})
+    })
+})
+
 app.get('/inscricoes/:id_torneio', (req, res) => {
     res.render("usersinsc");
 })
@@ -42,6 +90,10 @@ app.get('/inscricoes/:id_torneio', (req, res) => {
 app.get('/editar_torneio_menu', async (req, res) => {
 
 })
+
+
+app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
+    
 
 
 app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
@@ -58,6 +110,9 @@ app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
         res.render("editar_torneio_admin", {torneioID: req.params.id_torneio});
     }
    
+   Tournament.find({_id : req.params.id_torneio}).exec(function (err, docs) {
+           res.render("editar_torneio_admin", { Tournament: docs })
+    })
     //res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );         
 })
 
@@ -181,7 +236,7 @@ app.post('/TorneiosAndamento', function (req, res) {
     })
 })
 
-app.get('/alterar_inscricoes', (req, res) => {
+app.post('/alterar_inscricoes/:id_torneio', (req, res) => {
     res.render("alterar_inscricoes");
 })
 

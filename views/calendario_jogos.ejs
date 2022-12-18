@@ -21,139 +21,35 @@
     </head>
     <!-- Main Site -->
     <div id="users_insc">
-        <div class="torneio">
-            <div class="titulo">
-                <%for(tournment of Tournament){%>
-                    <h1>Torneio <%=tournment.nometorneio%>
-                    </h1>
-                    <%}%>
-                        <!--fazer push do nome db-->
-            </div>
-            <div class="content">
-                <div class="imagem_torneio">
-                    <%for(tournment of Tournament){%>
-                        <img src="/img/img_Torneios/<%=tournment.img%>">
-                        <%}%>
-                            <!--fazer push do nome db-->
-                </div>
-                <div class="infos">
-                    <div class="local">
-                        <div class="numero">
-                            <p>1</p>
-                        </div>
-                        <div class="texto">
-                            <h1>Localização</h1>
-                            <%for(tournment of Tournament){%>
-                                <p>Campo de padle da <%=tournment.localizacao%>
-                                </p>
-                                <%}%>
-                        </div>
-                    </div>
-                    <div class="tipo_torneio">
-                        <div class="numero">
-                            <p>2</p>
-                        </div>
-                        <div class="texto">
-                            <h1>Tipo de Torneio</h1>
-                            <%for(tournment of Tournament){%>
-                                <p>
-                                    <%=tournment.niveltipo%>
-                                </p>
-                                <%}%>
-                        </div>
-
-
-                    </div>
-                    <div class="preco">
-                        <div class="numero">
-                            <p>3</p>
-                        </div>
-                        <div class="texto">
-                            <h1>Preço</h1>
-                            <%for(tournment of Tournament){%>
-                                <p>
-                                    <%=tournment.preco%> raquetes
-                                </p>
-                                <%}%>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="formulario">
-            <div class="titulo_form">
-                <h1>Inscrição do Torneio</h1>
+            <div class="titulo">
+                <h1>Calendário de jogos</h1>
+                <!--fazer push do nome db-->
             </div>
+            
             <form method="POST">
 
                 <div class="jgd1">
-                    <h2>Jogador 1</h2>
                     <br>
                     <br>
-                    <p>Primeiro nome:</p><br>
-                    <input type="text" id="name1" name="nameum">
-                    <br>
-                    <br>
-                    <p>NIF:</p><br>
-                    <input type="text" maxlength="9" id="nifum" name="nifum">
-                    <br>
-                    <br>
-                    <p>Data de Nascimento:</p><br>
-                    <input type="date" id="BirthDateum" name="BirthDateum">
-                    <br>
-                    <br>
-                    <p>Email:</p><br>
-                    <input type="text" id="emailum" name="emailum">
-                    <br>
-                    <br>
-                    <p>Telemóvel:</p><br>
-                    <input type="text" maxlength="9" id="telum" name="telum">
+                    <label for="jogadoresnivel">Selecione o nível:</label><br>
+                    <select name="nivel" id="nivel">
+                        <option></option>
+                        <option value="level1">Nível 1</option>
+                        <option value="level2">Nível 2</option>
+                        <option value="level3">Nível 3</option>
+                        <option value="level4">Nível 4</option>
+                    </select>
                     <br>
                     <br>
                 </div>
-                <div class="jgd2">
-                    <h2>Jogador 2</h2>
-                    <br>
-                    <br>
-                    <p>Primeiro nome:</p><br>
-                    <input type="text" id="namedois" name="namedois">
-                    <br>
-                    <br>
-                    <p>NIF:</p><br>
-                    <input type="text" maxlength="9" id="nifdois" name="nifdois">
-                    <br>
-                    <br>
-                    <p>Data de Nascimento:</p><br>
-                    <input type="date" id="BirthDatedois" name="BirthDatedois">
-                    <br>
-                    <br>
-                    <p>Email:</p><br>
-                    <input type="text" id="emaildois" name="emaildois">
-                    <br>
-                    <br>
-                    <p>Telemóvel:</p><br>
-                    <input type="text" maxlength="9" id="teldois" name="teldois">
-                    <br>
-                    <br>
-                </div>
-                <label for="playerslevel">Selecione o seu nível:</label><br>
-                <select name="level" id="level">
-                    <option></option>
-                    <option value="level1">Nível 1</option>
-                    <option value="level2">Nível 2</option>
-                    <option value="level3">Nível 3</option>
-                    <option value="level4">Nível 4</option>
-                </select>
                 <br>
                 <br>
 
 
 
                 <div class="Disponibilidade">
-                    <h1>Indisponibilidade Horária</h1>
-                    <p>Marque a Indisponiblidade horária da Dupla para a realização dos jogos!</p>
+                    <p>Pode consultar todos os jogos escolhendo um certo nível!</p>
                     <br>
                     <br>
                     <br>
@@ -312,9 +208,11 @@
 
 
                     </table>
+
                     <button type="submit" class="enviar">
-                        Finalizar Inscrição
+                        Submeter alteração
                     </button>
+
                     <script>
                         var table = document.getElementById('table');
                         var hora;
@@ -385,6 +283,6 @@
     <!-- /Main Site -->
 
 
-    <!-- include footer -->
-    <%- include('include/_footer') %>
-        <!-- /include footer -->
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

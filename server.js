@@ -40,21 +40,30 @@ app.get('/inscricoes/:id_torneio', (req, res) => {
 })
 
 app.get('/editar_torneio_menu', async (req, res) => {
-    res.render("editar_torneio_admin");
+
 })
 
 
 app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
-    console.log(req.body)
-    console.log(req.params.id_torneio)
-    //console.log(torneioID) 
+    //console.log(req.body)
+    //console.log(inscOPEN) 
     let torneioID = req.params.id_torneio; 
-    res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );         
+    let insc = await Tournament.findOne({_id: torneioID}) .exec ()
+
+    console.log(insc.has_ended) 
+    if (insc.has_ended === true) {
+        res.render("editar_torneio_admin_1", {torneioID: req.params.id_torneio});
+    } 
+    else if (insc.has_ended === false) {
+        res.render("editar_torneio_admin", {torneioID: req.params.id_torneio});
+    }
+   
+    //res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );         
 })
 
 app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
     let torneioID = req.params.id_torneio;
-    Tournament.findOneAndUpdate({_id: torneioID}, {has_ended: true}, {new:true}, (error,data) => {
+    Tournament.findOneAndUpdate({_id: torneioID}, {has_ended: false}, {new:true}, (error,data) => {
         if (error){
             console.log(error)
         }
@@ -62,14 +71,20 @@ app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
     
     res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} ); 
 
+})
+
+app.post('/editartorneio_menu/:id_torneio', async (req, res) => {
+    let torneioID = req.params.id_torneio;
+    Tournament.findOneAndUpdate({_id: torneioID}, {has_ended: true}, {new:true}, (error,data) => {
+        if (error){
+            console.log(error)
+        }
+    })
+    
+    res.render("editar_torneio_admin_1", {torneioID: req.params.id_torneio} ); 
 
 })
 
-
-
-app.get('/eliminatorias', (req, res) => {
-    res.render("brackets");
-})
 
 app.get('/home', (req, res) => {
     res.render("home_user");
@@ -172,9 +187,6 @@ app.get('/alterar_inscricoes', (req, res) => {
 
 app.get('/apagar_inscricao', (req, res) => {
     console.log("bruno é gay")
-
-    //res.render("alterar_inscricoes");
-
 })
 
 //ROTAS LOGIN
@@ -260,7 +272,6 @@ app.post('/registo', (req, res) => {
     }
 })
 
-
 app.get('/registo_admin', (req, res) => {
     res.render("registo_admin");
 })
@@ -300,7 +311,6 @@ app.post('/registo_admin', (req, res) => {
     }
 
 })
-
 
 //ROTAS CRIAR TORNEIO
 app.get('/criartorneio', (req, res) => {

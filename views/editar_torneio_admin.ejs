@@ -24,20 +24,25 @@
         <div class="titulo">
             <h1>Editar torneio</h1>
         </div>
-        <form method="POST">
-            <button type="submit" class="enviar">
-                Editar Horário/Calendário de jogos
-            </button>
-            <button type="submit" class="enviar">
-                Editar jogos
-            </button>
-            <button type="submit" class="enviar">
-                Alterar inscrições
-            </button>
-            <button type="submit" name="encerrarInsc" class="enviar">
-                Encerrar inscrições
-            </button>
-        </form>
+        <button type="submit" class="enviar">
+            Editar Horário/Calendário de jogos
+         </button>
+        <button type="submit" class="enviar">
+            Editar jogos
+        </button>
+        
+        <%for(tournment of Tournament){%>
+            
+                <form action="/alterar_inscricoes/<%=tournment._id%>" method="post">
+                    <button type="submit">
+                        <p>Alterar inscrições</p>
+                    </button>
+                </form>
+            
+        <% } %>
+        <button type="submit" name="encerrarInsc" class="enviar">
+            Encerrar inscrições
+        </button>
     </div>
 </body>
 </html>

@@ -14,45 +14,27 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
             rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
+        <title>Torneios Gerir</title>
     </head>
 
     <body>
-        <div id="menu_editar">
-            <h1>Editar Torneio</h1>
-            <div class="formulario">
-                <button class="enviar">
-                    Editar Calendário de Jogos
-                </button>
-                <button class="enviar">
-                    Alterar Inscrições
-                </button>
-                <button class="enviar">
-                    Finalizar Inscrição
-                </button>
-                <button class="enviar">
-                    Finalizar Inscrição
-                </button>
-            </div>
-
-
+        <div id="torneios_admin">
+            <h1>Lista de Torneios</h1>
+            <%for(tournment of Tournament){%>
+                <div class="block_torneios">
+                    <img class="foto_torneio" src="/img/img_Torneios/<%=tournment.img%>">
+                    <p>
+                        <form action="/editar_torneio_menu/<%=tournment._id%>" id="torneio" method="POST">
+                            <button type="submit">
+                                <%=tournment.nometorneio%>
+                            </button>
+                        </form>
+                    </p>
+                </div>
+            <% } %>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-        <br>
-        <br>
-        <br>
-
     </body>
+
 
 </html>
 <%- include('include/_footer') %>

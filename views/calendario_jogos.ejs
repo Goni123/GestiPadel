@@ -1,0 +1,288 @@
+<!-- include header -->
+<%- include('include/_header') %>
+    <!-- /include header -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <!-- Main Site -->
+    <div id="users_insc">
+        <div class="formulario">
+            <div class="titulo">
+                <h1>Calendário de jogos</h1>
+                <!--fazer push do nome db-->
+            </div>
+            
+            <form method="POST">
+
+                <div class="jgd1">
+                    <br>
+                    <br>
+                    <label for="jogadoresnivel">Selecione o nível:</label><br>
+                    <select name="nivel" id="nivel">
+                        <option></option>
+                        <option value="level1">Nível 1</option>
+                        <option value="level2">Nível 2</option>
+                        <option value="level3">Nível 3</option>
+                        <option value="level4">Nível 4</option>
+                    </select>
+                    <br>
+                    <br>
+                </div>
+                <br>
+                <br>
+
+
+
+                <div class="Disponibilidade">
+                    <p>Pode consultar todos os jogos escolhendo um certo nível!</p>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <table class="table" id="table">
+                        <tr>
+                            <th></th>
+                            <th>Segunda-feira</th>
+                            <th>Terça-feira</th>
+                            <th>Quarta-feira</th>
+                            <th>Quinta-feira</th>
+                            <th>Sexta-feira</th>
+                            <th>Sábado</th>
+                            <th>Domingo</th>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">09:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">10:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">11:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">12:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">13:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">14:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">15:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">16:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">17:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">18:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">19:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">20:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">21:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="hora_tabela">22:00</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+
+                    </table>
+
+                    <button type="submit" class="enviar">
+                        Submeter alteração
+                    </button>
+
+                    <script>
+                        var table = document.getElementById('table');
+                        var hora;
+                        var dia;
+                        for (var i = 1; i < table.rows.length; i++) {
+
+
+                            table.rows[i].onclick = function () {
+
+
+                                //rIndex = this.rowIndex;
+                                hora = this.cells[0].innerHTML;
+                                console.log(hora);
+
+
+
+                            };
+                        }
+                        /* for (var j = 1; j < 7; j++) {
+                             table.rows[0].cells[j].onclick = function () {
+                                 console.log(this.rows[0].innerHTML);
+                             };
+                         }*/
+
+
+
+                        var count = 0;
+
+                        $('table').on('click', 'td', function () {
+                            count++;
+                            if (count == 1) {
+                                if ($(this).css("background-color") == "rgb(128, 30, 6)") {/*verifica se esta verde*/
+                                    $(this).addClass('active');
+                                }
+                                else {
+                                    $(this).removeClass('active');
+                                }
+                            }
+
+                            if (count == 2) {
+                                if ($(this).css("background-color") == "rgb(128, 30, 6)") {
+                                    $(this).addClass('active');
+                                }
+                                else {
+                                    $(this).removeClass('active');
+                                }
+                                count = 0;
+
+                            }
+                        });
+
+
+
+
+                    </script>
+                </div>
+
+
+            </form>
+        </div>
+
+
+
+
+    </div>
+
+    </html>
+    <!-- /Main Site -->
+
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

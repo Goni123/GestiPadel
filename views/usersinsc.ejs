@@ -23,13 +23,18 @@
     <div id="users_insc">
         <div class="torneio">
             <div class="titulo">
-                <h1>Torneio São Joaquim</h1>
-                <!--fazer push do nome db-->
+                <%for(tournment of Tournament){%>
+                    <h1>Torneio <%=tournment.nometorneio%>
+                    </h1>
+                    <%}%>
+                        <!--fazer push do nome db-->
             </div>
             <div class="content">
                 <div class="imagem_torneio">
-                    <img src="../../img/Torneio.jpg">
-                    <!--fazer push do nome db-->
+                    <%for(tournment of Tournament){%>
+                        <img src="/img/img_Torneios/<%=tournment.img%>">
+                        <%}%>
+                            <!--fazer push do nome db-->
                 </div>
                 <div class="infos">
                     <div class="local">
@@ -38,7 +43,10 @@
                         </div>
                         <div class="texto">
                             <h1>Localização</h1>
-                            <p>Campo de padle em São Joaquim</p>
+                            <%for(tournment of Tournament){%>
+                                <p>Campo de padle da <%=tournment.localizacao%>
+                                </p>
+                                <%}%>
                         </div>
                     </div>
                     <div class="tipo_torneio">
@@ -47,7 +55,11 @@
                         </div>
                         <div class="texto">
                             <h1>Tipo de Torneio</h1>
-                            <p>tipo de torneio</p>
+                            <%for(tournment of Tournament){%>
+                                <p>
+                                    <%=tournment.niveltipo%>
+                                </p>
+                                <%}%>
                         </div>
 
 
@@ -58,7 +70,11 @@
                         </div>
                         <div class="texto">
                             <h1>Preço</h1>
-                            <p>15 raquetes</p>
+                            <%for(tournment of Tournament){%>
+                                <p>
+                                    <%=tournment.preco%> raquetes
+                                </p>
+                                <%}%>
                         </div>
 
                     </div>
@@ -77,23 +93,23 @@
                     <br>
                     <br>
                     <p>Primeiro nome:</p><br>
-                    <input type="text" id="name1" name="name1">
+                    <input type="text" id="name1" name="nameum">
                     <br>
                     <br>
                     <p>NIF:</p><br>
-                    <input type="text" maxlength="9" id="nif1" name="nif1">
+                    <input type="text" maxlength="9" id="nifum" name="nifum">
                     <br>
                     <br>
                     <p>Data de Nascimento:</p><br>
-                    <input type="date" id="BirthDate1" name="BirthDate1">
+                    <input type="date" id="BirthDateum" name="BirthDateum">
                     <br>
                     <br>
                     <p>Email:</p><br>
-                    <input type="text" maxlength="9" id="email1" name="email1">
+                    <input type="text" id="emailum" name="emailum">
                     <br>
                     <br>
                     <p>Telemóvel:</p><br>
-                    <input type="text" maxlength="9" id="tel1" name="tel1">
+                    <input type="text" maxlength="9" id="telum" name="telum">
                     <br>
                     <br>
                 </div>
@@ -102,23 +118,23 @@
                     <br>
                     <br>
                     <p>Primeiro nome:</p><br>
-                    <input type="text" id="name2" name="name2">
+                    <input type="text" id="namedois" name="namedois">
                     <br>
                     <br>
                     <p>NIF:</p><br>
-                    <input type="text" maxlength="9" id="nif2" name="nif2">
+                    <input type="text" maxlength="9" id="nifdois" name="nifdois">
                     <br>
                     <br>
                     <p>Data de Nascimento:</p><br>
-                    <input type="date" id="BirthDate2" name="BirthDate2">
+                    <input type="date" id="BirthDatedois" name="BirthDatedois">
                     <br>
                     <br>
                     <p>Email:</p><br>
-                    <input type="text" maxlength="9" id="email2" name="email2">
+                    <input type="text" id="emaildois" name="emaildois">
                     <br>
                     <br>
                     <p>Telemóvel:</p><br>
-                    <input type="text" maxlength="9" id="tel2" name="tel2">
+                    <input type="text" maxlength="9" id="teldois" name="teldois">
                     <br>
                     <br>
                 </div>

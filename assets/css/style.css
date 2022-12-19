@@ -72,7 +72,8 @@ a {
     border-bottom: #2b2d42;
     padding: 1em 0;
     width: 100%;
-
+    /*position: fixed;
+    z-index: 9999999;*/
 
 }
 
@@ -362,6 +363,98 @@ table {
     font-size: 28px;
 }
 
+#editar_torneio_admin {
+    margin-top: 30px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+#editar_torneio_admin .titulo h1 {
+    font-family: 'Poppins';
+    color: #1A093F;
+    text-align: center;
+}
+
+#editar_torneio_admin .bloco {
+    width: 40%;
+    display: inline-block;
+}
+
+
+
+#editar_torneio_admin .enviar {
+    outline: none;
+    border: 0px;
+    width: 371px;
+    background: #4141A5;
+    box-shadow: 0px 20px 30px -16px rgb(65 65 165 / 30%);
+    border-radius: 35px;
+    font-weight: 700 !important;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    margin: 9%;
+}
+
+#editar_torneio_admin .enviar1 {
+
+    background: #c40909;
+    outline: none;
+    border: 0px;
+    width: 371px;
+    box-shadow: 0px 20px 30px -16px rgb(65 65 165 / 30%);
+    border-radius: 35px;
+    font-weight: 700 !important;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    margin: 9%;
+
+}
+
+#editar_torneio_admin .enviar2 {
+
+    background: #00811e;
+    outline: none;
+    border: 0px;
+    width: 371px;
+    box-shadow: 0px 20px 30px -16px rgb(65 65 165 / 30%);
+    border-radius: 35px;
+    font-weight: 700 !important;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    margin: 9%;
+
+}
+
+#editar_torneio_admin .enviar1:hover {
+    background: #fd4747b0;
+}
+
+#editar_torneio_admin .enviar2:hover {
+    background: #5cdf62b0;
+}
+
+#editar_torneio_admin .enviar:hover {
+    background: #4141a5b0;
+}
+
+#editar_torneio_admin .enviar p {
+
+    padding: 18px 0px
+}
+
+#editar_torneio_admin .enviar1 p {
+
+    padding: 18px 0px
+}
+
+#editar_torneio_admin .enviar2 p {
+
+    padding: 18px 0px
+}
+
 a,
 h1,
 h2,
@@ -581,6 +674,19 @@ form {
 
 }
 
+#homePage button img {
+    margin-left: 0;
+    margin-top: 5px;
+    float: right;
+}
+
+#homePage button {
+    width: 330px;
+}
+
+#homePage form {
+    text-align: left;
+}
 
 
 #homePage .colunaDuplaHomeSegundaLayer img {
@@ -635,7 +741,7 @@ button img {
 }
 
 #homePage .colunaDuplaHome1 .desc {
-    margin: 83px 36px;
+    margin: 70px 36px;
 }
 
 #homePage .inicio {
@@ -828,4 +934,113 @@ button img {
     font-size: 19px;
     width: 332px;
     padding: 42px 18px;
+}
+
+#login h1 {
+    text-align: center;
+    font-size: 50px;
+
+}
+
+#login {
+    background-color: #4141A5;
+    height: 100%;
+    margin: 0;
+}
+
+#login .container {
+    height: fit-content;
+    background-color: #fff;
+    border-radius: 14px;
+    margin-top: 10%;
+    padding: 40px;
+    width: fit-content;
+}
+
+#login button {
+    text-align: center;
+    color: #fff;
+    padding: 18px 58px;
+    margin: 23px 0 0 0;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+#login input[type=text],
+#login input[type=password] {
+    border: none;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    font-size: 22px;
+    margin: 15px;
+}
+
+#login input[type=text]:focus-visible,
+#login input[type=password]:focus-visible {
+    border: none;
+    border-bottom: 2px solid rgb(65 65 165);
+    outline: 0;
+}
+
+#login .logo {
+    text-align: center;
+}
+
+#login .logo img {
+    width: auto;
+    height: 117px;
+}
+
+#torneios_admin {
+    min-height: 900px;
+}
+
+#torneios_admin h1 {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 80px;
+}
+
+#torneios_admin .block_torneios {
+    display: inline-block;
+    margin: 3%;
+    width: 31%;
+    text-align: center;
+    position: relative;
+    width: 27%;
+}
+
+
+
+#torneios_admin .block_torneios .foto_torneio {
+    width: 100%;
+    height: auto;
+}
+
+#torneios_admin .block_torneios .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #2d2dbd3b;
+}
+
+#torneios_admin .block_torneios:hover .overlay {
+    opacity: 1;
+    border-radius: 31px;
+}
+
+#torneios_admin .block_torneios button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    margin: 0;
 }

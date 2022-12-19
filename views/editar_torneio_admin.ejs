@@ -1,101 +1,80 @@
-<!DOCTYPE html>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-    body {font-family: Arial, Helvetica, sans-serif;}
+<!-- include header -->
+<%- include('include/_header') %>
+    <!-- /include header -->
 
-    h1 {
-        text-align: center;
-        color: blueviolet;
-        font-weight: bold;
-    }
+    <!DOCTYPE html>
+    <html lang="en">
 
-    .navbar a {
-        float: left;
-        padding: 30px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        background-color: blueviolet;
-        border-radius: 25px;
-        position: absolute;
-        left: 200px;
-        top: 190px;
-    }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .navbar a:hover {
-        background-color: #a972dd;
-    }
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
 
-    .navbar2 a {
-        float: left;
-        padding: 30px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        background-color: #8a2be2;
-        border-radius: 25px;
-        position: absolute;
-        right: 200px;
-        top: 190px;
-    }
+    <body>
+        <div id="editar_torneio_admin">
+            <div class="titulo">
+                <h1>Editar torneio</h1>
+            </div>
+            <div class="bloco">
+                <form method="POST" action="/editartorneiomenu/<%=torneioID%>">
+                <button type="submit" class="enviar">
+                    <p> Editar Horário/Calendário de jogos</p>
+                </button>
+                </form>
+                <form method="GET" action="/brackets">
+                    <button type="submit" class="enviar">
+                        <p>Editar jogos</p>
+                    </button>
+                </form>
+            </div>
 
-    .navbar2 a:hover {
-        background-color: #994edf;
-    }
-
-    .navbar3 a {
-        float: right;
-        padding: 30px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        background-color: blueviolet;
-        border-radius: 25px;
-        position: absolute;
-        left: 235px;
-        top: 360px;
-    }
-
-    .navbar3 a:hover {
-        background-color: #994edf;
-    }
-
-    .navbar4 a {
-        float: right;
-        padding: 30px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-        background-color: blueviolet;
-        border-radius: 25px;
-        position: absolute;
-        right: 260px;
-        top: 360px;
-    }
-
-    .navbar4 a:hover {
-        background-color: #994edf;
-    }
-</style>
-<body>
-    <h1>Editar torneio</h1>
-    <td>
-        <div class="navbar">
-            <a class="active" href="#"><i class="fa fa-fw fa-pencil"></i> Editar dados do torneio</a>
+            <div class="bloco">
+                <form method="POST" action="/editartorneiomenu/<%=torneioID%>">
+                <button type="submit" class="enviar">
+                    <p> Alterar inscrições</p>
+                </button>
+                </form>
+                <form method="POST" action="/editartorneio_menu/<%=torneioID%>">
+                    <button type="submit" class="enviar1">
+                        <p>Encerrar inscrições</p>
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="navbar2">
-            <a href="#"><i class="fa fa-fw fa-calendar"></i> Editar Horário/Calendário de jogos</a>
-        </div>
-    </td>
-    <td>
-        <div class="navbar3">
-            <a href="#"><i class="fa fa-fw fa-pencil"></i> Editar bracket</a>
-        </div>
-        <div class="navbar4">
-            <a href="#"><i class="fa fa-fw fa-list"></i> Alterar inscrições</a> 
-        </div>
-    </td>
+
+        <button type="submit" class="enviar">
+            Editar Horário/Calendário de jogos
+         </button>
+        <button type="submit" class="enviar">
+            Editar jogos
+        </button>
+        
+        <%for(tournment of Tournament){%>
+            
+                <form action="/alterar_inscricoes/<%=tournment._id%>" method="post">
+                    <button type="submit">
+                        <p>Alterar inscrições</p>
+                    </button>
+                </form>
+            
+        <% } %>
+        <button type="submit" name="encerrarInsc" class="enviar">
+            Encerrar inscrições
+        </button>
+    </div>
 </body>
-</html> 
+</html>
+
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->

@@ -138,9 +138,6 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
 
 
 
-
-/*
-
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
     let id_url = req.params.id_torneio
     // console.log("O id é: " + id_url)
@@ -173,7 +170,7 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
 
 
 
-app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
+/*app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
     let torneioID = req.params.id_torneio;
     Tournament.findOneAndUpdate({ _id: torneioID }, { has_ended: false }, { new: true }, (error, data) => {
         if (error) {
@@ -198,7 +195,7 @@ app.get('/admin', (req, res) => {
     console.log(req.session.user)
 })
 
-app.get('/brackets', (req, res) => {
+app.get('/brackets/:id_torneio', (req, res) => {
     res.render("tournament_brackets");
 })
 

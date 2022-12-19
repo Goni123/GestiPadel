@@ -18,7 +18,36 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
             rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
+        <script>
+            function allowDrop(ev) {
+                ev.preventDefault();
+            }
+    
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.target.id);
+            }
+    
+            function drop(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("text");
+                ev.target.appendChild(document.getElementById(data));
+            }
+        </script>
+        <style>
+            #div1, #div2, #div3, #div4, #div5, #div6, #div7, #div8, #div9, #div10, #div11, #div12, #div13, #div14, #div15, #div16, #div17, #div18, #div19, #div20, #div21, #div22, #div23, #div24, #div25, #div26, #div27, #div28, #div29, #div30, #div31, #div32, #div33, #div34, #div35, #div36, #div37, #div38, #div39, #div40, #div41, #div42, #div43, #div44, #div45, #div46, #div47, #div48, #div49, #div50, #div51, #div52, #div53, #div54, #div55, #div56, #div57, #div58, #div59, #div60, #div61, #div62, #div63, #div64, #div65, #div66, #div67, #div68, #div69, #div70, #div71, #div72, #div73, #div74, #div75, #div76, #div77, #div78, #div79, #div80, #div81, #div82, #div83, #div84, #div85, #div86, #div87, #div88, #div89, #div90, #div91, #div92, #div93, #div94, #div95, #div96, #div97, #div98 {
+                padding: 10px;
+            }
+
+            #drag1, #drag2, #drag3, #drag4, #drag5 {
+                font-family: 'Poppins';
+                background-color: lightblue; 
+                display: inline-block;
+                max-width: 250px;
+                padding: 1px;
+            }
+        </style>
     </head>
+   
     <!-- Main Site -->
     <div id="users_insc">
         <div class="formulario">
@@ -28,12 +57,11 @@
             </div>
             
             <form method="POST">
-
                 <div class="jgd1">
                     <br>
                     <br>
                     <label for="jogadoresnivel">Selecione o nível:</label><br>
-                    <select name="nivel" id="nivel">
+                    <select name="nivel" id="nivel" onchange="namesLevel(this.value)">
                         <option></option>
                         <option value="level1">Nível 1</option>
                         <option value="level2">Nível 2</option>
@@ -45,10 +73,7 @@
                 </div>
                 <br>
                 <br>
-
-
-
-                <div class="Disponibilidade">
+                <div class="Calendar">
                     <p>Pode consultar todos os jogos escolhendo um certo nível!</p>
                     <br>
                     <br>
@@ -67,216 +92,168 @@
                         </tr>
                         <tr>
                             <td class="hora_tabela">09:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div4" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div5" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div6" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div7" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">10:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div8" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div9" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div10" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div11" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div12" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div13" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div14" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">11:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div15" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div16" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div17" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div18" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div19" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div20" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div21" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">12:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div22" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div23" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div24" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div25" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div26" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div27" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div28" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">13:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div29" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div30" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div31" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div32" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div33" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div34" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div35" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">14:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div36" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div37" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div38" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div39" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div40" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div41" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div42" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">15:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div43" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div44" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div45" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div46" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div47" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div48" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div49" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">16:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div50" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div51" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div52" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div53" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div54" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div55" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div56" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">17:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div57" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div58" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div59" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div60" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div61" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div62" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div63" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">18:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div64" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div65" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div66" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div67" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div68" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div69" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div70" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">19:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div71" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div72" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div73" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div74" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div75" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div76" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div77" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">20:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div78" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div79" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div80" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div81" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div82" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div83" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div84" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">21:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div85" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div86" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div87" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div88" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div89" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div90" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div91" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">22:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><div id="div92" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div93" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div94" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div95" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div96" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div97" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td><div id="div98" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
                         </tr>
-
-
                     </table>
+
+                    <br>
+                    <br>
+
+                    <div id="drag1" draggable="true" ondragstart="drag(event)" width="50" height="20">José António/Maria Adelaide</div>
+                    <br>
+                    <div id="drag2" draggable="true" ondragstart="drag(event)" width="50" height="20">Antonino Silva/Jusefina Abreu</div>
+                    <br>
+                    <div id="drag3" draggable="true" ondragstart="drag(event)" width="50" height="20">João Amandio/Sofia Flores</div>
+                    <br>
+                    <div id="drag4" draggable="true" ondragstart="drag(event)" width="50" height="20">Natalino Gomes/Ana Estrada</div>
+                    <br>
+                    <div id="drag5" draggable="true" ondragstart="drag(event)" width="50" height="20">Idalino Freitas/Daniela Freitas</div>
+                    
+                    <br>
+                    <br>
 
                     <button type="submit" class="enviar">
                         Submeter alteração
                     </button>
-
-                    <script>
-                        var table = document.getElementById('table');
-                        var hora;
-                        var dia;
-                        for (var i = 1; i < table.rows.length; i++) {
-
-
-                            table.rows[i].onclick = function () {
-
-
-                                //rIndex = this.rowIndex;
-                                hora = this.cells[0].innerHTML;
-                                console.log(hora);
-
-
-
-                            };
-                        }
-                        /* for (var j = 1; j < 7; j++) {
-                             table.rows[0].cells[j].onclick = function () {
-                                 console.log(this.rows[0].innerHTML);
-                             };
-                         }*/
-
-
-
-                        var count = 0;
-
-                        $('table').on('click', 'td', function () {
-                            count++;
-                            if (count == 1) {
-                                if ($(this).css("background-color") == "rgb(128, 30, 6)") {/*verifica se esta verde*/
-                                    $(this).addClass('active');
-                                }
-                                else {
-                                    $(this).removeClass('active');
-                                }
-                            }
-
-                            if (count == 2) {
-                                if ($(this).css("background-color") == "rgb(128, 30, 6)") {
-                                    $(this).addClass('active');
-                                }
-                                else {
-                                    $(this).removeClass('active');
-                                }
-                                count = 0;
-
-                            }
-                        });
-
-
-
-
-                    </script>
                 </div>
-
-
             </form>
         </div>
-
-
-
-
     </div>
 
     </html>

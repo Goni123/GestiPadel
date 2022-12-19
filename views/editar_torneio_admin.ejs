@@ -25,9 +25,12 @@
             <div class="titulo">
                 <h1>Editar torneio</h1>
             </div>
-            <button type="submit" class="enviar">
-                Editar Horário/Calendário de jogos
-            </button>
+
+            <form action="/calendario_jogos/<%=tournment._id%>" method="post">
+                <button type="submit" class="enviar">
+                    Editar Horário/Calendário de jogos
+                </button>
+            </form>
 
             <form action="/editar_brakets/<%=tournment._id%>" method="post">
                 <button type="submit" class="enviar">

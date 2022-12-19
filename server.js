@@ -92,24 +92,42 @@ app.get('/editar_torneio_menu', async (req, res) => {
 })
 
 
-app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
-    //console.log(req.body)
-    //console.log(inscOPEN)
-    let torneioID = req.params.id_torneio;
-    let insc = await Tournament.findOne({ _id: torneioID }).exec()
 
-    console.log(insc.has_ended)
-    if (insc.has_ended === true) {
-        res.render("editar_torneio_admin_1", { torneioID: req.params.id_torneio });
-    }
-    else if (insc.has_ended === false) {
-        res.render("editar_torneio_admin", { torneioID: req.params.id_torneio });
-    }
 
+
+app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
     Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
         res.render("editar_torneio_admin", { Tournament: docs })
     })
+})
+
+app.post('/editar_brakets/:id_torneio', async (req, res) => {
+    let id_url = req.params.id_torneio
+    // console.log("O id é: " + id_url)
+
+    var array_ids = []
+
+    await Pair.find({ tournaments: { $elemMatch: { id: id_url } } }).exec(function (err, docs) {
+
+        //console.log("ficheiro:" + docs)
+
+        for (var i = 0; i < docs.length; i++) {
+            for (var j = 0; j < docs[i].users.length; j++) {
+                var string = docs[i].users[j].toString()
+                array_ids.push(string)
+            }
+        }
+        // console.log(array_ids)
+    })
+    await User.find({ _id: { $in: ['6391e50313339dd8ef8a38ff', '6391e54213339dd8ef8a3902', '6391e57b13339dd8ef8a3905', '6391e6f513339dd8ef8a3908', '6391e71313339dd8ef8a390b', '6391e74713339dd8ef8a390e'] } }).exec(function (err, docs) {
+        if (docs) {
+            //console.log(docs)
+        }
+        res.render('tournament_brackets', { User: docs })
+    })
+
     //res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );
+
 })
 
 app.post('/editartorneiomenu/:id_torneio', async (req, res) => {

@@ -35,7 +35,7 @@
 /*Inicio mario*/
 
 .toSelectSlots {}
-=======
+
 @import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -59,16 +59,20 @@ td {
     margin: 1%;
 }
 
-/*.genDiv:nth-child(n+2) {
+.genDiv:nth-child(n+2) {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}*/
+}
 
 
 
 
+
+
+.genDiv .matchDiv {
+    margin: 20px 0;
 
 /*.bracketSlots .genDiv:nth-child(n+2) .matchDiv {
     height: 50%;
@@ -114,6 +118,7 @@ td {
     border-radius: .5em;
     padding: 10px;
     cursor: move;
+
 }
 
 .bracketSlots {
@@ -142,7 +147,7 @@ td {
     border: 3px dotted #cfc9c9;
     display: inline-block;
     border-radius: 0.5em;
-    margin: 2px 0;
+    margin: 11px 0;
     padding: 17px;
     cursor: move;
     vertical-align: middle;
@@ -175,7 +180,7 @@ input {
     border: 3px dotted #666;
 }
 
-=======
+
 .bracketSlots .genDiv:nth-child(n+3) {
     padding: 40px 0;
 }
@@ -206,7 +211,7 @@ input {
 .trophy {
     height: 50px;
     width: 50px;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .bracketSlots .teamDiv.winner {

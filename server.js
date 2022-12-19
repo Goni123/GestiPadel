@@ -98,13 +98,13 @@ app.get('/editar_torneio_menu', async (req, res) => {
 app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
 
     Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
-       res.render("editar_torneio_admin", { Tournament: docs })
+        res.render("editar_torneio_admin", { Tournament: docs })
     })
-        
+
 })
 
-app.post('/torneiomenu/:id_torneio', async (req, res) => { 
-    
+app.post('/torneiomenu/:id_torneio', async (req, res) => {
+
     let insc = await Tournament.findOne({ _id: tournment._id }).exec()
     //let insc = await Tournament.findOne({ _id: id_torneio }).exec()
     //inscri = insc.has_ended; 
@@ -114,12 +114,12 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
             if (error) {
                 console.log(error)
             }
-            else{
+            else {
                 Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
                     res.render("editar_torneio_admin", { Tournament: docs })
                 })
             }
-        }) 
+        })
     }
 
     else if (insc.has_ended === true) {
@@ -127,19 +127,19 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
             if (error) {
                 console.log(error)
             }
-            else{
+            else {
                 Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
                     res.render("editar_torneio_admin", { Tournament: docs })
                 })
             }
-        }) 
+        })
     }
 })
 
 
 
 
-/*
+
 
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
     let id_url = req.params.id_torneio
@@ -173,20 +173,7 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
 
 
 
-app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
-    let torneioID = req.params.id_torneio;
-    Tournament.findOneAndUpdate({ _id: torneioID }, { has_ended: false }, { new: true }, (error, data) => {
-        if (error) {
-            console.log(error)
-        }
-    })
 
-    res.render("editar_torneio_admin", { torneioID: req.params.id_torneio });
-
-
-
-})
-*/
 
 app.get('/home', (req, res) => {
     res.render("home_user");
@@ -578,16 +565,16 @@ app.get('/calendario_jogos/:id_torneio', async (req, res) => {
 
 app.post('/calendario_jogos/:id_torneio', async (req, res) => {
     let id_url = req.params.id_torneio
-    console.log("O id Ã©: "+id_url)
+    console.log("O id Ã©: " + id_url)
 
     var array_ids = []
 
-    await Pair.find({tournaments:{$elemMatch:{id:id_url}}}).exec(function(err,docs){
-        
+    await Pair.find({ tournaments: { $elemMatch: { id: id_url } } }).exec(function (err, docs) {
+
         console.log("ficheiro:" + docs)
-        
-        for(var i = 0 ; i< docs.length; i++){
-            for(var j =0 ; j< docs[i].users.length; j++){
+
+        for (var i = 0; i < docs.length; i++) {
+            for (var j = 0; j < docs[i].users.length; j++) {
                 var string = docs[i].users[j].toString()
                 array_ids.push(string)
             }
@@ -596,17 +583,21 @@ app.post('/calendario_jogos/:id_torneio', async (req, res) => {
 
     })
 
-    await User.find({_id:{$in: ['6391e50313339dd8ef8a38ff',
-    '63a02a937b76ea554aa6883d',
-    '6391e57b13339dd8ef8a3905',
-    '6391e6f513339dd8ef8a3908',
-    '639dea08ce774fde3f188f11',
-    '639dea08ce774fde3f188f14',
-    '63a028ce3040672c93bdbe4c',
-    '63a029063040672c93bdbe4f']}}).exec(function(err,docs){
-        if(docs){
+    await User.find({
+        _id: {
+            $in: ['6391e50313339dd8ef8a38ff',
+                '63a02a937b76ea554aa6883d',
+                '6391e57b13339dd8ef8a3905',
+                '6391e6f513339dd8ef8a3908',
+                '639dea08ce774fde3f188f11',
+                '639dea08ce774fde3f188f14',
+                '63a028ce3040672c93bdbe4c',
+                '63a029063040672c93bdbe4f']
+        }
+    }).exec(function (err, docs) {
+        if (docs) {
             console.log(docs)
         }
-        res.render('calendario_jogos',{User : docs, Array: array_ids})
+        res.render('calendario_jogos', { User: docs, Array: array_ids })
     })
 })

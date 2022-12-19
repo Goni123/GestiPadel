@@ -27,10 +27,10 @@ let pairSchema = new mongoose.Schema({
             type: Boolean,
             default: false
         },
-        level: mongoose.Schema.Types.ObjectID,
+        level: String,
         group: String,
         group_position: Number,
-        unavailability:[Date],
+        unavailability:[String],
         has_ended: {
             type: Boolean,
             default:false

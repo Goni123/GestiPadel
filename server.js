@@ -12,6 +12,7 @@ const User = require('./model/usermodel')
 const UserAdmin = require('./model/user_adminmodel')
 const Tournament = require('./model/tournamentmodel')
 const Pair = require('./model/pairmodel')
+const Game = require('./model/jogomodel')
 const { now } = require("mongoose");
 var upload = require('./multerConfig')
 const url = require('url');
@@ -36,11 +37,14 @@ app.get('/', (req, res) => {
     })
 })
 
+app.get('/inscricoes/:id_torneio', async (req, res) => {
+    let T = await Tournament.findOne({_id: req.params.id_torneio }).exec()
+    res.render("usersinsc",{  Tor: T });
 /*app.get('/alterar_inscricoes/:id_torneio', async (req,res) =>{
     Tournament.find({}).exec(function (err, docs) {
         res.render('menu_editar_torneio', { Tournament: docs })
     })
-})*/
+})*/})
 
 
 app.post('/alterar_inscricoes/:id_torneio',async (req, res) => {
@@ -51,9 +55,9 @@ app.post('/alterar_inscricoes/:id_torneio',async (req, res) => {
     var array_ids = []
 
     await Pair.find({tournaments:{$elemMatch:{id:id_url}}}).exec(function(err,docs){
-        
+
         console.log("ficheiro:" + docs)
-        
+
         for(var i = 0 ; i< docs.length; i++){
             for(var j =0 ; j< docs[i].users.length; j++){
                 var string = docs[i].users[j].toString()
@@ -84,17 +88,13 @@ app.get('/inscricoes/:id_torneio', (req, res) => {
 })
 
 app.get('/editar_torneio_menu', async (req, res) => {
-
+    res.render("editar_torneio_admin");
 })
-
-
-
-
 
 
 app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
     //console.log(req.body)
-    //console.log(inscOPEN) 
+    //console.log(inscOPEN)
     let torneioID = req.params.id_torneio;
     let insc = await Tournament.findOne({ _id: torneioID }).exec()
 
@@ -109,7 +109,7 @@ app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
     Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
         res.render("editar_torneio_admin", { Tournament: docs })
     })
-    //res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );         
+    //res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );
 })
 
 app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
@@ -251,7 +251,7 @@ app.get('/apagar_inscricao/:id_utilizador', (req, res) => {
             //})
         }
     })
-    
+
 })
 
 //ROTAS LOGIN
@@ -356,7 +356,7 @@ app.post('/registo_admin', (req, res) => {
                     console.log("O username que escolheu já existe.")
                 }
                 else {
-                    var new_user_admin = new UserAdmin({
+                    let new_user_admin = new UserAdmin({
                         "username": username,
                         "password": password
                     })
@@ -406,10 +406,10 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
 })
 
 //ROTAS INSCRIÇÃO TORNEIO
-app.get('/insctorneio/:id_torneio', (req, res) => {
-    Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
-        res.render('usersinsc', { Tournament: docs })
-    })
+app.get('/insctorneio/:id_torneio', async (req, res) => {
+    let T = await Tournament.find({ _id: req.params.id_torneio }).exec()
+    console.log(T,T[0].niveltipo)
+    res.render('usersinsc', { Tournament: T , niveis: T[0].niveltipo})
 })
 
 app.post('/insctorneio/:id_torneio', async (req, res) => {
@@ -425,12 +425,17 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
     let email2 = req.body.emaildois;
     let tel1 = req.body.telum;
     let tel2 = req.body.teldois;
+    let avl=req.body.avail;
+    let arravl=avl.split(',')
+    arravl.pop()
+    console.log(arravl)
 
 
     let dbuser1 = await User.where("nif").equals(nif1).exec()
     let dbuser2 = await User.where("nif").equals(nif2).exec()
     console.log(dbuser1)
     console.log(dbuser2)
+    let flag=false
     // caso um dos users nao existir, adicionar á tabela de user
     if (dbuser1.length === 0) {
         dbuser1 = await new User(
@@ -441,7 +446,9 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
                 "nif": nif1
             }).save()
         dbuser1 = await User.where("nif").equals(nif1).exec()
+        flag=true
     }
+
     if (dbuser2.length === 0) {
         dbuser2 = await new User(
             {
@@ -451,6 +458,7 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
                 "nif": nif2
             }).save()
         dbuser2 = await User.where("nif").equals(nif2).exec()
+        flag=true
     }
 
     //caso ambos os users existem
@@ -458,12 +466,32 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
     //const pair2 =
     //console.log(pair);
     //if (pair.size === 0) { //this means they have no active pair
-    let new_pair = new Pair({
-        "users": [dbuser1[0]._id, dbuser2[0]._id],
-        "tournaments": [{ "id": req.params.id_torneio }],
-    })
-    console.log("here")
-    await new_pair.save();//*/
+    if (!flag){
+        //!F
+        const pair = await Pair.find({ users: { "$in": [dbuser1[0]._id, dbuser2[0]._id] } })
+        if (pair[0].tournaments.some(element => { return element.id === req.params.id_torneio; })) { //caso os users ja tenham um par em conjunto
+            //S
+            await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": req.params.id_torneio } } })
+
+        }else {
+            //N
+            let new_pair = new Pair({
+                "users": [dbuser1[0]._id, dbuser2[0]._id],
+                "tournaments": [{ "id": req.params.id_torneio, "level": level,"unavailability": arravl}],
+            })
+            console.log("here")
+            await new_pair.save();
+        }
+    }else if (flag){
+        //F
+        let new_pair = new Pair({
+            "users": [dbuser1[0]._id, dbuser2[0]._id],
+            "tournaments": [{ "id": req.params.id_torneio, "level": level, "unavailability": arravl }],
+        })
+        console.log("here")
+        await new_pair.save();
+    }
+    //*/
    /* }else if (pair[0].tournaments.some(element => { return element.id === req.params.id_torneio; })) { //caso os users ja tenham um par em conjunto
         console.log("dentro")
         //pair.tournaments.push({"id":   "6388a30d9f6259e39e9c66da"})
@@ -472,15 +500,21 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
     } else {
         res.status(409)/*.send({
             message: 'Este par ja se encontra incrito neste torneio'
-        })*/;
+        });
 
-    //}
+    //}*/
     res.redirect('/home');
 
 })
 
-app.get('/brackets', (req, res) => {
+app.get('/brackets', async (req, res) => {
+
     res.render("brackets");
+    console.log("asd")
+    let a = await Game.find({tournament: ObjectId("6388a30d9f6259e39e9c66da")}).exec()
+    console.log(a)
+
+
 })
 
 app.listen(PORT, () => {

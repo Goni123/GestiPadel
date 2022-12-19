@@ -55,20 +55,20 @@ td {
     margin: 1%;
 }
 
-/*.genDiv:nth-child(n+2) {
+.genDiv:nth-child(n+2) {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}*/
+}
 
 
 
 
 
-/*.bracketSlots .genDiv:nth-child(n+2) .matchDiv {
-    height: 50%;
-}*/
+.genDiv .matchDiv {
+    margin: 20px 0;
+}
 
 .bracketSlots {
     display: grid;
@@ -96,7 +96,7 @@ td {
     border: 3px dotted #cfc9c9;
     display: inline-block;
     border-radius: 0.5em;
-    margin: 2px 0;
+    margin: 11px 0;
     padding: 17px;
     cursor: move;
     vertical-align: middle;
@@ -155,7 +155,7 @@ input {
 .trophy {
     height: 50px;
     width: 50px;
-    vertical-align: top;
+    vertical-align: middle;
 }
 
 .bracketSlots .teamDiv.winner {

@@ -25,56 +25,33 @@
             <div class="titulo">
                 <h1>Editar torneio</h1>
             </div>
-            <div class="bloco">
-                <form method="POST" action="/editartorneiomenu/<%=torneioID%>">
-                <button type="submit" class="enviar">
-                    <p> Editar Horário/Calendário de jogos</p>
-                </button>
-                </form>
-                <form method="GET" action="/brackets">
-                    <button type="submit" class="enviar">
-                        <p>Editar jogos</p>
-                    </button>
-                </form>
-            </div>
+            <button type="submit" class="enviar">
+                Editar Horário/Calendário de jogos
+            </button>
 
-            <div class="bloco">
-                <form method="POST" action="/editartorneiomenu/<%=torneioID%>">
+            <form action="/editar_brakets/<%=tournment._id%>" method="post">
                 <button type="submit" class="enviar">
-                    <p> Alterar inscrições</p>
+                    Editar jogos
                 </button>
-                </form>
-                <form method="POST" action="/editartorneio_menu/<%=torneioID%>">
-                    <button type="submit" class="enviar1">
-                        <p>Encerrar inscrições</p>
-                    </button>
-                </form>
-            </div>
-        </div>
+            </form>
 
-        <button type="submit" class="enviar">
-            Editar Horário/Calendário de jogos
-         </button>
-        <button type="submit" class="enviar">
-            Editar jogos
-        </button>
-        
-        <%for(tournment of Tournament){%>
-            
+            <%for(tournment of Tournament){%>
+
                 <form action="/alterar_inscricoes/<%=tournment._id%>" method="post">
                     <button type="submit">
                         <p>Alterar inscrições</p>
                     </button>
                 </form>
-            
-        <% } %>
-        <button type="submit" name="encerrarInsc" class="enviar">
-            Encerrar inscrições
-        </button>
-    </div>
-</body>
-</html>
 
-<!-- include footer -->
-<%- include('include/_footer') %>
-<!-- /include footer -->
+                <% } %>
+                    <button type="submit" name="encerrarInsc" class="enviar">
+                        Encerrar inscrições
+                    </button>
+        </div>
+    </body>
+
+    </html>
+
+    <!-- include footer -->
+    <%- include('include/_footer') %>
+        <!-- /include footer -->

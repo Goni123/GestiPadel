@@ -1,6 +1,12 @@
-var list;
 
+
+const User = import("./model/usermodel");
+
+
+var list;
+console.log("entrou");
 GetTeamList();
+
 
 var bracketSize;
 let columns = 0;
@@ -41,7 +47,41 @@ for (let toSelectSlots of brackets) {
     bracketSlots.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 }
 
-function GetTeamList() {
+async function GetTeamList() {
+
+
+    console.log(User.name);
+    /*/fetch('/editar_brakets/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Success:', result);
+
+
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });*/
+    /*var array_nome = [];
+    await User.find({ _id: { $in: ['6391e50313339dd8ef8a38ff', '6391e54213339dd8ef8a3902', '6391e57b13339dd8ef8a3905', '6391e6f513339dd8ef8a3908', '6391e71313339dd8ef8a390b', '6391e74713339dd8ef8a390e'] } }).exec(function (err, docs) {
+        if (docs) {
+            console.log(docs)
+            array_nome = docs
+        }
+    })*/
+
+    /*for (var i = 0; i < User.length; i++) {
+        array_nome.push(User[i].name)
+    
+    }*/
+
+
+
+    //console.log(array_nome);
     list = [
         { name0: 'Ademar', name1: 'Adelson' },
         { name0: 'Ben', name1: 'Benato' },
@@ -51,6 +91,7 @@ function GetTeamList() {
         { name0: 'Fernando', name1: 'Felipe' },
         { name0: 'Gabriel', name1: 'Geliton' },
         { name0: 'Hunservio', name1: 'Hummm' },
+
     ];
 }
 
@@ -125,9 +166,9 @@ function CreateBracketsSlots() {
             var node = document.createTextNode(`/`);                        //Create text
             teamDiv.appendChild(node);
 
-            var img = new Image();                                          //Create Image
-            img.src = "/img/brackets/line.png";
-            img.classList.add(`teamLine`);
+            // var img = new Image();                                          //Create Image
+            //img.src = "/img/brackets/line.png";
+            // img.classList.add(`teamLine`);
 
             var input;
             var trophy;
@@ -151,7 +192,7 @@ function CreateBracketsSlots() {
                 matchDiv.appendChild(input);
             }
 
-            matchDiv.appendChild(img);
+            //matchDiv.appendChild(img);
 
             if (k == columns - 1) {
                 matchDiv.appendChild(trophy);

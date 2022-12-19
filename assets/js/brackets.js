@@ -218,18 +218,23 @@ function DeleteWholeBracket() {
 function CreateGroupFase() {
     var groupsNumber = Math.ceil(groupSize / 4);
 
-    var bracketDiv = document.createElement("div");                     //Create bracket Div
+    var bracketDiv = document.createElement("div");
+    //Create bracket Div
     bracketDiv.classList.add(`groupsFase`);
     bracketDiv.setAttribute('id', 'groupsFase');
 
+
+
     for (let k = 0; k < groupsNumber; k++) {
+
         var group = document.createElement("div");                          //Create general Div
         group.classList.add(`grupo`);
         group.setAttribute("id", `grupo${k}`);
+        var para = document.createElement("p");
+        var nameGroup = document.createTextNode(`Grupo${k + 1}`);
+        para.appendChild(nameGroup);            //Create text
 
-        var nameGroup = document.createTextNode(`grupo${k + 1}`);             //Create text
-
-        group.appendChild(nameGroup);
+        group.appendChild(para);
 
         for (let i = 0; i < 4; i++) {
             var teamDiv = document.createElement("div");                        //Create team Div

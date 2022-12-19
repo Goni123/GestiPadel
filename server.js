@@ -38,8 +38,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/inscricoes/:id_torneio', async (req, res) => {
-    let T = await Tournament.findOne({_id: req.params.id_torneio }).exec()
-    res.render("usersinsc",{  Tor: T });
+    let T = await Tournament.findOne({ _id: req.params.id_torneio }).exec()
+    res.render("usersinsc", { Tor: T });
 /*app.get('/alterar_inscricoes/:id_torneio', async (req,res) =>{
     Tournament.find({}).exec(function (err, docs) {
         res.render('menu_editar_torneio', { Tournament: docs })
@@ -47,19 +47,19 @@ app.get('/inscricoes/:id_torneio', async (req, res) => {
 })*/})
 
 
-app.post('/alterar_inscricoes/:id_torneio',async (req, res) => {
+app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
 
     let id_url = req.params.id_torneio
     console.log("O id é: " + id_url)
 
     var array_ids = []
 
-    await Pair.find({tournaments:{$elemMatch:{id:id_url}}}).exec(function(err,docs){
+    await Pair.find({ tournaments: { $elemMatch: { id: id_url } } }).exec(function (err, docs) {
 
         console.log("ficheiro:" + docs)
 
-        for(var i = 0 ; i< docs.length; i++){
-            for(var j =0 ; j< docs[i].users.length; j++){
+        for (var i = 0; i < docs.length; i++) {
+            for (var j = 0; j < docs[i].users.length; j++) {
                 var string = docs[i].users[j].toString()
                 array_ids.push(string)
             }
@@ -68,18 +68,22 @@ app.post('/alterar_inscricoes/:id_torneio',async (req, res) => {
 
     })
 
-    await User.find({_id:{$in: ['6391e50313339dd8ef8a38ff',
-    '63a02a937b76ea554aa6883d',
-    '6391e57b13339dd8ef8a3905',
-    '6391e6f513339dd8ef8a3908',
-    '639dea08ce774fde3f188f11',
-    '639dea08ce774fde3f188f14',
-    '63a028ce3040672c93bdbe4c',
-    '63a029063040672c93bdbe4f']}}).exec(function(err,docs){
-        if(docs){
+    await User.find({
+        _id: {
+            $in: ['6391e50313339dd8ef8a38ff',
+                '63a02a937b76ea554aa6883d',
+                '6391e57b13339dd8ef8a3905',
+                '6391e6f513339dd8ef8a3908',
+                '639dea08ce774fde3f188f11',
+                '639dea08ce774fde3f188f14',
+                '63a028ce3040672c93bdbe4c',
+                '63a029063040672c93bdbe4f']
+        }
+    }).exec(function (err, docs) {
+        if (docs) {
             console.log(docs)
         }
-        res.render('alterar_inscricoes',{User : docs, Array: array_ids})
+        res.render('alterar_inscricoes', { User: docs, Array: array_ids })
     })
 })
 
@@ -162,7 +166,24 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
         res.render('tournament_brackets', { User: docs })
     })
 
-  
+
+    //res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );
+
+})
+
+
+
+app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
+    let torneioID = req.params.id_torneio;
+    Tournament.findOneAndUpdate({ _id: torneioID }, { has_ended: false }, { new: true }, (error, data) => {
+        if (error) {
+            console.log(error)
+        }
+    })
+
+    res.render("editar_torneio_admin", { torneioID: req.params.id_torneio });
+
+
 
 })
 */
@@ -270,14 +291,14 @@ app.get('/apagar_inscricao/:id_utilizador', (req, res) => {
 
     var id_utilizador = req.params.id_utilizador
 
-    User.deleteOne({_id : id_utilizador}).exec( function(err,docs){
-        if(err){
+    User.deleteOne({ _id: id_utilizador }).exec(function (err, docs) {
+        if (err) {
             console.log(err);
         }
-        else{
+        else {
             //User.find().exec(function(err, docs){
-                //res.render("alterar_inscricoes", { User: docs });
-                res.redirect('/alterar_inscricoes/:id_torneio')
+            //res.render("alterar_inscricoes", { User: docs });
+            res.redirect('/alterar_inscricoes/:id_torneio')
             //})
         }
     })
@@ -438,8 +459,8 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
 //ROTAS INSCRIÇÃO TORNEIO
 app.get('/insctorneio/:id_torneio', async (req, res) => {
     let T = await Tournament.find({ _id: req.params.id_torneio }).exec()
-    console.log(T,T[0].niveltipo)
-    res.render('usersinsc', { Tournament: T , niveis: T[0].niveltipo})
+    console.log(T, T[0].niveltipo)
+    res.render('usersinsc', { Tournament: T, niveis: T[0].niveltipo })
 })
 
 app.post('/insctorneio/:id_torneio', async (req, res) => {
@@ -455,8 +476,8 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
     let email2 = req.body.emaildois;
     let tel1 = req.body.telum;
     let tel2 = req.body.teldois;
-    let avl=req.body.avail;
-    let arravl=avl.split(',')
+    let avl = req.body.avail;
+    let arravl = avl.split(',')
     arravl.pop()
     console.log(arravl)
 
@@ -465,7 +486,7 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
     let dbuser2 = await User.where("nif").equals(nif2).exec()
     console.log(dbuser1)
     console.log(dbuser2)
-    let flag=false
+    let flag = false
     // caso um dos users nao existir, adicionar á tabela de user
     if (dbuser1.length === 0) {
         dbuser1 = await new User(
@@ -476,7 +497,7 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
                 "nif": nif1
             }).save()
         dbuser1 = await User.where("nif").equals(nif1).exec()
-        flag=true
+        flag = true
     }
 
     if (dbuser2.length === 0) {
@@ -488,7 +509,7 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
                 "nif": nif2
             }).save()
         dbuser2 = await User.where("nif").equals(nif2).exec()
-        flag=true
+        flag = true
     }
 
     //caso ambos os users existem
@@ -496,23 +517,23 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
     //const pair2 =
     //console.log(pair);
     //if (pair.size === 0) { //this means they have no active pair
-    if (!flag){
+    if (!flag) {
         //!F
         const pair = await Pair.find({ users: { "$in": [dbuser1[0]._id, dbuser2[0]._id] } })
         if (pair[0].tournaments.some(element => { return element.id === req.params.id_torneio; })) { //caso os users ja tenham um par em conjunto
             //S
             await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": req.params.id_torneio } } })
 
-        }else {
+        } else {
             //N
             let new_pair = new Pair({
                 "users": [dbuser1[0]._id, dbuser2[0]._id],
-                "tournaments": [{ "id": req.params.id_torneio, "level": level,"unavailability": arravl}],
+                "tournaments": [{ "id": req.params.id_torneio, "level": level, "unavailability": arravl }],
             })
             console.log("here")
             await new_pair.save();
         }
-    }else if (flag){
+    } else if (flag) {
         //F
         let new_pair = new Pair({
             "users": [dbuser1[0]._id, dbuser2[0]._id],
@@ -522,17 +543,17 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
         await new_pair.save();
     }
     //*/
-   /* }else if (pair[0].tournaments.some(element => { return element.id === req.params.id_torneio; })) { //caso os users ja tenham um par em conjunto
-        console.log("dentro")
-        //pair.tournaments.push({"id":   "6388a30d9f6259e39e9c66da"})
-        await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": req.params.id_torneio } } })
-
-    } else {
-        res.status(409)/*.send({
-            message: 'Este par ja se encontra incrito neste torneio'
-        });
-
-    //}*/
+    /* }else if (pair[0].tournaments.some(element => { return element.id === req.params.id_torneio; })) { //caso os users ja tenham um par em conjunto
+         console.log("dentro")
+         //pair.tournaments.push({"id":   "6388a30d9f6259e39e9c66da"})
+         await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": req.params.id_torneio } } })
+ 
+     } else {
+         res.status(409)/*.send({
+             message: 'Este par ja se encontra incrito neste torneio'
+         });
+ 
+     //}*/
     res.redirect('/home');
 
 })
@@ -541,7 +562,7 @@ app.get('/brackets', async (req, res) => {
 
     res.render("brackets");
     console.log("asd")
-    let a = await Game.find({tournament: ObjectId("6388a30d9f6259e39e9c66da")}).exec()
+    let a = await Game.find({ tournament: ObjectId("6388a30d9f6259e39e9c66da") }).exec()
     console.log(a)
 
 

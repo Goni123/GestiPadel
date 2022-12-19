@@ -134,33 +134,7 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
 
 })
 
-/*app.get('/braket_data/:id_torneio'), async (req, res) => {
-    let id_url = req.params.id_torneio
-    // console.log("O id é: " + id_url)
 
-    var array_ids = []
-
-    await Pair.find({ tournaments: { $elemMatch: { id: id_url } } }).exec(function (err, docs) {
-
-        //console.log("ficheiro:" + docs)
-
-        for (var i = 0; i < docs.length; i++) {
-            for (var j = 0; j < docs[i].users.length; j++) {
-                var string = docs[i].users[j].toString()
-                array_ids.push(string)
-            }
-        }
-        // console.log(array_ids)
-    })
-await User.find({ _id: { $in: ['6391e50313339dd8ef8a38ff', '6391e54213339dd8ef8a3902', '6391e57b13339dd8ef8a3905', '6391e6f513339dd8ef8a3908', '6391e71313339dd8ef8a390b', '6391e74713339dd8ef8a390e'] } }).exec(function (err, docs) {
-    if (docs) {
-        //console.log(docs)
-    }
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({ a: docs }));
-    // res.status("200").json(docs)
-})
-}*/
 
 app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
     let torneioID = req.params.id_torneio;

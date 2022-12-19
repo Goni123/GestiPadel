@@ -42,24 +42,20 @@ app.get('/', (req, res) => {
     })
 })*/
 
-app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
-    /*Pair.find({tournaments:{$elemMatch:{_id:req.params.id_torneio}}}).exec(function(err,docs){
-        res.render('alterar_inscricoes', {Pair : docs})
-        console.log(docs)
-    })*/
+
+app.post('/alterar_inscricoes/:id_torneio',async (req, res) => {
 
     let id_url = req.params.id_torneio
     console.log("O id é: " + id_url)
 
     var array_ids = []
 
-    await Pair.find({ tournaments: { $elemMatch: { id: id_url } } }).exec(function (err, docs) {
-        //res.render('alterar_inscricoes', {Pair : docs}, {id_url : req.params.id_torneio})
+    await Pair.find({tournaments:{$elemMatch:{id:id_url}}}).exec(function(err,docs){
+        
         console.log("ficheiro:" + docs)
-
-        //var json = JSON.stringify(docs)
-        for (var i = 0; i < docs.length; i++) {
-            for (var j = 0; j < docs[i].users.length; j++) {
+        
+        for(var i = 0 ; i< docs.length; i++){
+            for(var j =0 ; j< docs[i].users.length; j++){
                 var string = docs[i].users[j].toString()
                 array_ids.push(string)
             }
@@ -68,18 +64,18 @@ app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
 
     })
 
-    /*for(var l=0; l< array_ids.length; l++){
-        await User.find({_id : array_ids[l]}).exec(function (err, docs) {
-            console.log(docs)
-            res.render('alterar_inscricoes', { User: docs })
-        })
-    }*/
-
-    await User.find({ _id: { $in: ['6391e50313339dd8ef8a38ff', '6391e54213339dd8ef8a3902', '6391e57b13339dd8ef8a3905', '6391e6f513339dd8ef8a3908', '6391e71313339dd8ef8a390b', '6391e74713339dd8ef8a390e'] } }).exec(function (err, docs) {
-        if (docs) {
+    await User.find({_id:{$in: ['6391e50313339dd8ef8a38ff',
+    '63a02a937b76ea554aa6883d',
+    '6391e57b13339dd8ef8a3905',
+    '6391e6f513339dd8ef8a3908',
+    '639dea08ce774fde3f188f11',
+    '639dea08ce774fde3f188f14',
+    '63a028ce3040672c93bdbe4c',
+    '63a029063040672c93bdbe4f']}}).exec(function(err,docs){
+        if(docs){
             console.log(docs)
         }
-        res.render('alterar_inscricoes', { User: docs })
+        res.render('alterar_inscricoes',{User : docs, Array: array_ids})
     })
 })
 
@@ -240,8 +236,22 @@ app.post('/alterar_inscricoes/:id_torneio', (req, res) => {
     res.render("alterar_inscricoes");
 })
 
-app.get('/apagar_inscricao', (req, res) => {
-    console.log("bruno é gay")
+app.get('/apagar_inscricao/:id_utilizador', (req, res) => {
+
+    var id_utilizador = req.params.id_utilizador
+
+    User.deleteOne({_id : id_utilizador}).exec( function(err,docs){
+        if(err){
+            console.log(err);
+        }
+        else{
+            //User.find().exec(function(err, docs){
+                //res.render("alterar_inscricoes", { User: docs });
+                res.redirect('/alterar_inscricoes/:id_torneio')
+            //})
+        }
+    })
+    
 })
 
 //ROTAS LOGIN

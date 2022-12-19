@@ -17,7 +17,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
     </head>
     <!-- Main Site -->
     <div id="users_insc">
@@ -86,8 +86,8 @@
             <div class="titulo_form">
                 <h1>Inscrição do Torneio</h1>
             </div>
-            <form method="POST">
-
+            <form method="POST" onsubmit="save_data()">
+                <input type="hidden" name="avail" value="">
                 <div class="jgd1">
                     <h2>Jogador 1</h2>
                     <br>
@@ -141,15 +141,12 @@
                 <label for="playerslevel">Selecione o seu nível:</label><br>
                 <select name="level" id="level">
                     <option></option>
-                    <option value="level1">Nível 1</option>
-                    <option value="level2">Nível 2</option>
-                    <option value="level3">Nível 3</option>
-                    <option value="level4">Nível 4</option>
+                    <%for(nivel of niveis){%>
+                    <option value="<%=nivel%>"><%=nivel%></option>
+                    <%}%>
                 </select>
                 <br>
                 <br>
-
-
 
                 <div class="Disponibilidade">
                     <h1>Indisponibilidade Horária</h1>
@@ -171,143 +168,143 @@
                         </tr>
                         <tr>
                             <td class="hora_tabela">09:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','9')"></td>
+                            <td onclick="add_item('terca','9')"></td>
+                            <td onclick="add_item('quarta','9')"></td>
+                            <td onclick="add_item('quinta','9')"></td>
+                            <td onclick="add_item('sexta','9')"></td>
+                            <td onclick="add_item('sabado','9')"></td>
+                            <td onclick="add_item('domingo','9')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">10:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','10')"></td>
+                            <td onclick="add_item('terca','10')"></td>
+                            <td onclick="add_item('quarta','10')"></td>
+                            <td onclick="add_item('quinta','10')"></td>
+                            <td onclick="add_item('sexta','10')"></td>
+                            <td onclick="add_item('sabado','10')"></td>
+                            <td onclick="add_item('domingo','10')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">11:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','11')"></td>
+                            <td onclick="add_item('terca','11')"></td>
+                            <td onclick="add_item('quarta','11')"></td>
+                            <td onclick="add_item('quinta','11')"></td>
+                            <td onclick="add_item('sexta','11')"></td>
+                            <td onclick="add_item('sabado','11')"></td>
+                            <td onclick="add_item('domingo','11')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">12:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','12')"></td>
+                            <td onclick="add_item('terca','12')"></td>
+                            <td onclick="add_item('quarta','12')"></td>
+                            <td onclick="add_item('quinta','12')"></td>
+                            <td onclick="add_item('sexta','12')"></td>
+                            <td onclick="add_item('sabado','12')"></td>
+                            <td onclick="add_item('domingo','12')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">13:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','13')"></td>
+                            <td onclick="add_item('terca','13')"></td>
+                            <td onclick="add_item('quarta','13')"></td>
+                            <td onclick="add_item('quinta','13')"></td>
+                            <td onclick="add_item('sexta','13')"></td>
+                            <td onclick="add_item('sabado','13')"></td>
+                            <td onclick="add_item('domingo','13')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">14:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','14')"></td>
+                            <td onclick="add_item('terca','14')"></td>
+                            <td onclick="add_item('quarta','14')"></td>
+                            <td onclick="add_item('quinta','14')"></td>
+                            <td onclick="add_item('sexta','14')"></td>
+                            <td onclick="add_item('sabado','14')"></td>
+                            <td onclick="add_item('domingo','14')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">15:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','15')"></td>
+                            <td onclick="add_item('terca','15')"></td>
+                            <td onclick="add_item('quarta','15')"></td>
+                            <td onclick="add_item('quinta','15')"></td>
+                            <td onclick="add_item('sexta','15')"></td>
+                            <td onclick="add_item('sabado','15')"></td>
+                            <td onclick="add_item('domingo','15')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">16:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','16')"></td>
+                            <td onclick="add_item('terca','16')"></td>
+                            <td onclick="add_item('quarta','16')"></td>
+                            <td onclick="add_item('quinta','16')"></td>
+                            <td onclick="add_item('sexta','16')"></td>
+                            <td onclick="add_item('sabado','16')"></td>
+                            <td onclick="add_item('domingo','16')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">17:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','17')"></td>
+                            <td onclick="add_item('terca','17')"></td>
+                            <td onclick="add_item('quarta','17')"></td>
+                            <td onclick="add_item('quinta','17')"></td>
+                            <td onclick="add_item('sexta','17')"></td>
+                            <td onclick="add_item('sabado','17')"></td>
+                            <td onclick="add_item('domingo','17')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">18:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','18')"></td>
+                            <td onclick="add_item('terca',  '18')"></td>
+                            <td onclick="add_item('quarta', '18')"></td>
+                            <td onclick="add_item('quinta', '18')"></td>
+                            <td onclick="add_item('sexta',  '18')"></td>
+                            <td onclick="add_item('sabado', '18')"></td>
+                            <td onclick="add_item('domingo','18')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">19:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','19')"></td>
+                            <td onclick="add_item('terca',  '19')"></td>
+                            <td onclick="add_item('quarta', '19')"></td>
+                            <td onclick="add_item('quinta', '19')"></td>
+                            <td onclick="add_item('sexta',  '19')"></td>
+                            <td onclick="add_item('sabado', '19')"></td>
+                            <td onclick="add_item('domingo','19')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">20:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','20')"></td>
+                            <td onclick="add_item('terca',  '20')"></td>
+                            <td onclick="add_item('quarta', '20')"></td>
+                            <td onclick="add_item('quinta', '20')"></td>
+                            <td onclick="add_item('sexta',  '20')"></td>
+                            <td onclick="add_item('sabado', '20')"></td>
+                            <td onclick="add_item('domingo','20')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">21:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','21')"></td>
+                            <td onclick="add_item('terca',  '21')"></td>
+                            <td onclick="add_item('quarta', '21')"></td>
+                            <td onclick="add_item('quinta', '21')"></td>
+                            <td onclick="add_item('sexta',  '21')"></td>
+                            <td onclick="add_item('sabado', '21')"></td>
+                            <td onclick="add_item('domingo','21')"></td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">22:00</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td onclick="add_item('segunda','22')"></td>
+                            <td onclick="add_item('terca',  '22')"></td>
+                            <td onclick="add_item('quarta', '22')"></td>
+                            <td onclick="add_item('quinta', '22')"></td>
+                            <td onclick="add_item('sexta',  '22')"></td>
+                            <td onclick="add_item('sabado', '22')"></td>
+                            <td onclick="add_item('domingo','22')"></td>
                         </tr>
 
 
@@ -316,7 +313,42 @@
                         Finalizar Inscrição
                     </button>
                     <script>
-                        var table = document.getElementById('table');
+                        //let horas=[];
+                        //let flag=true
+                        /*let horas= [];
+                        function add_item(dia,hora) {
+                            //while (!flag){}
+                            //flag = false;
+                            let index=horas.indexOf(dia.concat(hora))
+                            if (index!== -1){
+                                //horas.splice(index)
+                                let aux = horas.subarray(index, horas.length);
+                                console.log("aux")
+                                horas=horas.subarray(0, index)
+
+                            }else{
+                                horas.push(dia.concat(hora))
+                            }*/
+                            let horas = "";
+                            let aux="";
+
+                            function add_item(dia,hora) {
+                            let input=dia.concat(hora,',')
+                                console.log(input)
+                            if (horas.includes(input)) {
+                                horas=horas.split(input).join('')
+                            }else{
+                                horas=horas.concat(input)
+                            }
+
+                            console.log(dia,hora,horas);
+                            //flag=true
+                        };
+                        function save_data(){
+                            document.getElementsByName("avail")[0].setAttribute("value", horas);
+
+                        }
+                        /*var table = document.getElementById('table');
                         var hora;
                         var dia;
                         for (var i = 1; i < table.rows.length; i++) {
@@ -333,7 +365,7 @@
 
                             };
                         }
-                        /* for (var j = 1; j < 7; j++) {
+                         for (var j = 1; j < 7; j++) {
                              table.rows[0].cells[j].onclick = function () {
                                  console.log(this.rows[0].innerHTML);
                              };

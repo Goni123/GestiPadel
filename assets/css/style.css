@@ -455,6 +455,27 @@ table {
     padding: 18px 0px
 }
 
+.formulario .calendar .table td {
+    background-color: transparent;
+}
+
+.formulario .calendar .table {
+
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+.formulario .calendar h1 {
+    margin-bottom: 20px;
+}
+
+.formulario .calendar p {
+    font-weight: normal;
+    text-align: center;
+    font-size: 18px;
+    padding-left: 0;
+}
+
 a,
 h1,
 h2,

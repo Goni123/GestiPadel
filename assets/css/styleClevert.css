@@ -74,7 +74,7 @@ td {
 .genDiv .matchDiv {
     margin: 20px 0;
 
-/*.bracketSlots .genDiv:nth-child(n+2) .matchDiv {
+    /*.bracketSlots .genDiv:nth-child(n+2) .matchDiv {
     height: 50%;
 }*/
 }
@@ -102,22 +102,53 @@ td {
 .groupsFase {
     width: 100%;
     height: 450px;
-    background-color: rgb(255, 0, 43);
+    text-align: center;
 }
 
 .groupsFase .grupo {
     width: 20%;
     display: inline-block;
-    background-color: rgb(25, 0, 255);
+    /*background-color: rgb(25, 0, 255);*/
+    text-align: center;
+    margin: 0 20px;
+    background-color: rgb(156, 149, 149);
+}
+
+.groupsFase .grupo p {
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    color: #fff;
+    padding: 10px;
+    background-color: rgb(92, 86, 86);
+}
+
+.groupsFase .grupo input {
+    margin-left: 10px;
+    font-size: 28px;
+    width: 30px;
+    border-radius: 6px;
+    border: 1px;
+    vertical-align: sub;
+}
+
+.groupsFase .grupo .teamCheck {
+    margin-left: 0;
+    height: 30px;
+    margin-right: 10px;
+    vertical-align: middle;
 }
 
 .groupsFase .grupo .teamDiv {
-    width: 90%;
+    display: inline-block;
+    width: 73%;
     border: 3px dotted rgba(255, 255, 255, 0);
     background-color: #ddd;
     border-radius: .5em;
-    padding: 10px;
+    padding: 6px;
     cursor: move;
+    text-align: center;
+    margin: 10px 0;
 
 }
 
@@ -175,6 +206,7 @@ input {
 
     width: 100%;
 }
+
 /*Inicio mario*/
 .groupsFase .teamDiv.over {
     border: 3px dotted #666;

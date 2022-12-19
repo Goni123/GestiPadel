@@ -138,9 +138,6 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
 
 
 
-
-
-
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
     let id_url = req.params.id_torneio
     // console.log("O id é: " + id_url)
@@ -174,7 +171,6 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
 
 
 
-
 app.get('/home', (req, res) => {
     res.render("home_user");
     console.log(req.session.user)
@@ -185,7 +181,7 @@ app.get('/admin', (req, res) => {
     console.log(req.session.user)
 })
 
-app.get('/brackets', (req, res) => {
+app.get('/brackets/:id_torneio', (req, res) => {
     res.render("tournament_brackets");
 })
 

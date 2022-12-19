@@ -34,12 +34,18 @@ if (groupSize <= 4) {
     columns = 7;
 }
 
-//CreateGroups();
-//CreateBracketsSlots();
-//IsOnBrackets = true;
+IsOnBrackets = true;
+SelectBracketOrGroupFase();
 
-CreateGroups();
-CreateGroupFase();
+function SelectBracketOrGroupFase() {
+    if (IsOnBrackets) {
+        CreateGroups();
+        CreateBracketsSlots();
+    } else {
+        CreateGroups();
+        CreateGroupFase();
+    }
+}
 
 
 //DeleteWholeBracket();

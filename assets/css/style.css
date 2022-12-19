@@ -455,6 +455,37 @@ table {
     padding: 18px 0px
 }
 
+#calendario_jogos .Calendar .table1 td {
+    background-color: #fff ;
+    border: 1px solid #000000;
+    padding: 10px;
+}
+
+#calendario_jogos  .Calendar .table1 {
+
+    padding-right: 40px;
+    padding-left: 40px;
+}
+
+#calendario_jogos .formulario .Calendar h1 {
+    margin-bottom: 20px;
+}
+
+#calendario_jogos .formulario .Calendar th {
+background-color: #928c8c;
+border: 1px solid #000000;
+padding: 10px;
+}
+#calendario_jogos h1{
+    text-align: center;
+}
+#calendario_jogos .formulario .Calendar p {
+    font-weight: normal;
+    text-align: center;
+    font-size: 18px;
+    padding-left: 0;
+}
+
 a,
 h1,
 h2,

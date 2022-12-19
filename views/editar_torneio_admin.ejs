@@ -1,13 +1,13 @@
 <!-- include header -->
 <%- include('include/_header') %>
-    <!-- /include header -->
+<!-- /include header -->
 
-    <!DOCTYPE html>
-    <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
             integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
@@ -25,9 +25,12 @@
             <div class="titulo">
                 <h1>Editar torneio</h1>
             </div>
-            <button type="submit" class="enviar">
-                Editar Horário/Calendário de jogos
-            </button>
+
+            <form action="/calendario_jogos/<%=tournment._id%>" method="post">
+                <button type="submit" class="enviar">
+                    Editar Horário/Calendário de jogos
+                </button>
+            </form>
 
             <form action="/editar_brakets/<%=tournment._id%>" method="post">
                 <button type="submit" class="enviar">
@@ -41,16 +44,30 @@
                     <button type="submit">
                         <p>Alterar inscrições</p>
                     </button>
-                </form>
 
-                <% } %>
-                    <button type="submit" name="encerrarInsc" class="enviar">
-                        Encerrar inscrições
-                    </button>
+                </form>  
+           
+            <form method="POST" action="/torneiomenu/<%=tournment._id%>">
+                
+                <button type="submit" id="encerrar" class="enviar">
+                    <p>
+             
+                    <%if(tournment.has_ended){%>
+                        Abrir Inscrições
+                    <% }else {%> 
+                        Encerrar Inscrições
+                    <% } %> 
+                    </p>
+                </button>
+               
+            </form>
+        <% } %> 
         </div>
-    </body>
+    </div>
+</body>
+</html>
 
-    </html>
+                
 
     <!-- include footer -->
     <%- include('include/_footer') %>

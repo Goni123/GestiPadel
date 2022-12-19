@@ -44,37 +44,21 @@
                     <p> Alterar inscrições</p>
                 </button>
                 </form>
-                <form method="POST" action="/editartorneio_menu/<%=torneioID%>">
-                    <button type="submit" class="enviar1">
-                        <p>Encerrar inscrições</p>
+                <form method="POST" action="/editartorneiomenu/<%=torneioID%>">
+                    <button type="submit" class="enviar2">
+                        <p>Abrir inscrições</p>
                     </button>
                 </form>
             </div>
         </div>
 
-        <button type="submit" class="enviar">
-            Editar Horário/Calendário de jogos
-         </button>
-        <button type="submit" class="enviar">
-            Editar jogos
-        </button>
-        
-        <%for(tournment of Tournament){%>
-            
-                <form action="/alterar_inscricoes/<%=tournment._id%>" method="post">
-                    <button type="submit">
-                        <p>Alterar inscrições</p>
-                    </button>
-                </form>
-            
-        <% } %>
-        <button type="submit" name="encerrarInsc" class="enviar">
-            Encerrar inscrições
-        </button>
-    </div>
-</body>
-</html>
 
-<!-- include footer -->
-<%- include('include/_footer') %>
-<!-- /include footer -->
+
+
+    </body>
+
+    </html>
+
+    <!-- include footer -->
+    <%- include('include/_footer') %>
+        <!-- /include footer -->

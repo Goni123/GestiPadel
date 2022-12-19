@@ -1,0 +1,230 @@
+/*.teamDiv {
+    /*background-color: rgb(141, 141, 141);
+    height: 100px;
+    width: 25%;
+
+    /*border: 1px solid rgb(0, 60, 255);
+}
+
+.teamName {
+    height: 13px;
+}
+
+.teamLine {
+    height: 3px;
+    width: 100%;
+}*/
+
+
+/*:root {
+    --margem: 22%;
+}
+
+.genDiv:nth-child(2) .matchDiv:nth-child(1) {
+    margin-top: var(--margem);
+}
+
+.genDiv:nth-child(n+2) .matchDiv:nth-child(n+1) {
+    margin-top: calc(22% * 2 - 2%);
+}
+
+.genDiv:nth-child(2) .matchDiv:nth-child(1) {
+    margin-top: 22%;
+}*/
+
+/*Inicio mario*/
+
+.toSelectSlots {}
+=======
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+a,
+h1,
+h2,
+h3,
+p,
+label,
+button,
+input,
+div,
+th,
+tr,
+td {
+    font-family: 'Poppins';
+    color: #1A093F;
+}
+
+.toSelectSlots {
+    margin: 1%;
+}
+
+/*.genDiv:nth-child(n+2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}*/
+
+
+
+
+
+/*.bracketSlots .genDiv:nth-child(n+2) .matchDiv {
+    height: 50%;
+}*/
+}
+
+.toSelectSlots {
+    margin: 1%;
+}
+
+/*.genDiv:nth-child(n+2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}*/
+
+
+
+
+
+/*.bracketSlots .genDiv:nth-child(n+2) .matchDiv {
+    height: 50%;
+}*/
+/*Fim mario*/
+
+.groupsFase {
+    width: 100%;
+    height: 450px;
+    background-color: rgb(255, 0, 43);
+}
+
+.groupsFase .grupo {
+    width: 20%;
+    display: inline-block;
+    background-color: rgb(25, 0, 255);
+}
+
+.groupsFase .grupo .teamDiv {
+    width: 90%;
+    border: 3px dotted rgba(255, 255, 255, 0);
+    background-color: #ddd;
+    border-radius: .5em;
+    padding: 10px;
+    cursor: move;
+}
+
+.bracketSlots {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /*Controlado por javascript*/
+    width: 100%;
+    text-align: center;
+}
+
+.toSelectSlots .teamDiv {
+    width: 16.6%;
+    border: 3px solid rgb(100, 100, 100);
+    background-color: #ddd;
+    border-radius: .5em;
+    padding: 10px;
+    cursor: move;
+    display: inline-block;
+    text-align: center;
+    margin: 13px;
+}
+
+.bracketSlots .teamDiv,
+.bracketSlots .teamDivNoDrag {
+    width: 72%;
+    border: 3px dotted #cfc9c9;
+    display: inline-block;
+    border-radius: 0.5em;
+    margin: 2px 0;
+    padding: 17px;
+    cursor: move;
+    vertical-align: middle;
+    /*border-bottom: 3px solid #000;*/
+}
+
+.bracketSlots .teamDiv input {
+    width: 50%;
+    display: inline-block;
+}
+
+input {
+    font-size: 22px;
+    width: 23px;
+    text-align: center;
+    vertical-align: middle;
+
+
+}
+
+
+
+.bracketSlots .genDiv .matchDiv {
+    /* border: 3px dotted #666;*/
+
+    width: 100%;
+}
+/*Inicio mario*/
+.groupsFase .teamDiv.over {
+    border: 3px dotted #666;
+}
+
+=======
+.bracketSlots .genDiv:nth-child(n+3) {
+    padding: 40px 0;
+}
+
+.bracketSlots .genDiv:nth-child(1) .matchDiv {
+    /* border: 3px dotted #666;*/
+    pa: 43px 0px !important;
+
+}
+
+
+/*Fim mario*/
+.bracketSlots .teamDiv.over {
+    border: 3px dotted #666;
+}
+
+.toSelectSlots .teamDiv.over {
+    border: 3px dotted #666;
+}
+
+.teamLine {
+    margin-bottom: 13px;
+    height: 3px;
+    background-color: black;
+    width: 60%;
+}
+
+.trophy {
+    height: 50px;
+    width: 50px;
+    vertical-align: top;
+}
+
+.bracketSlots .teamDiv.winner {
+    border: 3px solid rgb(38, 163, 0);
+}
+
+.bracketSlots .teamDiv.loser {
+    border: 3px solid rgb(255, 0, 0);
+}
+
+.bracketSlots .teamDivNoDrag.winner {
+    border: 3px solid rgb(38, 163, 0);
+}
+
+.bracketSlots .teamDivNoDrag.loser {
+    border: 3px solid rgb(255, 0, 0);
+}
+
+.bracketSlots .teamDivNoDrag.bigwinner {
+    border: 3px solid rgb(202, 172, 0);
+}

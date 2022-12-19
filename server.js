@@ -91,15 +91,51 @@ app.get('/editar_torneio_menu', async (req, res) => {
     res.render("editar_torneio_admin");
 })
 
+app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
 
-
-
-
-app.post('/editar_torneio_menu/:id_torneio', (req, res) => {
     Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
-        res.render("editar_torneio_admin", { Tournament: docs })
+       res.render("editar_torneio_admin", { Tournament: docs })
     })
+        
 })
+
+app.post('/torneiomenu/:id_torneio', async (req, res) => { 
+    
+    let insc = await Tournament.findOne({ _id: tournment._id }).exec()
+    //let insc = await Tournament.findOne({ _id: id_torneio }).exec()
+    //inscri = insc.has_ended; 
+    console.log(insc)
+    if (insc.has_ended === false) {
+        Tournament.findOneAndUpdate({ _id: req.params.id_torneio }, { has_ended: true }, { new: true }, (error, docs) => {
+            if (error) {
+                console.log(error)
+            }
+            else{
+                Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
+                    res.render("editar_torneio_admin", { Tournament: docs })
+                })
+            }
+        }) 
+    }
+
+    else if (insc.has_ended === true) {
+        Tournament.findOneAndUpdate({ _id: req.params.id_torneio }, { has_ended: false }, { new: true }, (error, docs) => {
+            if (error) {
+                console.log(error)
+            }
+            else{
+                Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
+                    res.render("editar_torneio_admin", { Tournament: docs })
+                })
+            }
+        }) 
+    }
+})
+
+
+
+
+/*
 
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
     let id_url = req.params.id_torneio
@@ -126,34 +162,10 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
         res.render('tournament_brackets', { User: docs })
     })
 
-    //res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );
+  
 
 })
-
-app.post('/editartorneiomenu/:id_torneio', async (req, res) => {
-    let torneioID = req.params.id_torneio;
-    Tournament.findOneAndUpdate({ _id: torneioID }, { has_ended: false }, { new: true }, (error, data) => {
-        if (error) {
-            console.log(error)
-        }
-    })
-
-    res.render("editar_torneio_admin", { torneioID: req.params.id_torneio });
-
-})
-
-app.post('/editartorneio_menu/:id_torneio', async (req, res) => {
-    let torneioID = req.params.id_torneio;
-    Tournament.findOneAndUpdate({ _id: torneioID }, { has_ended: true }, { new: true }, (error, data) => {
-        if (error) {
-            console.log(error)
-        }
-    })
-
-    res.render("editar_torneio_admin_1", { torneioID: req.params.id_torneio });
-
-})
-
+*/
 
 app.get('/home', (req, res) => {
     res.render("home_user");

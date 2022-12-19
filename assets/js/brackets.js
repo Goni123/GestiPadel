@@ -1,4 +1,7 @@
 
+var IsOnBrackets = false;
+
+
 
 const User = import("./model/usermodel");
 
@@ -31,11 +34,12 @@ if (groupSize <= 4) {
     columns = 7;
 }
 
-CreateGroups();
-CreateBracketsSlots();
-
 //CreateGroups();
-//CreateGroupFase();
+//CreateBracketsSlots();
+//IsOnBrackets = true;
+
+CreateGroups();
+CreateGroupFase();
 
 
 //DeleteWholeBracket();
@@ -91,7 +95,6 @@ async function GetTeamList() {
         { name0: 'Fernando', name1: 'Felipe' },
         { name0: 'Gabriel', name1: 'Geliton' },
         { name0: 'Hunservio', name1: 'Hummm' },
-
     ];
 }
 
@@ -129,7 +132,6 @@ function CreateGroups() {
 }
 
 function CreateBracketsSlots() {
-
     var bracketDiv = document.createElement("div");             //Create bracket Div
     bracketDiv.classList.add(`bracketSlots`);
     bracketDiv.setAttribute('id', 'bracketSlots');
@@ -214,101 +216,210 @@ function DeleteWholeBracket() {
 }
 
 function CreateGroupFase() {
+    var groupsNumber = Math.ceil(groupSize / 4);
 
     var bracketDiv = document.createElement("div");                     //Create bracket Div
-    bracketDiv.classList.add(`groupFase`);
-    bracketDiv.setAttribute('id', 'groupFase');
+    bracketDiv.classList.add(`groupsFase`);
+    bracketDiv.setAttribute('id', 'groupsFase');
 
-    var group = document.createElement("div");                          //Create general Div
-    group.classList.add(`group1`);
-    bracketDiv.appendChild(group);
+    for (let k = 0; k < groupsNumber; k++) {
+        var group = document.createElement("div");                          //Create general Div
+        group.classList.add(`grupo`);
+        group.setAttribute("id", `grupo${k}`);
 
-    var teamDiv = document.createElement("div");                    //Create team Div
+        var nameGroup = document.createTextNode(`grupo${k + 1}`);             //Create text
 
-    teamDiv.setAttribute("id", `teamDiv${i}/${k}`);
+        group.appendChild(nameGroup);
 
-    var node = document.createTextNode(`/`);                        //Create text
+        for (let i = 0; i < 4; i++) {
+            var teamDiv = document.createElement("div");                        //Create team Div
+            teamDiv.classList.add(`teamDiv`);
+            teamDiv.setAttribute("id", `teamDiv${i}/${k}`);
 
-    teamDiv.appendChild(node);
+            var node = document.createTextNode(`/`);                         //Create text
 
-    genDiv.appendChild(teamDiv);
+            var teamDiv = document.createElement("div");                    //Create team Div
+            teamDiv.classList.add(`teamDiv`);
+            teamDiv.setAttribute('draggable', true);
+            teamDiv.setAttribute("id", `teamDiv${i}/${k}`);
 
-    var currentDiv = document.getElementById("beforeRefDiv2");
-    document.body.insertBefore(bracketDiv, currentDiv);
+            input = document.createElement("input");                    //Input checkbox
+            input.setAttribute("type", "checkbox");
+            input.setAttribute("class", `teamCheck`);
+            input.setAttribute("id", `teamCheck${i}/${k}`);
+            input.setAttribute("name", "number");
+
+            textI = document.createElement("input");                    //Input text
+            textI.setAttribute("type", "text");
+            textI.setAttribute("oninput", "numberOnly(this.id);");
+            textI.setAttribute("maxlength", "3");
+            textI.setAttribute("class", `teamInput`);
+            textI.setAttribute("id", `teamInput${i}/${k}`);
+            textI.setAttribute("name", "number");
+            textI.setAttribute("placeholder", "0");
+
+            group.appendChild(input);
+            teamDiv.appendChild(node);
+            group.appendChild(teamDiv);
+            group.appendChild(textI);
+            bracketDiv.appendChild(group);
+
+            var currentDiv = document.getElementById("beforeRefDiv2");
+            document.body.insertBefore(bracketDiv, currentDiv);
+        }
+    }
+}
+
+dragAndDrop();
+
+function changeData(first, second) {
+    if (first == null || second == null)
+        return;
+
+    if (first.id.length < 3 || second.id.length < 3)
+        return;
+
+    var draged = first.id;
+    var destination = second.id;
+
+    var dragedID = draged.charAt(draged.length - 3) + draged.charAt(draged.length - 2) + draged.charAt(draged.length - 1);
+    var eDragedInput = document.getElementById(`teamInput${dragedID}`);
+    var eDragedCheck = document.getElementById(`teamCheck${dragedID}`);
+
+    var destinationID = destination.charAt(destination.length - 3) + destination.charAt(destination.length - 2) + destination.charAt(destination.length - 1);
+    var eDestinationInput = document.getElementById(`teamInput${destinationID}`);
+    var eDestinationCheck = document.getElementById(`teamCheck${destinationID}`);
+
+    var auxInput = eDestinationInput.value;
+    var auxCheck = eDestinationCheck.checked;
+
+    eDestinationInput.value = eDragedInput.value;
+    eDestinationCheck.checked = eDragedCheck.checked;
+
+    eDragedInput.value = auxInput;
+    eDragedCheck.checked = auxCheck;
+}
+
+function OrganizeData(first, second) {
+    if (first == null || second == null)
+        return;
+
+    if (first.id.length < 3 || second.id.length < 3)
+        return;
+
+    var firstID = first.id;
+    var SecondID = second.id;
+
+    var firstIdentification = firstID.charAt(firstID.length - 3) + firstID.charAt(firstID.length - 2) + firstID.charAt(firstID.length - 1);
+    var firstInput = document.getElementById(`teamInput${firstIdentification}`);
+    var firstCheck = document.getElementById(`teamCheck${firstIdentification}`);
+    var firstTeam = document.getElementById(`teamDiv${firstIdentification}`);
+
+    var secondIdentification = SecondID.charAt(SecondID.length - 3) + SecondID.charAt(SecondID.length - 2) + SecondID.charAt(SecondID.length - 1);
+    var secondInput = document.getElementById(`teamInput${secondIdentification}`);
+    var secondCheck = document.getElementById(`teamCheck${secondIdentification}`);
+    var secondteam = document.getElementById(`teamDiv${secondIdentification}`);
+
+    var auxFirstInput = firstInput.value;
+    var auxSecondInput = secondInput.value;
+    var auxCheck = secondCheck.checked;
+    var auxTeam = secondteam.innerHTML;
+
+    firstInput.value = firstInput.value == "" ? 0 : parseInt(firstInput.value);
+    secondInput.value = secondInput.value == "" ? 0 : parseInt(secondInput.value);
+
+    var auxFirstInput = parseInt(firstInput.value);
+    var auxSecondInput = parseInt(secondInput.value);
+
+    if (auxFirstInput < auxSecondInput) {
+        secondInput.value = auxFirstInput;
+        secondCheck.checked = firstCheck.checked;
+        secondteam.innerHTML = firstTeam.innerHTML;
+
+        firstInput.value = auxSecondInput;
+        firstCheck.checked = auxCheck;
+        firstTeam.innerHTML = auxTeam;
+    }
 }
 
 /*Drag and Drop*/
+function dragAndDrop() {
+    document.addEventListener('DOMContentLoaded', (event) => {
 
-document.addEventListener('DOMContentLoaded', (event) => {
+        var dragSrcEl = null;
 
-    var dragSrcEl = null;
+        function handleDragStart(e) {
 
-    function handleDragStart(e) {
+            this.style.opacity = '0.4';
 
-        this.style.opacity = '0.4';
+            dragSrcEl = this;
 
-        dragSrcEl = this;
-
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', this.innerHTML);
-    }
-
-    function handleDragOver(e) {
-        if (e.preventDefault) {
-            e.preventDefault();
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
         }
 
-        e.dataTransfer.dropEffect = 'move';
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
 
-        return false;
-    }
+            e.dataTransfer.dropEffect = 'move';
 
-    function handleDragEnter(e) {
-        this.classList.add('over');
-    }
-
-    function handleDragLeave(e) {
-        this.classList.remove('over');
-    }
-
-    function handleDrop(e) {
-        if (e.stopPropagation) {
-            e.stopPropagation(); // stops the browser from redirecting.
+            return false;
         }
 
-        if (dragSrcEl != this) {
-            dragSrcEl.innerHTML = this.innerHTML;
-            DeleteDiv(dragSrcEl);
-            this.innerHTML = e.dataTransfer.getData('text/html');
+        function handleDragEnter(e) {
+            this.classList.add('over');
         }
 
-        return false;
-    }
+        function handleDragLeave(e) {
+            this.classList.remove('over');
+        }
 
-    function handleDragEnd(e) {
-        this.style.opacity = '1';
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation(); // stops the browser from redirecting.
+            }
 
+            if (dragSrcEl != this) {
+                dragSrcEl.innerHTML = this.innerHTML;
+
+                DeleteDiv(dragSrcEl, e.dataTransfer.getData('text/html'), this);
+
+                this.innerHTML = e.dataTransfer.getData('text/html');
+
+                changeData(dragSrcEl, this);
+            }
+
+            updateValue();
+            return false;
+        }
+
+        function handleDragEnd(e) {
+            this.style.opacity = '1';
+
+            items.forEach(function (item) {
+                item.classList.remove('over');
+            });
+        }
+
+        let items = document.querySelectorAll('.teamDiv');
         items.forEach(function (item) {
-            item.classList.remove('over');
+            item.addEventListener('dragstart', handleDragStart, false);
+            item.addEventListener('dragenter', handleDragEnter, false);
+            item.addEventListener('dragover', handleDragOver, false);
+            item.addEventListener('dragleave', handleDragLeave, false);
+            item.addEventListener('drop', handleDrop, false);
+            item.addEventListener('dragend', handleDragEnd, false);
         });
-    }
-
-    let items = document.querySelectorAll('.genDiv .teamDiv');
-    items.forEach(function (item) {
-        item.addEventListener('dragstart', handleDragStart, false);
-        item.addEventListener('dragenter', handleDragEnter, false);
-        item.addEventListener('dragover', handleDragOver, false);
-        item.addEventListener('dragleave', handleDragLeave, false);
-        item.addEventListener('drop', handleDrop, false);
-        item.addEventListener('dragend', handleDragEnd, false);
     });
-});
+}
 
-function DeleteDiv(e) {
-    console.log(e.innerHTML);
-
+function DeleteDiv(e, i, ref) {
     if (e.innerHTML == "" || e.innerHTML == "/") {
-        e.remove();
+        if (e.innerHTML != i && e.closest('.toSelectSlots') != null) {
+            e.remove();
+        }
     }
 }
 
@@ -324,65 +435,84 @@ for (var i = 0; i < elements.length; i++) {
 }
 
 function updateValue() {
+    var groupsNumber = Math.ceil(groupSize / 4);
 
-    let bracDivi = 1;
-    console.clear();
+    if (IsOnBrackets) { //brackets
+        let bracDivi = 1;
+        console.clear();
 
-    for (let k = 0; k < columns - 1; k++) {
-        for (let i = 0; i < groupSizeAdap / bracDivi / 2; i++) {
+        for (let k = 0; k < columns - 1; k++) {
+            for (let i = 0; i < groupSizeAdap / bracDivi / 2; i++) {
 
-            const match = document.getElementById(`match${i}/${k}`);   //Match to compare
-            const scoreTeam1 = document.getElementById(`team${i * 2}/${k}`).value;
-            const scoreTeam2 = document.getElementById(`team${(i * 2) + 1}/${k}`).value;
+                const match = document.getElementById(`match${i}/${k}`);   //Match to compare
+                var scoreTeam1 = document.getElementById(`team${i * 2}/${k}`).value;
+                var scoreTeam2 = document.getElementById(`team${(i * 2) + 1}/${k}`).value;
 
-            const team1 = document.getElementById(`teamDiv${i * 2}/${k}`);
-            const team2 = document.getElementById(`teamDiv${(i * 2) + 1}/${k}`);
+                const team1 = document.getElementById(`teamDiv${i * 2}/${k}`);
+                const team2 = document.getElementById(`teamDiv${(i * 2) + 1}/${k}`);
 
-            var groupAuxSelect = 0;
-            if (i % 2 == 1) {
-                groupAuxSelect = 1;
-            }
-
-            var name = `teamDiv${(i)}/${k + 1}`;
-            const winnerSlot = document.getElementById(name);
-
-            if (scoreTeam1 > scoreTeam2) {
-                team1.classList.add('winner');
-                team1.classList.remove('loser');
-
-                team2.classList.add('loser');
-                team2.classList.remove('winner');
-
-                if (k == columns - 2) {
-                    winnerSlot.classList.add('bigwinner');
+                var groupAuxSelect = 0;
+                if (i % 2 == 1) {
+                    groupAuxSelect = 1;
                 }
 
-                winnerSlot.innerHTML = team1.innerHTML;
-            }
+                var name = `teamDiv${(i)}/${k + 1}`;
+                const winnerSlot = document.getElementById(name);
 
-            else if (scoreTeam1 < scoreTeam2) {
-                team2.classList.add('winner');
-                team2.classList.remove('loser');
+                scoreTeam1 = scoreTeam1 == "" ? 0 : parseInt(scoreTeam1);
+                scoreTeam2 = scoreTeam2 == "" ? 0 : parseInt(scoreTeam2);
 
-                team1.classList.add('loser');
-                team1.classList.remove('winner');
+                if (scoreTeam1 > scoreTeam2) {
+                    team1.classList.add('winner');
+                    team1.classList.remove('loser');
 
-                if (k == columns - 2) {
-                    winnerSlot.classList.add('bigwinner');
+                    team2.classList.add('loser');
+                    team2.classList.remove('winner');
+
+                    if (k == columns - 2) {
+                        winnerSlot.classList.add('bigwinner');
+                    }
+
+                    winnerSlot.innerHTML = team1.innerHTML;
                 }
 
-                winnerSlot.innerHTML = team2.innerHTML;
-            } else {
-                team1.classList.remove('loser');
-                team1.classList.remove('winner');
+                else if (scoreTeam1 < scoreTeam2) {
+                    team2.classList.add('winner');
+                    team2.classList.remove('loser');
 
-                team2.classList.remove('loser');
-                team2.classList.remove('winner');
+                    team1.classList.add('loser');
+                    team1.classList.remove('winner');
 
-                winnerSlot.innerHTML = "/";
+                    if (k == columns - 2) {
+                        winnerSlot.classList.add('bigwinner');
+                    }
+
+                    winnerSlot.innerHTML = team2.innerHTML;
+                } else {
+                    team1.classList.remove('loser');
+                    team1.classList.remove('winner');
+
+                    team2.classList.remove('loser');
+                    team2.classList.remove('winner');
+
+                    winnerSlot.innerHTML = "/";
+                }
+            }
+
+            bracDivi = bracDivi * 2;
+        }
+    } else { //group fase mode
+        for (let k = 0; k < groupsNumber; k++) {    //group
+            for (let j = 0; j < 4; j++) {
+                for (let i = 0; i < 4; i++) {           //teams inside each group
+                    const scoreTeam1 = document.getElementById(`teamDiv${i}/${k}`);
+                    var n = i + 1;
+                    const scoreTeam2 = document.getElementById(`teamDiv${n}/${k}`);
+
+                    if (i != 3)
+                        OrganizeData(scoreTeam1, scoreTeam2);
+                }
             }
         }
-
-        bracDivi = bracDivi * 2;
     }
 }

@@ -5,28 +5,27 @@ let gameSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectID,
         required:true
     },
-    pair2:{
-        type: mongoose.Schema.Types.ObjectID,
-        required:false
-    },
+    pair2:{type: mongoose.Schema.Types.ObjectID},
     phase:{
         type:String,
         required: true
     },
-    level: mongoose.Schema.Types.ObjectId,
+    level: String,
     group:{
         type:String,
-        required: true
     },
     tournament: mongoose.Schema.Types.ObjectId,
     result: {
             pair1: {
                 type:Number,
-                min:0
+                min:0,
+                default:0
+
             },
             pair2: {
                 type:Number,
-                min:0
+                min:0,
+                default:0
             },
     },
     previous_game1: mongoose.Schema.Types.ObjectID,//Game where pair1 came from

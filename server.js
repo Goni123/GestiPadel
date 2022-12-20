@@ -95,6 +95,7 @@ app.get('/editar_torneio_menu', async (req, res) => {
     res.render("editar_torneio_admin");
 })
 
+
 app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
 
     Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
@@ -139,32 +140,19 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
 
 
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
-    let id_url = req.params.id_torneio
-    // console.log("O id é: " + id_url)
-
-    var array_ids = []
-
-    await Pair.find({ tournaments: { $elemMatch: { id: id_url } } }).exec(function (err, docs) {
-
-        //console.log("ficheiro:" + docs)
-
-        for (var i = 0; i < docs.length; i++) {
-            for (var j = 0; j < docs[i].users.length; j++) {
-                var string = docs[i].users[j].toString()
-                array_ids.push(string)
-            }
+    let array_ids = []
+    console.log(req.params.id_torneio)
+    let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
+    let converted=JSON.parse(JSON.stringify(docs))
+    for (i of converted){
+        for (j of i.users){
+            array_ids.push(j)
         }
-        // console.log(array_ids)
-    })
-    await User.find({ _id: { $in: ['6391e50313339dd8ef8a38ff', '6391e54213339dd8ef8a3902', '6391e57b13339dd8ef8a3905', '6391e6f513339dd8ef8a3908', '6391e71313339dd8ef8a390b', '6391e74713339dd8ef8a390e'] } }).exec(function (err, docs) {
-        if (docs) {
-            //console.log(docs)
-        }
-        res.render('tournament_brackets', { User: docs })
-    })
-
-
-    //res.render("editar_torneio_admin", {torneioID: req.params.id_torneio} );
+    }
+    let users = await User.find({ _id: { $in: array_ids } }).exec()
+    console.log(array_ids)
+    console.log(users)
+    res.render("tournament_brackets", {Pares : docs, Utilizadores : users});
 
 })
 
@@ -181,8 +169,22 @@ app.get('/admin', (req, res) => {
     console.log(req.session.user)
 })
 
-app.get('/brackets/:id_torneio', (req, res) => {
-    res.render("tournament_brackets");
+app.get('/brackets', async (req, res) => {
+    //let pair=await Pair.find({ tournaments: { $elemMatch: { id: "6391c5456d93c66ed47b4c0a" } } }).populate('users').exec()
+    //console.log(pair)
+    let array_ids = []
+    let value =""
+    let docs = await Pair.find({ tournaments: { $elemMatch: { id: "6391c5456d93c66ed47b4c0a" } } }).exec()
+    let converted= JSON.parse( JSON.stringify(docs))
+    for (i of converted){
+        for (j of i.users){
+            array_ids.push(j)
+        }
+    }
+    let users = await User.find({ _id: { $in: array_ids } }).exec()
+    console.log(array_ids)
+    console.log(users)
+    res.render("tournament_brackets", {Pares :docs,Utilizadores:users});
 })
 
 dotenv.config({ path: 'config.env' })
@@ -339,7 +341,7 @@ app.post('/registo', (req, res) => {
     let password = req.body.password;
     let password2 = req.body.confirmpassword;
 
-    if (password == password2) {
+    if (password === password2) {
         User.exists({ username: username, email: email, nif: nif, contacto: contacto }, function (err, doc) {
             if (err) {
                 console.log(err)
@@ -541,7 +543,7 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
 
 })
 
-app.get('/brackets', async (req, res) => {
+/*app.get('/brackets', async (req, res) => {
 
     res.render("brackets");
     console.log("asd")
@@ -549,7 +551,7 @@ app.get('/brackets', async (req, res) => {
     console.log(a)
 
 
-})
+})*/
 
 app.listen(PORT, () => {
     console.log('Server is running on http://localhost:3000')

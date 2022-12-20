@@ -115,26 +115,26 @@ async function GetTeamList() {
 //Get Array to group fase - mount group fase
 
 function CreateGroups() {
-    var bracketDiv = document.createElement("div");             //Create bracket Div
-    bracketDiv.classList.add(`toSelectSlots`);
+    /*var bracketDiv = document.createElement("div");             //Create bracket Div
+    bracketDiv.classList.add(`toSelectSlots`);*/
 
-    var genDiv = document.createElement("div");                 //Create general Div
+    /*var genDiv = document.createElement("div");                 //Create general Div
     genDiv.classList.add(`genDiv`);
-    bracketDiv.appendChild(genDiv);
+    bracketDiv.appendChild(genDiv);*/
 
-    for (let i = 0; i < groupSize; i++) {
+    /*for (let i = 0; i < groupSize; i++) {
 
-        var newDiv = document.createElement("div");           //Create team Div
-        newDiv.classList.add(`teamDiv`);
-        newDiv.setAttribute('draggable', true);
-        genDiv.appendChild(newDiv);
+        //var newDiv = document.createElement("div");           //Create team Div
+        //newDiv.classList.add(`teamDiv`);
+        //newDiv.setAttribute('draggable', true);
+        //genDiv.appendChild(newDiv);
 
-        var node = document.createTextNode(`${list[i].name0} / ${list[i].name1}`);   //Create text
+        //var node = document.createTextNode(`${list[i].name0} / ${list[i].name1}`);   //Create text
         newDiv.appendChild(node);
 
         var currentDiv = document.getElementById("beforeRefDiv");
         document.body.insertBefore(bracketDiv, currentDiv);
-    }
+    }*/
 }
 
 function CreateBracketsSlots() {

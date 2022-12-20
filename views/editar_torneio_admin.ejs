@@ -25,6 +25,7 @@
             <div class="titulo">
                 <h1>Editar torneio</h1>
             </div>
+            <% for(tournment of Tournament){%>
             <div class="bloco">
                 <form action="/calendario_jogos/<%=tournment._id%>" method="post">
                     <button type="submit" class="enviar">
@@ -40,7 +41,7 @@
             </div>
 
             <div class="bloco">
-                <%for(tournment of Tournament){%>
+
 
                     <form action="/alterar_inscricoes/<%=tournment._id%>" method="post">
                         <button type="submit" class="enviar">

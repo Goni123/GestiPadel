@@ -561,8 +561,8 @@ app.get('/calendario_jogos/:id_torneio', async (req, res) => {
     res.render("calendario_jogos");
 })
 
-app.post('/calendario_jogos/:id_torneio', async (req, res) => {
-    let id_url = req.params.id_torneio
+app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'], async (req, res) => {
+    /*let id_url = req.params.id_torneio
     console.log("O id Ã©: " + id_url)
 
     var array_ids = []
@@ -595,7 +595,23 @@ app.post('/calendario_jogos/:id_torneio', async (req, res) => {
     }).exec(function (err, docs) {
         if (docs) {
             console.log(docs)
+        }*/
+
+        let tor = await Tournament.find({ "_id": mongoose.Types.ObjectId(req.params.id_torneio) }).exec()
+
+        console.log(typeof tor)
+
+        let array_ids = []
+        console.log(req.params.id_torneio)
+        let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
+        let converted=JSON.parse(JSON.stringify(docs))
+        for (i of converted){
+            for (j of i.users){
+                array_ids.push(j)
+            }
         }
-        res.render('calendario_jogos', { User: docs, Array: array_ids })
-    })
+        let users = await User.find({ _id: { $in: array_ids } }).exec() 
+        console.log(typeof tor[0])
+        res.render('calendario_jogos', {Pares : docs, Utilizadores : users, Torneio: tor[0]})
+        
 })

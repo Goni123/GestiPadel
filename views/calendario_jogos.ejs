@@ -30,7 +30,14 @@
             function drop(ev) {
                 ev.preventDefault();
                 var data = ev.dataTransfer.getData("text");
+                alert (data)
+                alert (ev.toString())
                 ev.target.appendChild(document.getElementById(data));
+            }
+
+            function mudarNivel() {
+                alert(window.location.href.concat("/").concat(document.getElementById("nivel").value))
+                document.getElementById("formNivel").setAttribute("action", window.location.href.concat("/").concat(document.getElementById("nivel").value));
             }
         </script>
         <style>
@@ -61,12 +68,14 @@
                     <br>
                     <br>
                     <label for="jogadoresnivel">Selecione o nível:</label><br>
-                    <select name="nivel" id="nivel" onchange="namesLevel(this.value)">
-                        <option value="level1">Nível 1</option>
-                        <option value="level2">Nível 2</option>
-                        <option value="level3">Nível 3</option>
-                        <option value="level4">Nível 4</option>
-                    </select>
+                    <form method="POST" id="formNivel">
+                        <select name="nivel" id="nivel" onchange="mudarNivel()">
+                            <option></option>
+                            <%for(nivel of Torneio?.niveltipo){%>
+                                <option value="<%=nivel%>"><%=nivel%></option>
+                            <%}%>
+                        </select>
+                    </form>
                     <br>
                     <br>
                 </div>
@@ -233,13 +242,17 @@
 
                     <br>
                     <br>
-                    <%for(var i= 0; i< User.length; i+=2) {%>
-                        <%if(i!=User.length-1){%>
+                    <%//for(var i= 0; i< User.length; i+=2) {%>
+                        <%if(false/*i!=User.length-1*/){%>
                             <div id="drag<%=i%>" class="nome" draggable="true" ondragstart="drag(event)" width="50" height="20"><%= User[i].name+"/"+ User[i+1].name%></div>
                             <br>
                             <br>
                         <% } %> 
-                    <% } %>
+                    <% //} %>
+
+                    <% for(par of Pares){%>
+                        <div id="drag<%=par._id%>" class="nome" draggable="true" ondragstart="drag(event)" data-pair-id="<%=par._id%>"><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
+                    <%}%>
 
                     <button type="submit" class="enviar">
                         Submeter alteração

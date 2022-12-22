@@ -24,7 +24,11 @@
         </div>
 
         <div class="menu">
-            <a href="../../login">Login</a>
+            <%if(typeof Us !== 'undefined'){%>
+               <span>Hello <%=Us.username%> <a href="../../logout">LogOut</a> </span>
+            <%}else{%>
+                <a href="../../login">Login</a>
+            <%}%>
         </div>
 
 

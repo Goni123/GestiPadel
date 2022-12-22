@@ -27,19 +27,20 @@ const { array } = require('./multerConfig');
 app.use(cookieParser());
 app.use(session({
     secret: "gestipadel",
-    saveUninitialized: true,
-    resave: true
+    saveUninitialized:true,
+    cookie: { maxAge: 1000 * 60 * 60 *24 }, //one day wait
+    resave: false
 }));
 
 app.get('/', (req, res) => {
     User.find({}).exec(function (err, docs) {
-        res.render('alterar_inscricoes', { User: docs })
+        res.render('alterar_inscricoes', { User: docs ,US : req.session.user})
     })
 })
 
 app.get('/inscricoes/:id_torneio', async (req, res) => {
     let T = await Tournament.findOne({ _id: req.params.id_torneio }).exec()
-    res.render("usersinsc", { Tor: T });
+    res.render("usersinsc", { Tor: T, US : req.session.user });
 /*app.get('/alterar_inscricoes/:id_torneio', async (req,res) =>{
     Tournament.find({}).exec(function (err, docs) {
         res.render('menu_editar_torneio', { Tournament: docs })
@@ -48,8 +49,7 @@ app.get('/inscricoes/:id_torneio', async (req, res) => {
 
 
 app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
-
-    let id_url = req.params.id_torneio
+    /*let id_url = req.params.id_torneio
     console.log("O id é: " + id_url)
 
     var array_ids = []
@@ -82,24 +82,35 @@ app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
     }).exec(function (err, docs) {
         if (docs) {
             console.log(docs)
+        }*/
+
+    let array_ids = []
+    // console.log(req.params.id_torneio)
+    let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(req.params.id_torneio) } } }).exec()
+    let converted=JSON.parse(JSON.stringify(docs))
+    for (i of converted){
+        for (j of i.users){
+            array_ids.push(j)
         }
-        res.render('alterar_inscricoes', { User: docs, Array: array_ids })
-    })
+    }
+    let users = await User.find({ _id: { $in: array_ids } }).exec()
+        res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user})
+    //})
 })
 
 app.get('/inscricoes/:id_torneio', (req, res) => {
-    res.render("usersinsc");
+    res.render("usersinsc",{US : req.session.user});
 })
 
 app.get('/editar_torneio_menu', async (req, res) => {
-    res.render("editar_torneio_admin");
+    res.render("editar_torneio_admin",{US : req.session.user});
 })
 
 
 app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
 
     Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
-        res.render("editar_torneio_admin", { Tournament: docs })
+        res.render("editar_torneio_admin", { Tournament: docs, US : req.session.user })
     })
 
 })
@@ -117,7 +128,7 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
             }
             else {
                 Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
-                    res.render("editar_torneio_admin", { Tournament: docs })
+                    res.render("editar_torneio_admin", { Tournament: docs , US : req.session.user})
                 })
             }
         })
@@ -130,7 +141,7 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
             }
             else {
                 Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
-                    res.render("editar_torneio_admin", { Tournament: docs })
+                    res.render("editar_torneio_admin", { Tournament: docs , US : req.session.user})
                 })
             }
         })
@@ -141,7 +152,7 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
 
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
     let array_ids = []
-    console.log(req.params.id_torneio)
+    // console.log(req.params.id_torneio)
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
     let converted=JSON.parse(JSON.stringify(docs))
     for (i of converted){
@@ -150,9 +161,9 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
         }
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
-    console.log(array_ids)
-    console.log(users)
-    res.render("tournament_brackets", {Pares : docs, Utilizadores : users});
+    //console.log(array_ids)
+    //console.log(users)
+    res.render("tournament_brackets", {Pares : docs, Utilizadores : users, US : req.session.user});
 
 })
 
@@ -160,12 +171,22 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
 
 
 app.get('/home', (req, res) => {
-    res.render("home_user");
+
+    res.render("home_user",{US:req.session.user});
+    console.log(req.session.user)
+})
+app.get('/home', (req, res) => {
+
+    res.render("home_user",{US:req.session.user});
     console.log(req.session.user)
 })
 
 app.get('/admin', (req, res) => {
-    res.render("home_admin");
+    res.render("home_admin",{US : req.session.user});
+    console.log(req.session.user)
+})
+app.post('/admin', (req, res) => {
+    res.render("home_admin",{US : req.session.user});
     console.log(req.session.user)
 })
 
@@ -184,7 +205,7 @@ app.get('/brackets', async (req, res) => {
     let users = await User.find({ _id: { $in: array_ids } }).exec()
     console.log(array_ids)
     console.log(users)
-    res.render("tournament_brackets", {Pares :docs,Utilizadores:users});
+    res.render("tournament_brackets", {Pares :docs, Utilizadores:users , US : req.session.user});
 })
 
 dotenv.config({ path: 'config.env' })
@@ -234,42 +255,42 @@ app.get('/', (req, res) => {
 
 app.post('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {
-        res.render('Torneios_admin', { Tournament: docs })
+        res.render('Torneios_admin', { Tournament: docs , US : req.session.user})
     })
 })
 
 app.get('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {
-        res.render('Torneios_admin', { Tournament: docs })
+        res.render('Torneios_admin', { Tournament: docs , US : req.session.user})
     })
 })
 
 app.post('/ProxTorneios', function (req, res) {
     Tournament.find({ has_ended: false }).exec(function (err, docs) {
-        res.render('Torneios_User_Prox', { Tournament: docs })
+        res.render('Torneios_User_Prox', { Tournament: docs , US : req.session.user})
     })
 })
 
 app.get('/ProxTorneios', function (req, res) {
     Tournament.find({ has_ended: false }).exec(function (err, docs) {
-        res.render('Torneios_User_Prox', { Tournament: docs })
+        res.render('Torneios_User_Prox', { Tournament: docs , US : req.session.user})
     })
 })
 
 app.get('/TorneiosAndamento', function (req, res) {
     Tournament.find({ has_ended: true }).exec(function (err, docs) {
-        res.render('Torneios_User_Anda', { Tournament: docs })
+        res.render('Torneios_User_Anda', { Tournament: docs , US : req.session.user})
     })
 })
 
 app.post('/TorneiosAndamento', function (req, res) {
     Tournament.find({ has_ended: true }).exec(function (err, docs) {
-        res.render('Torneios_User_Anda', { Tournament: docs })
+        res.render('Torneios_User_Anda', { Tournament: docs , US : req.session.user})
     })
 })
 
 app.post('/alterar_inscricoes/:id_torneio', (req, res) => {
-    res.render("alterar_inscricoes");
+    res.render("alterar_inscricoes" , {US : req.session.user});
 })
 
 app.get('/apagar_inscricao/:id_utilizador', (req, res) => {
@@ -283,7 +304,7 @@ app.get('/apagar_inscricao/:id_utilizador', (req, res) => {
         else {
             //User.find().exec(function(err, docs){
             //res.render("alterar_inscricoes", { User: docs });
-            res.redirect('/alterar_inscricoes/:id_torneio')
+            res.redirect('/alterar_inscricoes/:id_torneio', {US : req.session.user})
             //})
         }
     })
@@ -291,20 +312,31 @@ app.get('/apagar_inscricao/:id_utilizador', (req, res) => {
 })
 
 //ROTAS LOGIN
-app.get('/login', (req, res) => {
+app.get(['/login','/login/error'], async (req, res) => {
 
     console.log(req.session.user)
-    res.render("login")
+
+    if (typeof req.session.user !== 'undefined'){
+        if (req.session.user.type ===1){
+            res.redirect("/admin")
+        }else if (req.session.user.type ===0 ){
+            res.redirect(("/home"))
+        }
+    }else{
+
+        res.render("login" , {US : req.session.user})
+    }
+
 })
 
-app.post('/login', (req, res) => {
+app.post(['/login','/login/error'], async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
-
+    console.log(req.path)
     console.log(username)
     console.log(password)
 
-    UserAdmin.exists({ username: username, password: password }, function (err, doc) {
+     /*UserAdmin.exists({ username: username, password: password }, function (err, doc) {
         if (err) {
             console.log(err)
         } else {
@@ -325,12 +357,42 @@ app.post('/login', (req, res) => {
             }
 
         }
-    });
+    });//*/
+    let target="/login"
+    let adm = await UserAdmin.find({ username: username, password: password}).exec()
+    let usr = await User.find({ name: username, password: password}).exec()
+    if (adm.length === 1 ){
+        req.session.user = {
+
+            username: adm[0].username,
+            uid: adm[0]._id ,
+            type: 1,
+        }
+        res.redirect('/admin')
+    }
+    console.log(adm , usr)
+    if  (usr.length === 1){
+        req.session.user = {
+
+            username: usr[0].name,
+            uid: usr[0]._id ,
+            type: 0,
+        }
+        res.redirect('/home')
+    }
+
+
 })
+//ROTAS LOGOUT
+app.get('/logout',(req,res) => {
+    delete req.session.user
+    req.session.save();
+    res.redirect('/home')
+});
 
 //ROTAS REGIS
 app.get('/registo', (req, res) => {
-    res.render("registo");
+    res.render("registo" ,{ US : req.session.user});
 })
 
 app.post('/registo', (req, res) => {
@@ -374,7 +436,7 @@ app.post('/registo', (req, res) => {
 })
 
 app.get('/registo_admin', (req, res) => {
-    res.render("registo_admin");
+    res.render("registo_admin", {US : req.session.user});
 })
 
 app.post('/registo_admin', (req, res) => {
@@ -415,7 +477,7 @@ app.post('/registo_admin', (req, res) => {
 
 //ROTAS CRIAR TORNEIO
 app.get('/criartorneio', (req, res) => {
-    res.render("criar_torneio");
+    res.render("criar_torneio",{ US : req.session.user});
 })
 
 app.post('/criartorneio', upload.single('img'), function (req, res) {
@@ -436,7 +498,7 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            res.redirect('/admin')
+            res.render('home_admin', {US : req.session.user})
         }
     })
 })
@@ -445,7 +507,7 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
 app.get('/insctorneio/:id_torneio', async (req, res) => {
     let T = await Tournament.find({ _id: req.params.id_torneio }).exec()
     console.log(T, T[0].niveltipo)
-    res.render('usersinsc', { Tournament: T, niveis: T[0].niveltipo })
+    res.render('usersinsc', { Tournament: T, niveis: T[0].niveltipo , US : req.session.user})
 })
 
 app.post('/insctorneio/:id_torneio', async (req, res) => {
@@ -558,7 +620,7 @@ app.listen(PORT, () => {
 });
 
 app.get('/calendario_jogos/:id_torneio', async (req, res) => {
-    res.render("calendario_jogos");
+    res.render("calendario_jogos", { US : req.session.user});
 })
 
 app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'], async (req, res) => {
@@ -610,8 +672,8 @@ app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'
                 array_ids.push(j)
             }
         }
-        let users = await User.find({ _id: { $in: array_ids } }).exec() 
+        let users = await User.find({ _id: { $in: array_ids } }).exec()
         console.log(typeof tor[0])
-        res.render('calendario_jogos', {Pares : docs, Utilizadores : users, Torneio: tor[0]})
-        
+        res.render('calendario_jogos', {Pares : docs, Utilizadores : users, Torneio: tor[0], US : req.session.user})
+
 })

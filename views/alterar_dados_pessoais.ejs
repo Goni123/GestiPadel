@@ -1,11 +1,12 @@
 <!-- include header -->
-<%- include('include/_header') %>
+<%- include('include/_header', {Us:US}) %>
     <!-- /include header -->
 
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
+        <title>Alterar Dados Pessoais</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,7 +18,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
             rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
     </head>
     <div class="formulario">
         <div class="titulo_form">
@@ -53,10 +54,10 @@
                 Confirmar alterações
             </button>
             <script>
-                var table = document.getElementById('table');
-                var hora;
-                var dia;
-                for (var i = 1; i < table.rows.length; i++) {
+                let table = document.getElementById('table');
+                let hora;
+                let dia;
+                for (let i = 1; i < table.rows.length; i++) {
 
 
                     table.rows[i].onclick = function () {
@@ -78,12 +79,12 @@
 
 
 
-                var count = 0;
+                let count = 0;
 
                 $('table').on('click', 'td', function () {
                     count++;
-                    if (count == 1) {
-                        if ($(this).css("background-color") == "rgb(128, 30, 6)") {/*verifica se esta verde*/
+                    if (count === 1) {
+                        if ($(this).css("background-color") === "rgb(128, 30, 6)") {/*verifica se esta verde*/
                             $(this).addClass('active');
                         }
                         else {
@@ -92,7 +93,7 @@
                     }
 
                     if (count == 2) {
-                        if ($(this).css("background-color") == "rgb(128, 30, 6)") {
+                        if ($(this).css("background-color") === "rgb(128, 30, 6)") {
                             $(this).addClass('active');
                         }
                         else {
@@ -107,6 +108,7 @@
 
 
             </script>
+        </form>>
     </div>
 
 

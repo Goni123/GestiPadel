@@ -3,10 +3,10 @@ var IsOnBrackets = false;
 
 
 
-const User = import("./model/usermodel");
+//const User = import("./model/usermodel");
 
 
-var list;
+let list=[];
 console.log("entrou");
 GetTeamList();
 
@@ -60,7 +60,7 @@ for (let toSelectSlots of brackets) {
 async function GetTeamList() {
 
 
-    console.log(User.name);
+    //console.log(User.name);
     /*/fetch('/editar_brakets/', {
         method: 'POST',
         headers: {
@@ -91,8 +91,11 @@ async function GetTeamList() {
 
 
 
-    //console.log(array_nome);
-    list = [
+
+    for (team of document.getElementsByClassName("teamDiv")){
+        list.push({name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1]})
+    }
+    /*list = [
         { name0: 'Ademar', name1: 'Adelson' },
         { name0: 'Ben', name1: 'Benato' },
         { name0: 'Claudi', name1: 'Carlos' },
@@ -101,7 +104,8 @@ async function GetTeamList() {
         { name0: 'Fernando', name1: 'Felipe' },
         { name0: 'Gabriel', name1: 'Geliton' },
         { name0: 'Hunservio', name1: 'Hummm' },
-    ];
+    ];*/
+    alert(list)
 }
 
 //Get List names
@@ -154,7 +158,7 @@ function CreateBracketsSlots() {
 
         for (let i = 0; i < groupSizeAdap / bracketDivision; i++) {
 
-            if (i % 2 == 0) {
+            if (i % 2 === 0) {
                 matchDiv = document.createElement("div");                   //Create match Div
                 matchDiv.classList.add(`matchDiv`);
                 matchDiv.setAttribute("id", `match${i / 2}/${k}`);

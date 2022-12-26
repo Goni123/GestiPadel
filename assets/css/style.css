@@ -83,6 +83,11 @@ a {
 
 }
 
+#header .menu span {
+    font-size: 24px;
+    margin-right: 15px;
+}
+
 #header .menu {
     display: inline-block;
     margin-right: 8%;
@@ -497,7 +502,8 @@ label,
 button,
 th,
 tr,
-td {
+td,
+span {
     font-family: 'Poppins';
     color: #1A093F;
 }

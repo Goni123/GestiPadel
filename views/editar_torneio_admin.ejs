@@ -23,24 +23,27 @@
     <body>
         <div id="editar_torneio_admin">
             <div class="titulo">
-                <h1>Editar torneio</h1>
+                <% for(tournment of Tournament){%>
+                    <h1>Editar <%=tournment.nometorneio%>
+                    </h1>
+                    <%}%>
             </div>
             <% for(tournment of Tournament){%>
-            <div class="bloco">
-                <form action="/calendario_jogos/<%=tournment._id%>" method="post">
-                    <button type="submit" class="enviar">
-                        <p>Editar Horário/Calendário de jogos</p>
-                    </button>
-                </form>
+                <div class="bloco">
+                    <form action="/calendario_jogos/<%=tournment._id%>" method="post">
+                        <button type="submit" class="enviar">
+                            <p>Editar Horário/Calendário de jogos</p>
+                        </button>
+                    </form>
 
-                <form action="/editar_brakets/<%=tournment._id%>" method="post">
-                    <button type="submit" class="enviar">
-                        <p> Editar jogos</p>
-                    </button>
-                </form>
-            </div>
+                    <form action="/editar_brakets/<%=tournment._id%>" method="post">
+                        <button type="submit" class="enviar">
+                            <p> Editar jogos</p>
+                        </button>
+                    </form>
+                </div>
 
-            <div class="bloco">
+                <div class="bloco">
 
 
                     <form action="/alterar_inscricoes/<%=tournment._id%>" method="post">
@@ -65,7 +68,7 @@
 
                     </form>
                     <% } %>
-            </div>
+                </div>
 
 
 

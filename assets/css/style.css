@@ -460,6 +460,10 @@ table {
     padding: 18px 0px
 }
 
+#calendario_jogos .Calendar {
+    text-align: center;
+}
+
 #calendario_jogos .Calendar .table1 td {
     background-color: #fff;
     border: 1px solid #000000;

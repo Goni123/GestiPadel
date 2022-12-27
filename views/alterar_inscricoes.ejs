@@ -23,13 +23,16 @@
                     <tbody>
                         <%- include('include/_show') %>
                         <% var numero = 1 %>
+                        <% var num_dupla = 0 %>
                         <%for(var j=0; j< Array.length; j++){%>
                             <%for(var i= 0; i< User.length; i++) {%> 
                                 <% if(Array[j] == User[i]._id){%>  
                                     <% console.log(Array[j])%>
                                     <% if(numero % 2 != 0 ){ %>
+                                        
                                         <tr>
-                                        <td style="text-align: center"; rowspan="2"><%= numero %></td>
+                                        <td style="text-align: center; vertical-align: middle" rowspan="2"><%= num_dupla %></td>
+                                        <%=num_dupla++%>
                                     <% } %> 
                                     <% numero++%>
                                         
@@ -41,6 +44,7 @@
                                         <a href="/" class="btn border-shadow update">
                                             <span class="text-gradient" id="editar_bd" value="<%=User[i]._id%>"><i class="fas fa-pencil-alt"></i></span>
                                         </a>
+                                        <br><br>
                                         <a href="/apagar_inscricao/<%= User[i]._id%>" class="btn border-shadow delete">
                                             <span class="text-gradient" id="apagar_bd" value="<%=User[i]._id%>"><i class="fas fa-times"></i></span>
                                         </a>

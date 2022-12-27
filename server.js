@@ -32,10 +32,9 @@ app.use(session({
     resave: false
 }));
 
-app.get('/', (req, res) => {
-    User.find({}).exec(function (err, docs) {
-        res.render('alterar_inscricoes', { User: docs ,US : req.session.user})
-    })
+app.get('/', (req, res) => {    
+    res.render("home_user",{US:req.session.user});
+    console.log(req.session.user)
 })
 
 app.get('/inscricoes/:id_torneio', async (req, res) => {
@@ -168,13 +167,6 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
 })
 
 
-
-
-app.get('/home', (req, res) => {
-
-    res.render("home_user",{US:req.session.user});
-    console.log(req.session.user)
-})
 app.get('/home', (req, res) => {
 
     res.render("home_user",{US:req.session.user});
@@ -247,11 +239,6 @@ app.use('/js', express.static(path.resolve(__dirname, "assets/js")))
 //app.use(express.urlenconded({extended:false}))
 app.use(express.json())
 //app.use(express.static(path.join(__dirname, 'views')));
-
-//load routes
-app.get('/', (req, res) => {
-    res.render("index");
-})
 
 app.post('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {

@@ -147,7 +147,23 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
     }
 })
 
+app.get('/editar_brakets/:id_torneio', async (req, res) => {
+    let array_ids = []
+    // console.log(req.params.id_torneio)
+    let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
+    let converted=JSON.parse(JSON.stringify(docs))
+    for (i of converted){
+        for (j of i.users){
+            array_ids.push(j)
+        }
+    }
+    let users = await User.find({ _id: { $in: array_ids } }).exec()
+    let tour  = await Tournament.findOne({_id : req.params.id_torneio}).exec()
+    console.log(tour)
+    //console.log(users)
+    res.render("tournament_brackets", {Pares : docs, Utilizadores : users, US : req.session.user, Tor:tour});
 
+})
 
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
     let array_ids = []
@@ -556,7 +572,7 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
         const pair = await Pair.find({ users: { "$in": [dbuser1[0]._id, dbuser2[0]._id] } })
         if (pair[0].tournaments.some(element => { return element.id === req.params.id_torneio; })) { //caso os users ja tenham um par em conjunto
             //S
-            await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": req.params.id_torneio } } })
+            await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": req.params.id_torneio, "level": level, "unavailability": arravl  } } })
 
         } else {
             //N

@@ -1,6 +1,28 @@
 
-var IsOnBrackets = false;
+//var IsOnBrackets = document.getElementById('hasGroup') !== null;
 
+function openPage(pageName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("Gclass");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].setAttribute("hidden",true);
+    }
+    tabcontent = document.getElementsByClassName("Bclass");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].setAttribute("hidden",true);
+    }
+    //tablinks = document.getElementsByClassName("tablink");
+    //for (i = 0; i < tablinks.length; i++) {
+    //    tablinks[i].style.backgroundColor = "";
+    //}
+    for (elm of document.getElementsByClassName(pageName)) {
+        elm.removeAttribute("hidden");
+    }
+    //elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+//document.getElementById("defaultOpen").click();
 
 
 //const User = import("./model/usermodel");
@@ -11,7 +33,7 @@ console.log("entrou");
 GetTeamList();
 
 
-var bracketSize;
+//var bracketSize;
 let columns = 0;
 
 let groupSize = list.length;
@@ -34,18 +56,11 @@ if (groupSize <= 4) {
     columns = 7;
 }
 
-IsOnBrackets = true;
-SelectBracketOrGroupFase();
 
-function SelectBracketOrGroupFase() {
-    if (IsOnBrackets) {
-        CreateGroups();
-        CreateBracketsSlots();
-    } else {
-        CreateGroups();
-        CreateGroupFase();
-    }
-}
+
+CreateGroupFase();
+CreateBracketsSlots();
+
 
 
 //DeleteWholeBracket();
@@ -92,20 +107,9 @@ async function GetTeamList() {
 
 
 
-    for (team of document.getElementsByClassName("teamDiv")){
+    for (team of document.getElementsByClassName("sourceDiv")){
         list.push({name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1]})
     }
-    /*list = [
-        { name0: 'Ademar', name1: 'Adelson' },
-        { name0: 'Ben', name1: 'Benato' },
-        { name0: 'Claudi', name1: 'Carlos' },
-        { name0: 'Diego', name1: 'Douglas' },
-        { name0: 'Eduardo', name1: 'Edison' },
-        { name0: 'Fernando', name1: 'Felipe' },
-        { name0: 'Gabriel', name1: 'Geliton' },
-        { name0: 'Hunservio', name1: 'Hummm' },
-    ];*/
-    alert(list)
 }
 
 //Get List names
@@ -140,10 +144,13 @@ function CreateGroups() {
         document.body.insertBefore(bracketDiv, currentDiv);
     }*/
 }
+function populateBracket(){
 
+}
 function CreateBracketsSlots() {
     var bracketDiv = document.createElement("div");             //Create bracket Div
     bracketDiv.classList.add(`bracketSlots`);
+    bracketDiv.classList.add(`tabcontent`)
     bracketDiv.setAttribute('id', 'bracketSlots');
 
     var bracketDivision = 1;
@@ -161,12 +168,13 @@ function CreateBracketsSlots() {
             if (i % 2 === 0) {
                 matchDiv = document.createElement("div");                   //Create match Div
                 matchDiv.classList.add(`matchDiv`);
+                matchDiv.classList.add('Bclass')
                 matchDiv.setAttribute("id", `match${i / 2}/${k}`);
             }
 
             var teamDiv = document.createElement("div");                    //Create team Div
 
-            if (k == 0) {
+            if (k === 0) {
                 teamDiv.classList.add(`teamDiv`);
                 teamDiv.setAttribute('draggable', true);
             } else {
@@ -184,7 +192,7 @@ function CreateBracketsSlots() {
 
             var input;
             var trophy;
-            if (k != columns - 1) {
+            if (k !== columns - 1) {
                 input = document.createElement("input");                    //Input
                 input.setAttribute("type", "text");
                 input.setAttribute("oninput", "numberOnly(this.id);");
@@ -200,13 +208,13 @@ function CreateBracketsSlots() {
             }
 
             matchDiv.appendChild(teamDiv);
-            if (k != columns - 1) {
+            if (k !== columns - 1) {
                 matchDiv.appendChild(input);
             }
 
             //matchDiv.appendChild(img);
 
-            if (k == columns - 1) {
+            if (k === columns - 1) {
                 matchDiv.appendChild(trophy);
             }
 
@@ -230,7 +238,8 @@ function CreateGroupFase() {
 
     var bracketDiv = document.createElement("div");
     //Create bracket Div
-    bracketDiv.classList.add(`groupsFase`);
+    bracketDiv.classList.add(`groupsFase`)
+    bracketDiv.classList.add(`Gclass`)
     bracketDiv.setAttribute('id', 'groupsFase');
 
 

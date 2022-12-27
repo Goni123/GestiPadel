@@ -45,9 +45,37 @@
                 padding: 10px;
             }
 
-            .nome{
+            .nivel1, .nivel1M, .nivel1F, .nivel1MF{
                 font-family: 'Poppins';
                 border: 1px solid #000;
+                background-color: orange;
+                display: inline-block;
+                max-width: 250px;
+                padding: 1px;
+            }
+
+            .nivel2, .nivel2M, .nivel2F, .nivel2MF{
+                font-family: 'Poppins';
+                border: 1px solid #000;
+                background-color: green;
+                display: inline-block;
+                max-width: 250px;
+                padding: 1px;
+            }
+
+            .nivel3, .nivel3M, .nivel3F, .nivel3MF{
+                font-family: 'Poppins';
+                border: 1px solid #000;
+                background-color: cyan;
+                display: inline-block;
+                max-width: 250px;
+                padding: 1px;
+            }
+
+            .nivel4, .nivel4M, .nivel4F, .nivel4MF{
+                font-family: 'Poppins';
+                border: 1px solid #000;
+                background-color: grey;
                 display: inline-block;
                 max-width: 250px;
                 padding: 1px;
@@ -250,9 +278,27 @@
                         <% } %> 
                     <% //} %>
 
-                    <% for(par of Pares){%>
-                        <div id="drag<%=par._id%>" class="nome" draggable="true" ondragstart="drag(event)" data-pair-id="<%=par._id%>"><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
+                    <% for(par of Pares){ %>
+                        <div id="drag<%=par._id%>" class="<%=par?.tournaments?.find((elem)=>{return elem.id.toString() === Torneio._id.toString()})?.level%>" draggable="true" ondragstart="drag(event)" data-pair-id="<%=par._id%>"><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
                     <%}%>
+                    <br>
+                    <br>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="nivel1">Nível 1</div>
+                            </td>
+                            <td>
+                                <div class="nivel2">Nível 2</div>
+                            </td>
+                            <td>
+                                <div class="nivel3">Nível 3</div>
+                            </td>
+                            <td>
+                                <div class="nivel4">Nível 4</div>
+                            </td>
+                        </tr>
+                    </table>
 
                     <button type="submit" class="enviar">
                         Submeter alteração

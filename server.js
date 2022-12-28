@@ -47,44 +47,8 @@ app.get('/inscricoes/:id_torneio', async (req, res) => {
 })*/})
 
 
-app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
-    /*let id_url = req.params.id_torneio
-    console.log("O id é: " + id_url)
-
-    var array_ids = []
-
-    await Pair.find({ tournaments: { $elemMatch: { id: id_url } } }).exec(function (err, docs) {
-
-        console.log("ficheiro:" + docs)
-
-        for (var i = 0; i < docs.length; i++) {
-            for (var j = 0; j < docs[i].users.length; j++) {
-                var string = docs[i].users[j].toString()
-                array_ids.push(string)
-            }
-        }
-        console.log(array_ids)
-
-    })
-
-    await User.find({
-        _id: {
-            $in: ['6391e50313339dd8ef8a38ff',
-                '63a02a937b76ea554aa6883d',
-                '6391e57b13339dd8ef8a3905',
-                '6391e6f513339dd8ef8a3908',
-                '639dea08ce774fde3f188f11',
-                '639dea08ce774fde3f188f14',
-                '63a028ce3040672c93bdbe4c',
-                '63a029063040672c93bdbe4f']
-        }
-    }).exec(function (err, docs) {
-        if (docs) {
-            console.log(docs)
-        }*/
-
+app.get('/alterar_inscricoes/:id_torneio', async(req,res) => {
     let array_ids = []
-    //console.log(req.params.id_torneio)
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(req.params.id_torneio) } } }).exec()
     let converted=JSON.parse(JSON.stringify(docs))
     console.log(converted)
@@ -94,8 +58,23 @@ app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
         }
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
-        res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user, Pairs: converted, torneio: req.params.id_torneio})
-    //})
+    res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user, Pairs: converted, torneio: req.params.id_torneio})
+
+})
+
+app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
+
+    let array_ids = []
+    let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(req.params.id_torneio) } } }).exec()
+    let converted=JSON.parse(JSON.stringify(docs))
+    console.log(converted)
+    for (i of converted){
+        for (j of i.users){
+            array_ids.push(j)
+        }
+    }
+    let users = await User.find({ _id: { $in: array_ids } }).exec()
+    res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user, Pairs: converted, torneio: req.params.id_torneio})
 })
 
 app.get('/inscricoes/:id_torneio', (req, res) => {
@@ -177,9 +156,10 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
         }
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
+    let tour  = await Tournament.findOne({_id : req.params.id_torneio}).exec()
     //console.log(array_ids)
     //console.log(users)
-    res.render("tournament_brackets", {Pares : docs, Utilizadores : users, US : req.session.user});
+    res.render("tournament_brackets", {Pares : docs, Utilizadores : users, US : req.session.user, Tor:tour});
 
 })
 
@@ -315,8 +295,7 @@ app.get('/apagar_inscricao/:id_torneio/:id_par', async (req, res) => {
                 }    
             }
             let users = await User.find({ _id: { $in: array_ids } }).exec()
-            res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user, Pairs: converted, torneio: req.params.id_torneio})
-            //res.redirect('/alterar_inscricoes/'+ req.params.id_torneio, { User: users, Array: array_ids ,US : req.session.user, Pairs: converted})
+            res.redirect('/alterar_inscricoes/'+ req.params.id_torneio)
         }
     })
 

@@ -1,15 +1,15 @@
 
-//var IsOnBrackets = document.getElementById('hasGroup') !== null;
+var IsOnBrackets = document.getElementById('hasGroup') !== null;
 
 function openPage(pageName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("Gclass");
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].setAttribute("hidden",true);
+        tabcontent[i].setAttribute("hidden", true);
     }
     tabcontent = document.getElementsByClassName("Bclass");
     for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].setAttribute("hidden",true);
+        tabcontent[i].setAttribute("hidden", true);
     }
     //tablinks = document.getElementsByClassName("tablink");
     //for (i = 0; i < tablinks.length; i++) {
@@ -28,7 +28,7 @@ function openPage(pageName) {
 //const User = import("./model/usermodel");
 
 
-let list=[];
+let list = [];
 console.log("entrou");
 GetTeamList();
 
@@ -107,8 +107,8 @@ async function GetTeamList() {
 
 
 
-    for (team of document.getElementsByClassName("sourceDiv")){
-        list.push({name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1]})
+    for (team of document.getElementsByClassName("sourceDiv")) {
+        list.push({ name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1] })
     }
 }
 
@@ -144,7 +144,7 @@ function CreateGroups() {
         document.body.insertBefore(bracketDiv, currentDiv);
     }*/
 }
-function populateBracket(){
+function populateBracket() {
 
 }
 function CreateBracketsSlots() {

@@ -1087,3 +1087,518 @@ button img {
     text-align: center;
     margin: 0;
 }
+
+@media (max-width: 361px) {
+
+    /*header user*/
+    #header .menu span {
+        display: none;
+    }
+
+
+
+    #header .menu a {
+        font-size: 20px;
+    }
+
+    #header .logo img {
+        width: 171px;
+    }
+
+    #header .menu {
+        display: inline-block;
+        margin-right: 0;
+        padding: 14px 11px;
+        float: right;
+    }
+
+
+
+    /*fp user*/
+    #homePage button {
+        margin: 0;
+        width: 281px;
+    }
+
+    #homePage .inicio {
+        padding: 22px 22px 93px 25px;
+    }
+
+    #homePage .colunaDuplaHome2 {
+        display: none;
+    }
+
+    #homePage .colunaDuplaHome1 {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    #homePage .colunaDuplaHome1 .desc {
+        margin: 75px 0;
+    }
+
+    #homePage .colunaDuplaHome1 p {
+        font-size: 15px;
+
+    }
+
+    #homePage .colunaDuplaHome1 h1 {
+        font-size: 50px;
+        text-align: left;
+    }
+
+
+
+    #homePage form {
+        text-align: center;
+    }
+
+    #homePage .howTo h2 {
+        font-size: 27px;
+    }
+
+    #homePage .howTo .colunaInscricaoHome {
+        width: 100%;
+        margin: 38px 0px;
+        padding: 0px 59px;
+    }
+
+    /*footer*/
+    #footer .Morada p,
+    #footer .contactos p {
+        padding: 0;
+    }
+
+    #footer .contactos,
+    #footer .Morada,
+    #footer .social_media {
+        width: auto;
+        margin: 22px;
+    }
+
+    #footer {
+        text-align: left;
+    }
+
+    #footer .copy-right {
+        display: none;
+    }
+
+}
+
+@media (min-width: 362px) and (max-width:469px) {
+
+    /*header user*/
+    #header .menu span {
+        display: none;
+    }
+
+
+
+    #header .menu a {
+        font-size: 20px;
+    }
+
+    #header .logo img {
+        width: 171px;
+    }
+
+    #header .menu {
+        display: inline-block;
+        margin-right: 0;
+        padding: 14px 11px;
+        float: right;
+    }
+
+
+
+    /*fp user*/
+    #homePage button {
+        margin: 0;
+        width: 281px;
+    }
+
+    #homePage .inicio {
+        padding: 22px 22px 93px 25px;
+    }
+
+    #homePage .colunaDuplaHome2 {
+        display: none;
+    }
+
+    #homePage .colunaDuplaHome1 {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    #homePage .colunaDuplaHome1 .desc {
+        margin: 75px 0;
+    }
+
+    #homePage .colunaDuplaHome1 p {
+        font-size: 15px;
+
+    }
+
+    #homePage .colunaDuplaHome1 h1 {
+        font-size: 50px;
+        text-align: left;
+    }
+
+
+
+    #homePage form {
+        text-align: center;
+    }
+
+    #homePage .howTo h2 {
+        font-size: 27px;
+    }
+
+    #homePage .howTo .colunaInscricaoHome {
+        width: 100%;
+        margin: 38px 0px;
+        padding: 0px 59px;
+    }
+
+    /*footer*/
+    #footer .Morada p,
+    #footer .contactos p {
+        padding: 0;
+    }
+
+    #footer .contactos,
+    #footer .Morada,
+    #footer .social_media {
+        width: auto;
+        margin: 22px;
+    }
+
+    #footer {
+        text-align: left;
+    }
+
+    #footer .copy-right {
+        display: none;
+    }
+
+}
+
+@media (min-width: 470px) and (max-width:591px) {
+
+    /*header user*/
+    #header .menu span {
+        display: none;
+    }
+
+
+
+    #header .menu a {
+        font-size: 20px;
+    }
+
+    #header .logo img {
+        width: 171px;
+    }
+
+    #header .menu {
+        display: inline-block;
+        margin-right: 0;
+        padding: 14px 11px;
+        float: right;
+    }
+
+
+
+    /*fp user*/
+
+    #homePage .inicio {
+        padding: 22px 20px 95px 20px;
+    }
+
+
+    #homePage .colunaDuplaHome2 {
+        display: none;
+    }
+
+    #homePage .colunaDuplaHome1 {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    #homePage .colunaDuplaHome1 .desc {
+        margin: 75px 0;
+    }
+
+
+
+    #homePage .colunaDuplaHome1 h1 {
+        font-size: 50px;
+        text-align: left;
+    }
+
+
+
+    #homePage form {
+        text-align: center;
+    }
+
+    #homePage .howTo h2 {
+        font-size: 27px;
+    }
+
+    #homePage .howTo .colunaInscricaoHome {
+        width: 100%;
+        margin: 38px 0px;
+        padding: 0px 59px;
+    }
+
+    /*footer*/
+    #footer .Morada p,
+    #footer .contactos p {
+        padding: 0;
+    }
+
+    #footer .contactos,
+    #footer .Morada,
+    #footer .social_media {
+        width: auto;
+        margin: 22px;
+    }
+
+    #footer {
+        text-align: left;
+    }
+
+    #footer .copy-right {
+        display: none;
+    }
+
+}
+
+@media (min-width: 592px) and (max-width:767px) {
+
+    /*header user*/
+    #header .menu span {
+        display: none;
+    }
+
+
+
+    #header .menu a {
+        font-size: 20px;
+    }
+
+    #header .logo img {
+        width: 171px;
+    }
+
+    #header .menu {
+        display: inline-block;
+        margin-right: 0;
+        padding: 14px 11px;
+        float: right;
+    }
+
+
+
+    /*fp user*/
+
+    #homePage .inicio {
+        padding: 22px 20px 95px 20px;
+    }
+
+
+    #homePage .colunaDuplaHome2 {
+        display: none;
+    }
+
+    #homePage .colunaDuplaHome1 {
+        width: 100%;
+        padding-left: 0;
+    }
+
+    #homePage .colunaDuplaHome1 .desc {
+        margin: 75px 0;
+    }
+
+
+
+    #homePage .colunaDuplaHome1 h1 {
+        font-size: 70px;
+        text-align: left;
+    }
+
+
+
+    #homePage form {
+        text-align: center;
+    }
+
+    #homePage .howTo h2 {
+        font-size: 27px;
+    }
+
+    #homePage .howTo .colunaInscricaoHome {
+        width: 100%;
+        margin: 38px 0px;
+        padding: 0px 59px;
+    }
+
+    /*footer*/
+    #footer .Morada p,
+    #footer .contactos p {
+        padding: 0;
+    }
+
+    #footer .contactos,
+    #footer .Morada,
+    #footer .social_media {
+        width: auto;
+        margin: 22px;
+    }
+
+    #footer {
+        text-align: left;
+    }
+
+    #footer .copy-right {
+        display: none;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width:958px) {
+    #homePage .fLayer img {
+        width: 100%;
+    }
+
+    #homePage .colunaDuplaHomeSegundaLayer img:nth-child(1) {
+        width: 39%;
+    }
+
+    #homePage .colunaDuplaHomeSegundaLayer img:nth-child(2) {
+        width: 59%;
+    }
+
+    #homePage .colunaDuplaHomeSegundaLayer img {
+        padding: 5px;
+    }
+
+    #homePage .inicio {
+        padding-top: 18px;
+    }
+
+    #homePage .colunaDuplaHome1 p {
+        font-size: 15px;
+    }
+
+    #homePage .colunaDuplaHome1 .desc {
+        margin: 41px 3px;
+    }
+
+    #homePage .colunaDuplaHome1 h1 {
+        font-size: 49px;
+    }
+
+    #homePage button {
+        margin: 0;
+    }
+
+    #homePage .howTo .colunaInscricaoHome {
+        padding: 4px 31px;
+    }
+
+    #homePage .howTo h2 {
+        font-size: 37px;
+    }
+
+    #homePage .howTo p {
+        font-size: 14px;
+    }
+
+    #homePage .howTo h3 {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 959px) and (max-width:1199px) {
+    #homePage .fLayer img {
+        width: 100%;
+    }
+
+    #homePage .colunaDuplaHomeSegundaLayer img:nth-child(1) {
+        width: 39%;
+    }
+
+    #homePage .colunaDuplaHomeSegundaLayer img:nth-child(2) {
+        width: 59%;
+    }
+
+    #homePage .colunaDuplaHomeSegundaLayer img {
+        padding: 5px;
+    }
+
+    #homePage .inicio {
+        padding-top: 18px;
+    }
+
+    #homePage .colunaDuplaHome1 p {
+        font-size: 15px;
+    }
+
+    #homePage .colunaDuplaHome1 .desc {
+        margin: 41px 3px;
+    }
+
+    #homePage .colunaDuplaHome1 h1 {
+        font-size: 49px;
+    }
+
+    #homePage button {
+        margin: 0;
+    }
+
+    #homePage .howTo .colunaInscricaoHome {
+        padding: 4px 31px;
+    }
+
+    #homePage .howTo h2 {
+        font-size: 37px;
+    }
+
+    #homePage .howTo p {
+        font-size: 14px;
+    }
+
+    #homePage .howTo h3 {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width:1439px) {
+    #homePage .fLayer img {
+        width: 100%;
+    }
+
+    #homePage .colunaDuplaHomeSegundaLayer img:nth-child(1) {
+        width: 39%;
+    }
+
+    #homePage .colunaDuplaHomeSegundaLayer img:nth-child(2) {
+        width: 59%;
+    }
+
+    #homePage .colunaDuplaHome1 h1 {
+
+        font-size: 61px;
+    }
+
+    #homePage .colunaDuplaHome1 .desc {
+        margin: 26px 36px;
+    }
+}
+
+@media (min-width: 1440px) and (max-width:1599px) {}
+
+@media (min-width: 1600px) {}

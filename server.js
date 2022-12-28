@@ -84,16 +84,17 @@ app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
         }*/
 
     let array_ids = []
-    // console.log(req.params.id_torneio)
+    //console.log(req.params.id_torneio)
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(req.params.id_torneio) } } }).exec()
     let converted=JSON.parse(JSON.stringify(docs))
+    console.log(converted)
     for (i of converted){
         for (j of i.users){
             array_ids.push(j)
         }
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
-        res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user})
+        res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user, Pairs: converted, torneio: req.params.id_torneio})
     //})
 })
 
@@ -292,23 +293,30 @@ app.post('/TorneiosAndamento', function (req, res) {
     })
 })
 
-app.post('/alterar_inscricoes/:id_torneio', (req, res) => {
-    res.render("alterar_inscricoes" , {US : req.session.user});
-})
+app.get('/apagar_inscricao/:id_torneio/:id_par', async (req, res) => {
 
-app.get('/apagar_inscricao/:id_utilizador', (req, res) => {
-
-    var id_utilizador = req.params.id_utilizador
-
-    User.deleteOne({ _id: id_utilizador }).exec(function (err, docs) {
+    var id_par = req.params.id_par 
+    var id_torneio = req.params.id_torneio
+    console.log("ID PAR::: " + id_par)
+    console.log("ID TORNEIO::: " + id_torneio)
+    
+    Pair.updateOne({_id: id_par},{$pull:{tournaments:{id:req.params.id_torneio}}}).exec(async function(err, docs) {
         if (err) {
             console.log(err);
         }
         else {
-            //User.find().exec(function(err, docs){
-            //res.render("alterar_inscricoes", { User: docs });
-            res.redirect('/alterar_inscricoes/:id_torneio', {US : req.session.user})
-            //})
+            let array_ids = []
+            let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(req.params.id_torneio) } } }).exec()
+            let converted=JSON.parse(JSON.stringify(docs))
+        
+            for (i of converted){
+                for (j of i.users){
+                    array_ids.push(j)
+                }    
+            }
+            let users = await User.find({ _id: { $in: array_ids } }).exec()
+            res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user, Pairs: converted, torneio: req.params.id_torneio})
+            //res.redirect('/alterar_inscricoes/'+ req.params.id_torneio, { User: users, Array: array_ids ,US : req.session.user, Pairs: converted})
         }
     })
 

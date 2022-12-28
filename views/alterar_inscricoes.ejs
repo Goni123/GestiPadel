@@ -24,35 +24,42 @@
                         <%- include('include/_show') %>
                         <% var numero = 1 %>
                         <% var num_dupla = 0 %>
+
                         <%for(var j=0; j< Array.length; j++){%>
                             <%for(var i= 0; i< User.length; i++) {%> 
                                 <% if(Array[j] == User[i]._id){%>  
-                                    <% console.log(Array[j])%>
                                     <% if(numero % 2 != 0 ){ %>
-                                        
                                         <tr>
                                         <td style="text-align: center; vertical-align: middle" rowspan="2"><%= num_dupla %></td>
                                         <%=num_dupla++%>
-                                    <% } %> 
-                                    <% numero++%>
-                                        
+                                    <% } %>
+                                                
                                     <td><%= User[i].name%></td>
                                     <td><%= User[i].email%></td>
                                     <td><%= User[i].phone%></td>
                                     <td><%= User[i].nif%></td>
-                                    <td>
-                                        <a href="/" class="btn border-shadow update">
-                                            <span class="text-gradient" id="editar_bd" value="<%=User[i]._id%>"><i class="fas fa-pencil-alt"></i></span>
-                                        </a>
-                                        <br><br>
-                                        <a href="/apagar_inscricao/<%= User[i]._id%>" class="btn border-shadow delete">
-                                            <span class="text-gradient" id="apagar_bd" value="<%=User[i]._id%>"><i class="fas fa-times"></i></span>
-                                        </a>
-                                    </td>
+                                    <% if(numero % 2 != 0 ){ %> 
+                                        <td rowspan="2">
+                                            <a href="/" class="btn border-shadow update">
+                                                <span class="text-gradient" id="editar_bd" value="<%=User[i]._id%>"><i class="fas fa-pencil-alt"></i></span>
+                                            </a>
+                                            <br><br>
+                                            <%for(var l= 0; l< Pairs.length; l++) {%>
+                                                <% if(i != User.length-1){%>
+                                                    <% if(((Pairs[l].users[0] == Array[j]) || (Pairs[l].users[1] == Array[j]) ) && ((Pairs[l].users[1] == Array[j]) || (Pairs[l].users[0] == Array[j]))){ %>
+                                                        <a href="/apagar_inscricao/<%=torneio%>/<%=Pairs[l]._id %>" class="btn border-shadow delete">
+                                                            <span class="text-gradient" id="apagar_bd" value="<%=Pairs[l]._id%>"><i class="fas fa-times"></i></span>
+                                                        </a> 
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
+                                            </td>
+                                    <% } %> 
+                                    <% numero++%>
                                     </tr>
                                 <%}%>
-                            <%}%>
-                        <%} %>
+                            <%} %>
+                        <% } %>
                     </tbody>
                 </table>
             </form>

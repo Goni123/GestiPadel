@@ -22,11 +22,11 @@
             function allowDrop(ev) {
                 ev.preventDefault();
             }
-    
+
             function drag(ev) {
                 ev.dataTransfer.setData("text", ev.target.id);
             }
-    
+
             function drop(ev) {
                 ev.preventDefault();
                 var data = ev.dataTransfer.getData("text");
@@ -47,7 +47,7 @@
 
             .nivel1, .nivel1M, .nivel1F, .nivel1MF{
                 font-family: 'Poppins';
-                border: 1px solid #000;
+                /*border: 1px solid #000;*/
                 background-color: orange;
                 display: inline-block;
                 max-width: 250px;
@@ -56,8 +56,8 @@
 
             .nivel2, .nivel2M, .nivel2F, .nivel2MF{
                 font-family: 'Poppins';
-                border: 1px solid #000;
-                background-color: green;
+                /*border: 1px solid #000;*/
+                background-color: lightgreen;
                 display: inline-block;
                 max-width: 250px;
                 padding: 1px;
@@ -65,7 +65,7 @@
 
             .nivel3, .nivel3M, .nivel3F, .nivel3MF{
                 font-family: 'Poppins';
-                border: 1px solid #000;
+                /*border: 1px solid #000;*/
                 background-color: cyan;
                 display: inline-block;
                 max-width: 250px;
@@ -74,7 +74,7 @@
 
             .nivel4, .nivel4M, .nivel4F, .nivel4MF{
                 font-family: 'Poppins';
-                border: 1px solid #000;
+                /* border: 1px solid #000; */
                 background-color: grey;
                 display: inline-block;
                 max-width: 250px;
@@ -82,7 +82,7 @@
             }
         </style>
     </head>
-   
+
     <!-- Main Site -->
     <div id="calendario_jogos">
         <div class="formulario">
@@ -90,9 +90,9 @@
                 <h1>Calendário de jogos</h1>
                 <!--fazer push do nome db-->
             </div>
-            
+
             <form method="POST">
-                <div class="jgd1">
+                <!--<div class="jgd1">
                     <br>
                     <br>
                     <label for="jogadoresnivel">Selecione o nível:</label><br>
@@ -108,9 +108,9 @@
                     <br>
                 </div>
                 <br>
-                <br>
+                <br>-->
                 <div class="Calendar">
-                    <p>Pode consultar todos os jogos escolhendo um certo nível!</p>
+                    <p>Organize os jogos do torneio arrastando as duplas para o dia e hora pretendido!</p>
                     <br>
                     <br>
                     <br>
@@ -275,7 +275,7 @@
                             <div id="drag<%=i%>" class="nome" draggable="true" ondragstart="drag(event)" width="50" height="20"><%= User[i].name+"/"+ User[i+1].name%></div>
                             <br>
                             <br>
-                        <% } %> 
+                        <% } %>
                     <% //} %>
 
                     <% for(par of Pares){ %>
@@ -283,6 +283,9 @@
                     <%}%>
                     <br>
                     <br>
+                    <br>
+                    <br>
+                    <h2>Legenda:</h2>
                     <table>
                         <tr>
                             <td>

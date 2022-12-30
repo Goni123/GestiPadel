@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Inscrições</title>
+</head>
+<body>
+    <h1>Editar Inscrições</h1>
+    
+    <h2>Jogador 1</h2>
+    <form action="/editar_inscricao/<%=torneio_id%>/<%=id_jogador1%>" method="POST">
+        <label for="name">Nome:</label><br>
+        <input type="text" name="username" pattern="[A-Za-z\W+]{1,25}" value="<%=nome1%>" required>
+        <br>
+        <br>
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" placeholder="Email" value="<%=email1%>" required>
+        <br>
+        <br>
+        <label for="nif">NIF:</label><br>
+        <input type="text" name="nif" placeholder="NIF" maxlength="9" pattern="[0-9]+" title="O NIF deve de conter apenas números"  value="<%=nif1%>"required>
+        <br>
+        <br>
+        <label for="contacto">Contacto de telemóvel:</label><br>
+        <input type="text" name="contacto" placeholder="Contacto de telemóvel" maxlength="9" pattern="[0-9]+" value="<%=phone1%>" title="O número de telemóvel deve de conter apenas números" required>
+        <br>
+        <br>
+        <button >Alterar Dados</button>
+    </form>
+
+    <br><br>
+
+    <h2>Jogador 2</h2>
+    <form action="/editar_inscricao/<%=torneio_id%>/<%=id_jogador2%>" method="POST">
+        <label for="name">Nome:</label><br>
+        <input type="text" name="username" placeholder="Nome" value="<%=nome2%>" pattern="[A-Za-z\W+]{1,25}" required>
+        <br>
+        <br>
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" placeholder="Email" value="<%=email2%>" required>
+        <br>
+        <br>
+        <label for="nif">NIF:</label><br>
+        <input type="text" name="nif" placeholder="NIF" maxlength="9" value="<%=nif2%>" pattern="[0-9]+" title="O NIF deve de conter apenas números" required>
+        <br>
+        <br>
+        <label for="contacto">Contacto de telemóvel:</label><br>
+        <input type="text" name="contacto" placeholder="Contacto de telemóvel" value="<%=phone2%>" maxlength="9" pattern="[0-9]+" title="O número de telemóvel deve de conter apenas números" required>
+        <br>
+        <br>
+        <button >Alterar Dados</button>
+    </form>
+    
+</body>
+</html>

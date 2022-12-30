@@ -59,7 +59,7 @@ td {
     margin: 1%;
 }
 
-.genDiv:nth-child(n+2) {
+.genDiv:nth-child(n+2):not(.Bclass) {
     display: flex;
     align-items: center;
     justify-content: center;

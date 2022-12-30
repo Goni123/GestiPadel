@@ -18,20 +18,32 @@
 
     <body>
     <div>
-        <h2><%=Tor?.nometorneio + Tor?.fasegrupos%></h2>
+        <h2><%=Tor?.nometorneio%></h2>
         <%if(Tor?.fasegrupos==="Sim"){%>
         <p hidden id="hasGroup"></p>
+        <%}
+        if (false){//groupfase has ended%>
+        <p hidden id="groupEnd"> </p>
         <%}%>
+
     </div>
     <div class="tab">
         <button class="tablink" onclick="openPage('Gclass')" id="grupos">Fase de Grupos</button>
         <button class="tablink" onclick="openPage('Bclass')" id="elemina">fase de Eleminatória</button>
     </div>
     <div class="toSelectSlots">
-        <div class="genDiv">
-
+        <%if (Tor.fasegrupos === "Sim"){%>
+        <div class="genDiv Gclass">
             <% for(par of Pares){%>
             <div class="teamDiv sourceDiv" draggable="true" data-pair-id="<%=par._id%>" <%= false ? 'data-location-target='+"asda" : ""  %>><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
+            <%}%>
+        </div>
+
+        <%}%>
+        <div class="genDiv Bclass" >
+
+            <% for(par of Pares){%>
+            <div class="teamDiv sourceDiv Bclass_" draggable="true" data-pair-id="<%=par._id%>" <%= false ? 'data-location-target='+"asda" : ""  %>><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
             <%}%>
         </div>
     </div>

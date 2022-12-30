@@ -107,8 +107,9 @@ async function GetTeamList() {
 
 
 
-    for (team of document.getElementsByClassName("sourceDiv")) {
-        list.push({ name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1] })
+    for (team of document.getElementsByClassName("sourceDiv Bclass_")){
+
+        list.push({name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1]})
     }
 }
 
@@ -176,6 +177,7 @@ function CreateBracketsSlots() {
 
             if (k === 0) {
                 teamDiv.classList.add(`teamDiv`);
+                teamDiv.classList.add(`bracket`);
                 teamDiv.setAttribute('draggable', true);
             } else {
                 teamDiv.classList.add(`teamDivNoDrag`);
@@ -405,7 +407,7 @@ function dragAndDrop() {
                 e.stopPropagation(); // stops the browser from redirecting.
             }
 
-            if (dragSrcEl != this) {
+            if (dragSrcEl !== this) {
                 dragSrcEl.innerHTML = this.innerHTML;
 
                 DeleteDiv(dragSrcEl, e.dataTransfer.getData('text/html'), this);
@@ -440,8 +442,8 @@ function dragAndDrop() {
 }
 
 function DeleteDiv(e, i, ref) {
-    if (e.innerHTML == "" || e.innerHTML == "/") {
-        if (e.innerHTML != i && e.closest('.toSelectSlots') != null) {
+    if (e.innerHTML === "" || e.innerHTML === "/") {
+        if (e.innerHTML !== i && e.closest('.toSelectSlots') !== null) {
             e.remove();
         }
     }
@@ -459,6 +461,7 @@ for (var i = 0; i < elements.length; i++) {
 }
 
 function updateValue() {
+
     var groupsNumber = Math.ceil(groupSize / 4);
 
     if (IsOnBrackets) { //brackets

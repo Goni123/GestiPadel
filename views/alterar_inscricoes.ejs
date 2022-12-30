@@ -6,9 +6,6 @@
     <!-- Main Site -->
     <main id="site-main">
         <div class="container">
-
-            <!-- form handling -->
-            <form action="/" method="POST">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -34,15 +31,35 @@
                                         <%=num_dupla++%>
                                     <% } %>
                                                 
-                                    <td><%= User[i].name%></td>
-                                    <td><%= User[i].email%></td>
-                                    <td><%= User[i].phone%></td>
-                                    <td><%= User[i].nif%></td>
+                                    <td id ="name_tabela" contenteditable="true"><%= User[i].name%></td>
+                                    <td id ="email_tabela" contenteditable="true"><%= User[i].email%></td>
+                                    <td id ="phone_tabela" contenteditable="true"><%= User[i].phone%></td>
+                                    <td id ="nif_tabela" contenteditable="true"><%= User[i].nif%></td>
                                     <% if(numero % 2 != 0 ){ %> 
                                         <td rowspan="2">
-                                            <a href="/" class="btn border-shadow update">
-                                                <span class="text-gradient" id="editar_bd" value="<%=User[i]._id%>"><i class="fas fa-pencil-alt"></i></span>
-                                            </a>
+                                            <%for(var l= 0; l< Pairs.length; l++) {%>
+                                                <% if(i != User.length-1){%>
+                                                    <% if(((Pairs[l].users[0] == Array[j]) || (Pairs[l].users[1] == Array[j]) ) && ((Pairs[l].users[1] == Array[j]) || (Pairs[l].users[0] == Array[j]))){ %>
+ 
+                                                        <form action="/editar_inscricao/<%=torneio%>/<%=Pairs[l].users[0]%>/<%=Pairs[l].users[1]%>" method="POST">
+                                                            
+                                                            <input type="hidden" name="name1" value="<%=User[i].name%>" />
+                                                            <input type="hidden" name="email1" value="<%=User[i].email%>" />
+                                                            <input type="hidden" name="phone1" value="<%=User[i].phone%>" />
+                                                            <input type="hidden" name="nif1" value="<%=User[i].nif%>" />
+
+                                                            <input type="hidden" name="name2" value="<%=User[i+1].name%>" />
+                                                            <input type="hidden" name="email2" value="<%=User[i+1].email%>" />
+                                                            <input type="hidden" name="phone2" value="<%=User[i+1].phone%>" />
+                                                            <input type="hidden" name="nif2" value="<%=User[i+1].nif%>" />
+                                                            
+                                                            <button type="submit" >
+                                                                <span value="<%=Pairs[l].users[0]%>_<%=Pairs[l].users[1]%>"><i class="fas fa-pencil-alt"></i></span>
+                                                            </button>
+                                                        </form>   
+                                                    <% } %>
+                                                <% } %>
+                                            <% } %>
                                             <br><br>
                                             <%for(var l= 0; l< Pairs.length; l++) {%>
                                                 <% if(i != User.length-1){%>
@@ -62,11 +79,9 @@
                         <% } %>
                     </tbody>
                 </table>
-            </form>
         </div>
     </main>
 <!-- /Main Site -->
-
 
 <!-- include footer -->
 <%- include('include/_footer') %>

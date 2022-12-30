@@ -301,6 +301,58 @@ app.get('/apagar_inscricao/:id_torneio/:id_par', async (req, res) => {
 
 })
 
+app.post('/editar_inscricao/:id_torneio/:id_utilizador1/:id_utilizador2', async (req, res) => {
+    var nome_jogador1 = req.body.name1
+    var email_jogador1 = req.body.email1
+    var phone_jogador1 = req.body.phone1
+    var nif_jogador1 = req.body.nif1
+
+    var nome_jogador2 = req.body.name2
+    var email_jogador2 = req.body.email2
+    var phone_jogador2 = req.body.phone2
+    var nif_jogador2 = req.body.nif2
+
+    var id_utilizador1 = req.params.id_utilizador1 
+    var id_utilizador2 = req.params.id_utilizador2
+
+    var torneio_id = req.params.id_torneio
+
+    res.render('editar_inscricoes', {nome1: nome_jogador1, email1: email_jogador1, phone1: phone_jogador1, nif1: nif_jogador1, nome2: nome_jogador2, email2: email_jogador2, phone2: phone_jogador2, nif2: nif_jogador2, id_jogador1 : id_utilizador1 , id_jogador2: id_utilizador2, torneio_id: torneio_id})
+})
+
+app.post('/editar_inscricao/:id_torneio/:id_utilizador', async (req, res) => {
+
+    var nome_jogador = req.body.username
+    var email_jogador = req.body.email
+    var phone_jogador = req.body.phone
+    var nif_jogador = req.body.nif
+
+    var id_utilizador = req.params.id_utilizador
+
+    var id_torneio = req.params.id_torneio
+
+    User.updateOne({_id: id_utilizador},{$set:{name:nome_jogador,email:email_jogador,phone:phone_jogador,nif:nif_jogador}}).exec(async function(err, docs) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            
+            let array_ids = []
+            let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(id_torneio) } } }).exec()
+            let converted=JSON.parse(JSON.stringify(docs))
+                
+            for (i of converted){
+                for (j of i.users){
+                    array_ids.push(j)
+                }    
+            }
+            let users = await User.find({ _id: { $in: array_ids } }).exec()
+            res.redirect('/alterar_inscricoes/'+ id_torneio)
+
+        }
+    })
+})
+
 //ROTAS LOGIN
 app.get(['/login','/login/error'], async (req, res) => {
 

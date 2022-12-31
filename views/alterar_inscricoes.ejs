@@ -34,15 +34,14 @@
                                     <td id ="email_tabela"><%= User[i].email%></td>
                                     <td id ="phone_tabela"><%= User[i].phone%></td>
                                     <td id ="nif_tabela"><%= User[i].nif%></td>
+
                                     <% if(numero % 2 != 0 ){ %> 
                                         <td rowspan="2">
                                             <%for(var l= 0; l< Pairs.length; l++) {%>
-                                                <% if(i != User.length-1){%>
+                                                <% if(i != User.length-1){%>                                                    
                                                     <% if(((Pairs[l].users[0] == Array[j]) || (Pairs[l].users[1] == Array[j]) ) && ((Pairs[l].users[1] == Array[j]) || (Pairs[l].users[0] == Array[j]))){ %>
- 
                                                         <form action="/editar_inscricao/<%=torneio%>/<%=Pairs[l].users[0]%>/<%=Pairs[l].users[1]%>" method="POST">
-                                                            <%console.log(User[i].name)%>
-                                                            <%console.log(User[i+1].name)%>
+                                                           
                                                             <input type="hidden" name="name1" value="<%=User[i].name%>" />
                                                             <input type="hidden" name="email1" value="<%=User[i].email%>" />
                                                             <input type="hidden" name="phone1" value="<%=User[i].phone%>" />
@@ -56,7 +55,7 @@
                                                             <button type="submit" >
                                                                 <span value="<%=Pairs[l].users[0]%>_<%=Pairs[l].users[1]%>"><i class="fas fa-pencil-alt"></i></span>
                                                             </button>
-                                                        </form>   
+                                                        </form>  
                                                     <% } %>
                                                 <% } %>
                                             <% } %>
@@ -70,7 +69,7 @@
                                                     <% } %>
                                                 <% } %>
                                             <% } %>
-                                            </td>
+                                        </td>
                                     <% } %> 
                                     <% numero++%>
                                     </tr>

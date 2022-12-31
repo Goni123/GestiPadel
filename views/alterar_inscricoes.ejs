@@ -30,11 +30,10 @@
                                         <td style="text-align: center; vertical-align: middle" rowspan="2"><%= num_dupla %></td>
                                         <%=num_dupla++%>
                                     <% } %>
-                                                
-                                    <td id ="name_tabela" contenteditable="true"><%= User[i].name%></td>
-                                    <td id ="email_tabela" contenteditable="true"><%= User[i].email%></td>
-                                    <td id ="phone_tabela" contenteditable="true"><%= User[i].phone%></td>
-                                    <td id ="nif_tabela" contenteditable="true"><%= User[i].nif%></td>
+                                    <td id ="name_tabela"><%= User[i].name%></td>
+                                    <td id ="email_tabela"><%= User[i].email%></td>
+                                    <td id ="phone_tabela"><%= User[i].phone%></td>
+                                    <td id ="nif_tabela"><%= User[i].nif%></td>
                                     <% if(numero % 2 != 0 ){ %> 
                                         <td rowspan="2">
                                             <%for(var l= 0; l< Pairs.length; l++) {%>
@@ -42,7 +41,8 @@
                                                     <% if(((Pairs[l].users[0] == Array[j]) || (Pairs[l].users[1] == Array[j]) ) && ((Pairs[l].users[1] == Array[j]) || (Pairs[l].users[0] == Array[j]))){ %>
  
                                                         <form action="/editar_inscricao/<%=torneio%>/<%=Pairs[l].users[0]%>/<%=Pairs[l].users[1]%>" method="POST">
-                                                            
+                                                            <%console.log(User[i].name)%>
+                                                            <%console.log(User[i+1].name)%>
                                                             <input type="hidden" name="name1" value="<%=User[i].name%>" />
                                                             <input type="hidden" name="email1" value="<%=User[i].email%>" />
                                                             <input type="hidden" name="phone1" value="<%=User[i].phone%>" />

@@ -57,9 +57,11 @@ if (groupSize <= 4) {
 }
 
 
-
 CreateGroupFase();
+
+
 CreateBracketsSlots();
+
 
 
 
@@ -107,9 +109,9 @@ async function GetTeamList() {
 
 
 
-    for (team of document.getElementsByClassName("sourceDiv Bclass_")){
+    for (team of document.getElementsByClassName("sourceDiv Bclass_")) {
 
-        list.push({name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1]})
+        list.push({ name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1] })
     }
 }
 

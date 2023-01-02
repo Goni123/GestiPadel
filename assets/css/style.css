@@ -1088,6 +1088,12 @@ button img {
     margin: 0;
 }
 
+#alterarInsc .table td {
+    background-color: #fff;
+}
+
+
+/*media queries para responsive*/
 @media (max-width: 361px) {
 
     /*header user*/

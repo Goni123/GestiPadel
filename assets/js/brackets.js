@@ -24,9 +24,7 @@ function openPage(pageName) {
 // Get the element with id="defaultOpen" and click on it
 //document.getElementById("defaultOpen").click();
 
-
 //const User = import("./model/usermodel");
-
 
 let list = [];
 console.log("entrou");
@@ -107,9 +105,9 @@ async function GetTeamList() {
 
 
 
-    for (team of document.getElementsByClassName("sourceDiv Bclass_")){
+    for (team of document.getElementsByClassName("sourceDiv Bclass_")) {
 
-        list.push({name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1]})
+        list.push({ name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1] })
     }
 }
 

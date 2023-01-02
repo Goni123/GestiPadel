@@ -24,9 +24,7 @@ function openPage(pageName) {
 // Get the element with id="defaultOpen" and click on it
 //document.getElementById("defaultOpen").click();
 
-
 //const User = import("./model/usermodel");
-
 
 let list = [];
 console.log("entrou");

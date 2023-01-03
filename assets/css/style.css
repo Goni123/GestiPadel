@@ -551,6 +551,7 @@ span {
     box-sizing: border-box;
     width: 80%;
     border-radius: 6px;
+    padding-left: 7px;
     height: 46px;
     margin-bottom: 25px;
     background: #FFFFFF;
@@ -1116,6 +1117,28 @@ button img {
 
 #editar_inscricoes form {
     display: inline-block;
+    width: 77%;
+}
+
+#editar_inscricoes .formulario {
+    display: inline-flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: baseline;
+    text-align: center;
+}
+
+#editar_inscricoes .formulario input {
+    width: 96%;
+    font-size: 18px;
+    font-family: 'Poppins';
+}
+
+#editar_inscricoes .formulario label {
+    float: left;
+    padding-left: 10px;
 }
 
 /*media queries para responsive*/

@@ -1075,7 +1075,7 @@ button img {
 
 #torneios_admin .block_torneios:hover .overlay {
     opacity: 1;
-    border-radius: 31px;
+    /*border-radius: 31px;*/
 }
 
 #torneios_admin .block_torneios button {

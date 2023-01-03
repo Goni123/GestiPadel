@@ -23,15 +23,17 @@
             <%for(tournment of Tournament){%>
                 <div class="block_torneios">
                     <img class="foto_torneio" src="/img/img_Torneios/<%=tournment.img%>">
-                    <p>
+                    <div class="overlay">
                         <form action="/editar_brakets/<%=tournment._id%>" id="torneio" method="POST">
                             <button type="submit">
-                                <%=tournment.nometorneio%>
+                                <p>
+                                    <%=tournment.nometorneio%>
+                                </p>
                             </button>
                         </form>
-                    </p>
+                    </div>
                 </div>
-            <% } %>
+                <% } %>
         </div>
     </body>
 

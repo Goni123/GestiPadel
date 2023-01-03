@@ -1141,6 +1141,20 @@ button img {
     padding-left: 10px;
 }
 
+#brackets h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+#brackets {
+    margin-top: 20px;
+}
+
+#brackets .tab {
+    text-align: center;
+    margin: 80px 0;
+}
+
 /*media queries para responsive*/
 @media (max-width: 361px) {
 

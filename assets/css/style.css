@@ -1090,8 +1090,33 @@ button img {
 
 #alterarInsc .table td {
     background-color: #fff;
+    vertical-align: middle;
 }
 
+#alterarInsc .table th {
+    background-color: rgb(126 126 126);
+}
+
+#alterarInsc .table {
+    padding: 90px;
+}
+
+.btn.border-shadow.delete {
+    padding: 10px;
+}
+
+#editar_inscricoes h1 {
+    text-align: center;
+}
+
+#editar_inscricoes .block {
+    display: inline-block;
+    width: 39%;
+}
+
+#editar_inscricoes form {
+    display: inline-block;
+}
 
 /*media queries para responsive*/
 @media (max-width: 361px) {

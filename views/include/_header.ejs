@@ -18,30 +18,30 @@
     <header id="header">
 
         <%console.log(Us)%>
-        <div class="logo">
-            <%if(typeof Us !=='undefined' ){%>
-                <%if(Us.type ===1){%>
-                    <a href="../../admin">
-                        <img src="../../img/logo.png">
-                    </a>
-            <%}%>
-            <%}if(typeof Us ==='undefined' ){%>
-                <a href="../../home">
-                    <img src="../../img/logo.png">
-                </a>
-            <%}%>
-        </div>
+            <div class="logo">
+                <%if(typeof Us !=='undefined' ){%>
+                    <%if(Us.type===1){%>
+                        <a href="../../../admin">
+                            <img src="../../../img/logo.png">
+                        </a>
+                        <%}%>
+                            <%}if(typeof Us==='undefined' ){%>
+                                <a href="../../../home">
+                                    <img src="../../../img/logo.png">
+                                </a>
+                                <%}%>
+            </div>
 
-        <div class="menu">
-            <%if(typeof Us !=='undefined' ){%>
-                <span>Hello <%=Us.username%>
-                </span>
+            <div class="menu">
+                <%if(typeof Us !=='undefined' ){%>
+                    <span>Hello <%=Us.username%>
+                    </span>
 
-                <a href="../../logout">LogOut</a>
-                <%}else{%>
-                    <a href="../../login">Login</a>
-                    <%}%>
-        </div>
+                    <a href="../../../logout">LogOut</a>
+                    <%}else{%>
+                        <a href="../../login">Login</a>
+                        <%}%>
+            </div>
 
 
     </header>

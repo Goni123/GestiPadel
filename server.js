@@ -27,19 +27,19 @@ const { array } = require('./multerConfig');
 app.use(cookieParser());
 app.use(session({
     secret: "gestipadel",
-    saveUninitialized:true,
-    cookie: { maxAge: 1000 * 60 * 60 *24 }, //one day wait
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }, //one day wait
     resave: false
 }));
 
-app.get('/', (req, res) => {    
-    res.render("home_user",{US:req.session.user});
+app.get('/', (req, res) => {
+    res.render("home_user", { US: req.session.user });
     console.log(req.session.user)
 })
 
 app.get('/inscricoes/:id_torneio', async (req, res) => {
     let T = await Tournament.findOne({ _id: req.params.id_torneio }).exec()
-    res.render("usersinsc", { Tor: T, US : req.session.user });
+    res.render("usersinsc", { Tor: T, US: req.session.user });
 /*app.get('/alterar_inscricoes/:id_torneio', async (req,res) =>{
     Tournament.find({}).exec(function (err, docs) {
         res.render('menu_editar_torneio', { Tournament: docs })
@@ -47,18 +47,18 @@ app.get('/inscricoes/:id_torneio', async (req, res) => {
 })*/})
 
 
-app.get('/alterar_inscricoes/:id_torneio', async(req,res) => {
+app.get('/alterar_inscricoes/:id_torneio', async (req, res) => {
     let array_ids = []
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(req.params.id_torneio) } } }).exec()
-    let converted=JSON.parse(JSON.stringify(docs))
+    let converted = JSON.parse(JSON.stringify(docs))
     console.log(converted)
-    for (i of converted){
-        for (j of i.users){
+    for (i of converted) {
+        for (j of i.users) {
             array_ids.push(j)
         }
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
-    res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user, Pairs: converted, torneio: req.params.id_torneio})
+    res.render('alterar_inscricoes', { User: users, Array: array_ids, US: req.session.user, Pairs: converted, torneio: req.params.id_torneio })
 
 })
 
@@ -66,30 +66,30 @@ app.post('/alterar_inscricoes/:id_torneio', async (req, res) => {
 
     let array_ids = []
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(req.params.id_torneio) } } }).exec()
-    let converted=JSON.parse(JSON.stringify(docs))
+    let converted = JSON.parse(JSON.stringify(docs))
     console.log(converted)
-    for (i of converted){
-        for (j of i.users){
+    for (i of converted) {
+        for (j of i.users) {
             array_ids.push(j)
         }
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
-    res.render('alterar_inscricoes', { User: users, Array: array_ids ,US : req.session.user, Pairs: converted, torneio: req.params.id_torneio})
+    res.render('alterar_inscricoes', { User: users, Array: array_ids, US: req.session.user, Pairs: converted, torneio: req.params.id_torneio })
 })
 
 app.get('/inscricoes/:id_torneio', (req, res) => {
-    res.render("usersinsc",{US : req.session.user});
+    res.render("usersinsc", { US: req.session.user });
 })
 
 app.get('/editar_torneio_menu', async (req, res) => {
-    res.render("editar_torneio_admin",{US : req.session.user});
+    res.render("editar_torneio_admin", { US: req.session.user });
 })
 
 
 app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
 
     Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
-        res.render("editar_torneio_admin", { Tournament: docs, US : req.session.user })
+        res.render("editar_torneio_admin", { Tournament: docs, US: req.session.user })
     })
 
 })
@@ -107,7 +107,7 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
             }
             else {
                 Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
-                    res.render("editar_torneio_admin", { Tournament: docs , US : req.session.user})
+                    res.render("editar_torneio_admin", { Tournament: docs, US: req.session.user })
                 })
             }
         })
@@ -120,7 +120,7 @@ app.post('/torneiomenu/:id_torneio', async (req, res) => {
             }
             else {
                 Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
-                    res.render("editar_torneio_admin", { Tournament: docs , US : req.session.user})
+                    res.render("editar_torneio_admin", { Tournament: docs, US: req.session.user })
                 })
             }
         })
@@ -131,17 +131,17 @@ app.get('/editar_brakets/:id_torneio', async (req, res) => {
     let array_ids = []
     // console.log(req.params.id_torneio)
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
-    let converted=JSON.parse(JSON.stringify(docs))
-    for (i of converted){
-        for (j of i.users){
+    let converted = JSON.parse(JSON.stringify(docs))
+    for (i of converted) {
+        for (j of i.users) {
             array_ids.push(j)
         }
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
-    let tour  = await Tournament.findOne({_id : req.params.id_torneio}).exec()
+    let tour = await Tournament.findOne({ _id: req.params.id_torneio }).exec()
     console.log(tour)
     //console.log(users)
-    res.render("tournament_brackets", {Pares : docs, Utilizadores : users, US : req.session.user, Tor:tour});
+    res.render("tournament_brackets", { Pares: docs, Utilizadores: users, US: req.session.user, Tor: tour });
 
 })
 
@@ -149,33 +149,33 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
     let array_ids = []
     // console.log(req.params.id_torneio)
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
-    let converted=JSON.parse(JSON.stringify(docs))
-    for (i of converted){
-        for (j of i.users){
+    let converted = JSON.parse(JSON.stringify(docs))
+    for (i of converted) {
+        for (j of i.users) {
             array_ids.push(j)
         }
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
-    let tour  = await Tournament.findOne({_id : req.params.id_torneio}).exec()
+    let tour = await Tournament.findOne({ _id: req.params.id_torneio }).exec()
     //console.log(array_ids)
     //console.log(users)
-    res.render("tournament_brackets", {Pares : docs, Utilizadores : users, US : req.session.user, Tor:tour});
+    res.render("tournament_brackets", { Pares: docs, Utilizadores: users, US: req.session.user, Tor: tour });
 
 })
 
 
 app.get('/home', (req, res) => {
 
-    res.render("home_user",{US:req.session.user});
+    res.render("home_user", { US: req.session.user });
     console.log(req.session.user)
 })
 
 app.get('/admin', (req, res) => {
-    res.render("home_admin",{US : req.session.user});
+    res.render("home_admin", { US: req.session.user });
     console.log(req.session.user)
 })
 app.post('/admin', (req, res) => {
-    res.render("home_admin",{US : req.session.user});
+    res.render("home_admin", { US: req.session.user });
     console.log(req.session.user)
 })
 
@@ -183,18 +183,18 @@ app.get('/brackets', async (req, res) => {
     //let pair=await Pair.find({ tournaments: { $elemMatch: { id: "6391c5456d93c66ed47b4c0a" } } }).populate('users').exec()
     //console.log(pair)
     let array_ids = []
-    let value =""
+    let value = ""
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: "6391c5456d93c66ed47b4c0a" } } }).exec()
-    let converted= JSON.parse( JSON.stringify(docs))
-    for (i of converted){
-        for (j of i.users){
+    let converted = JSON.parse(JSON.stringify(docs))
+    for (i of converted) {
+        for (j of i.users) {
             array_ids.push(j)
         }
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
     console.log(array_ids)
     console.log(users)
-    res.render("tournament_brackets", {Pares :docs, Utilizadores:users , US : req.session.user});
+    res.render("tournament_brackets", { Pares: docs, Utilizadores: users, US: req.session.user });
 })
 
 dotenv.config({ path: 'config.env' })
@@ -239,63 +239,63 @@ app.use(express.json())
 
 app.post('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {
-        res.render('Torneios_admin', { Tournament: docs , US : req.session.user})
+        res.render('Torneios_admin', { Tournament: docs, US: req.session.user })
     })
 })
 
 app.get('/TorneiosAdmin', function (req, res) {
     Tournament.find({}).exec(function (err, docs) {
-        res.render('Torneios_admin', { Tournament: docs , US : req.session.user})
+        res.render('Torneios_admin', { Tournament: docs, US: req.session.user })
     })
 })
 
 app.post('/ProxTorneios', function (req, res) {
     Tournament.find({ has_ended: false }).exec(function (err, docs) {
-        res.render('Torneios_User_Prox', { Tournament: docs , US : req.session.user})
+        res.render('Torneios_User_Prox', { Tournament: docs, US: req.session.user })
     })
 })
 
 app.get('/ProxTorneios', function (req, res) {
     Tournament.find({ has_ended: false }).exec(function (err, docs) {
-        res.render('Torneios_User_Prox', { Tournament: docs , US : req.session.user})
+        res.render('Torneios_User_Prox', { Tournament: docs, US: req.session.user })
     })
 })
 
 app.get('/TorneiosAndamento', function (req, res) {
     Tournament.find({ has_ended: true }).exec(function (err, docs) {
-        res.render('Torneios_User_Anda', { Tournament: docs , US : req.session.user})
+        res.render('Torneios_User_Anda', { Tournament: docs, US: req.session.user })
     })
 })
 
 app.post('/TorneiosAndamento', function (req, res) {
     Tournament.find({ has_ended: true }).exec(function (err, docs) {
-        res.render('Torneios_User_Anda', { Tournament: docs , US : req.session.user})
+        res.render('Torneios_User_Anda', { Tournament: docs, US: req.session.user })
     })
 })
 
 app.get('/apagar_inscricao/:id_torneio/:id_par', async (req, res) => {
 
-    var id_par = req.params.id_par 
+    var id_par = req.params.id_par
     var id_torneio = req.params.id_torneio
     console.log("ID PAR::: " + id_par)
     console.log("ID TORNEIO::: " + id_torneio)
-    
-    Pair.updateOne({_id: id_par},{$pull:{tournaments:{id:req.params.id_torneio}}}).exec(async function(err, docs) {
+
+    Pair.updateOne({ _id: id_par }, { $pull: { tournaments: { id: req.params.id_torneio } } }).exec(async function (err, docs) {
         if (err) {
             console.log(err);
         }
         else {
             let array_ids = []
             let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(req.params.id_torneio) } } }).exec()
-            let converted=JSON.parse(JSON.stringify(docs))
-        
-            for (i of converted){
-                for (j of i.users){
+            let converted = JSON.parse(JSON.stringify(docs))
+
+            for (i of converted) {
+                for (j of i.users) {
                     array_ids.push(j)
-                }    
+                }
             }
             let users = await User.find({ _id: { $in: array_ids } }).exec()
-            res.redirect('/alterar_inscricoes/'+ req.params.id_torneio)
+            res.redirect('/alterar_inscricoes/' + req.params.id_torneio)
         }
     })
 
@@ -312,12 +312,12 @@ app.post('/editar_inscricao/:id_torneio/:id_utilizador1/:id_utilizador2', async 
     var phone_jogador2 = req.body.phone2
     var nif_jogador2 = req.body.nif2
 
-    var id_utilizador1 = req.params.id_utilizador1 
+    var id_utilizador1 = req.params.id_utilizador1
     var id_utilizador2 = req.params.id_utilizador2
 
     var torneio_id = req.params.id_torneio
 
-    res.render('editar_inscricoes', {nome1: nome_jogador1, email1: email_jogador1, phone1: phone_jogador1, nif1: nif_jogador1, nome2: nome_jogador2, email2: email_jogador2, phone2: phone_jogador2, nif2: nif_jogador2, id_jogador1 : id_utilizador1 , id_jogador2: id_utilizador2, torneio_id: torneio_id})
+    res.render('editar_inscricoes', { nome1: nome_jogador1, email1: email_jogador1, phone1: phone_jogador1, nif1: nif_jogador1, nome2: nome_jogador2, email2: email_jogador2, phone2: phone_jogador2, nif2: nif_jogador2, id_jogador1: id_utilizador1, id_jogador2: id_utilizador2, torneio_id: torneio_id, US: req.session.user })
 })
 
 app.post('/editar_inscricao/:id_torneio/:id_utilizador', async (req, res) => {
@@ -331,93 +331,93 @@ app.post('/editar_inscricao/:id_torneio/:id_utilizador', async (req, res) => {
 
     var id_torneio = req.params.id_torneio
 
-    User.updateOne({_id: id_utilizador},{$set:{name:nome_jogador,email:email_jogador,phone:phone_jogador,nif:nif_jogador}}).exec(async function(err, docs) {
+    User.updateOne({ _id: id_utilizador }, { $set: { name: nome_jogador, email: email_jogador, phone: phone_jogador, nif: nif_jogador } }).exec(async function (err, docs) {
         if (err) {
             console.log(err);
         }
         else {
-            
+
             let array_ids = []
             let docs = await Pair.find({ tournaments: { $elemMatch: { id: mongoose.Types.ObjectId(id_torneio) } } }).exec()
-            let converted=JSON.parse(JSON.stringify(docs))
-                
-            for (i of converted){
-                for (j of i.users){
+            let converted = JSON.parse(JSON.stringify(docs))
+
+            for (i of converted) {
+                for (j of i.users) {
                     array_ids.push(j)
-                }    
+                }
             }
             let users = await User.find({ _id: { $in: array_ids } }).exec()
-            res.redirect('/alterar_inscricoes/'+ id_torneio)
+            res.redirect('/alterar_inscricoes/' + id_torneio)
 
         }
     })
 })
 
 //ROTAS LOGIN
-app.get(['/login','/login/error'], async (req, res) => {
+app.get(['/login', '/login/error'], async (req, res) => {
 
     console.log(req.session.user)
 
-    if (typeof req.session.user !== 'undefined'){
-        if (req.session.user.type ===1){
+    if (typeof req.session.user !== 'undefined') {
+        if (req.session.user.type === 1) {
             res.redirect("/admin")
-        }else if (req.session.user.type ===0 ){
+        } else if (req.session.user.type === 0) {
             res.redirect(("/home"))
         }
-    }else{
+    } else {
 
-        res.render("login" , {US : req.session.user})
+        res.render("login", { US: req.session.user })
     }
 
 })
 
-app.post(['/login','/login/error'], async (req, res) => {
+app.post(['/login', '/login/error'], async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
     console.log(req.path)
     console.log(username)
     console.log(password)
 
-     /*UserAdmin.exists({ username: username, password: password }, function (err, doc) {
-        if (err) {
-            console.log(err)
-        } else {
-            if (doc) {
-                console.log("O Login foi realizado com sucesso.")
-                const user = {
-                    username: username,
-                    password: password
-                }
-                req.session.user = user;
-                req.session.save();
-                console.log(req.session.user)
+    /*UserAdmin.exists({ username: username, password: password }, function (err, doc) {
+       if (err) {
+           console.log(err)
+       } else {
+           if (doc) {
+               console.log("O Login foi realizado com sucesso.")
+               const user = {
+                   username: username,
+                   password: password
+               }
+               req.session.user = user;
+               req.session.save();
+               console.log(req.session.user)
 
-                res.redirect('/admin');
-            }
-            else {
-                console.log("Os dados introduzidos não estão corretos.")
-            }
+               res.redirect('/admin');
+           }
+           else {
+               console.log("Os dados introduzidos não estão corretos.")
+           }
 
-        }
-    });//*/
-    let target="/login"
-    let adm = await UserAdmin.find({ username: username, password: password}).exec()
-    let usr = await User.find({ name: username, password: password}).exec()
-    if (adm.length === 1 ){
+       }
+   });//*/
+    let target = "/login"
+    let adm = await UserAdmin.find({ username: username, password: password }).exec()
+    let usr = await User.find({ name: username, password: password }).exec()
+    if (adm.length === 1) {
         req.session.user = {
 
             username: adm[0].username,
-            uid: adm[0]._id ,
+            uid: adm[0]._id,
             type: 1,
         }
         res.redirect('/admin')
     }
-    console.log(adm , usr)
-    if  (usr.length === 1){
+    console.log(adm, usr)
+    if (usr.length === 1) {
         req.session.user = {
 
             username: usr[0].name,
-            uid: usr[0]._id ,
+            uid: usr[0]._id,
             type: 0,
         }
         res.redirect('/home')
@@ -426,7 +426,7 @@ app.post(['/login','/login/error'], async (req, res) => {
 
 })
 //ROTAS LOGOUT
-app.get('/logout',(req,res) => {
+app.get('/logout', (req, res) => {
     delete req.session.user
     req.session.save();
     res.redirect('/home')
@@ -434,7 +434,7 @@ app.get('/logout',(req,res) => {
 
 //ROTAS REGIS
 app.get('/registo', (req, res) => {
-    res.render("registo" ,{ US : req.session.user});
+    res.render("registo", { US: req.session.user });
 })
 
 app.post('/registo', (req, res) => {
@@ -478,7 +478,7 @@ app.post('/registo', (req, res) => {
 })
 
 app.get('/registo_admin', (req, res) => {
-    res.render("registo_admin", {US : req.session.user});
+    res.render("registo_admin", { US: req.session.user });
 })
 
 app.post('/registo_admin', (req, res) => {
@@ -519,7 +519,7 @@ app.post('/registo_admin', (req, res) => {
 
 //ROTAS CRIAR TORNEIO
 app.get('/criartorneio', (req, res) => {
-    res.render("criar_torneio",{ US : req.session.user});
+    res.render("criar_torneio", { US: req.session.user });
 })
 
 app.post('/criartorneio', upload.single('img'), function (req, res) {
@@ -540,7 +540,7 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
         if (err) {
             console.log(err)
         } else {
-            res.render('home_admin', {US : req.session.user})
+            res.render('home_admin', { US: req.session.user })
         }
     })
 })
@@ -549,7 +549,7 @@ app.post('/criartorneio', upload.single('img'), function (req, res) {
 app.get('/insctorneio/:id_torneio', async (req, res) => {
     let T = await Tournament.find({ _id: req.params.id_torneio }).exec()
     console.log(T, T[0].niveltipo)
-    res.render('usersinsc', { Tournament: T, niveis: T[0].niveltipo , US : req.session.user})
+    res.render('usersinsc', { Tournament: T, niveis: T[0].niveltipo, US: req.session.user })
 })
 
 app.post('/insctorneio/:id_torneio', async (req, res) => {
@@ -611,7 +611,7 @@ app.post('/insctorneio/:id_torneio', async (req, res) => {
         const pair = await Pair.find({ users: { "$in": [dbuser1[0]._id, dbuser2[0]._id] } })
         if (pair[0].tournaments.some(element => { return element.id === req.params.id_torneio; })) { //caso os users ja tenham um par em conjunto
             //S
-            await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": req.params.id_torneio, "level": level, "unavailability": arravl  } } })
+            await Pair.updateOne({ _id: pair[0]._id }, { $addToSet: { tournaments: { "id": req.params.id_torneio, "level": level, "unavailability": arravl } } })
 
         } else {
             //N
@@ -662,7 +662,7 @@ app.listen(PORT, () => {
 });
 
 app.get('/calendario_jogos/:id_torneio', async (req, res) => {
-    res.render("calendario_jogos", { US : req.session.user});
+    res.render("calendario_jogos", { US: req.session.user });
 })
 
 app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'], async (req, res) => {
@@ -701,21 +701,21 @@ app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'
             console.log(docs)
         }*/
 
-        let tor = await Tournament.find({ "_id": mongoose.Types.ObjectId(req.params.id_torneio) }).exec()
+    let tor = await Tournament.find({ "_id": mongoose.Types.ObjectId(req.params.id_torneio) }).exec()
 
-        console.log(typeof tor)
+    console.log(typeof tor)
 
-        let array_ids = []
-        console.log(req.params.id_torneio)
-        let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
-        let converted=JSON.parse(JSON.stringify(docs))
-        for (i of converted){
-            for (j of i.users){
-                array_ids.push(j)
-            }
+    let array_ids = []
+    console.log(req.params.id_torneio)
+    let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
+    let converted = JSON.parse(JSON.stringify(docs))
+    for (i of converted) {
+        for (j of i.users) {
+            array_ids.push(j)
         }
-        let users = await User.find({ _id: { $in: array_ids } }).exec()
-        console.log(typeof tor[0])
-        res.render('calendario_jogos', {Pares : docs, Utilizadores : users, Torneio: tor[0], US : req.session.user})
+    }
+    let users = await User.find({ _id: { $in: array_ids } }).exec()
+    console.log(typeof tor[0])
+    res.render('calendario_jogos', { Pares: docs, Utilizadores: users, Torneio: tor[0], US: req.session.user })
 
 })

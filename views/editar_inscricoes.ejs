@@ -1,57 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Inscrições</title>
-</head>
-<body>
-    <h1>Editar Inscrições</h1>
-    
-    <h2>Jogador 1</h2>
-    <form action="/editar_inscricao/<%=torneio_id%>/<%=id_jogador1%>" method="POST">
-        <label for="name">Nome:</label><br>
-        <input type="text" name="username" pattern="[A-Za-z\W+]{1,25}" value="<%=nome1%>" required>
-        <br>
-        <br>
-        <label for="email">Email:</label><br>
-        <input type="email" name="email" placeholder="Email" value="<%=email1%>" required>
-        <br>
-        <br>
-        <label for="nif">NIF:</label><br>
-        <input type="text" name="nif" placeholder="NIF" maxlength="9" pattern="[0-9]+" title="O NIF deve de conter apenas números"  value="<%=nif1%>"required>
-        <br>
-        <br>
-        <label for="contacto">Contacto de telemóvel:</label><br>
-        <input type="text" name="contacto" placeholder="Contacto de telemóvel" maxlength="9" pattern="[0-9]+" value="<%=phone1%>" title="O número de telemóvel deve de conter apenas números" required>
-        <br>
-        <br>
-        <button >Alterar Dados</button>
-    </form>
+<%- include('include/_header', {Us:US}) %>
+    <!DOCTYPE html>
+    <html lang="en">
 
-    <br><br>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../../../css/style.css">
+    </head>
 
-    <h2>Jogador 2</h2>
-    <form action="/editar_inscricao/<%=torneio_id%>/<%=id_jogador2%>" method="POST">
-        <label for="name">Nome:</label><br>
-        <input type="text" name="username" placeholder="Nome" value="<%=nome2%>" pattern="[A-Za-z\W+]{1,25}" required>
-        <br>
-        <br>
-        <label for="email">Email:</label><br>
-        <input type="email" name="email" placeholder="Email" value="<%=email2%>" required>
-        <br>
-        <br>
-        <label for="nif">NIF:</label><br>
-        <input type="text" name="nif" placeholder="NIF" maxlength="9" value="<%=nif2%>" pattern="[0-9]+" title="O NIF deve de conter apenas números" required>
-        <br>
-        <br>
-        <label for="contacto">Contacto de telemóvel:</label><br>
-        <input type="text" name="contacto" placeholder="Contacto de telemóvel" value="<%=phone2%>" maxlength="9" pattern="[0-9]+" title="O número de telemóvel deve de conter apenas números" required>
-        <br>
-        <br>
-        <button >Alterar Dados</button>
-    </form>
-    
-</body>
-</html>
+    <div id="editar_inscricoes">
+
+        <h1>Editar Inscrições</h1>
+        <div class="block">
+            <h2>Jogador 1</h2>
+            <form action="/editar_inscricao/<%=torneio_id%>/<%=id_jogador1%>" method="POST">
+                <label for="name">Nome:</label><br>
+                <input type="text" name="username" pattern="[A-Za-z\W+]{1,25}" value="<%=nome1%>" required>
+                <br>
+                <br>
+                <label for="email">Email:</label><br>
+                <input type="email" name="email" placeholder="Email" value="<%=email1%>" required>
+                <br>
+                <br>
+                <label for="nif">NIF:</label><br>
+                <input type="text" name="nif" placeholder="NIF" maxlength="9" pattern="[0-9]+"
+                    title="O NIF deve de conter apenas números" value="<%=nif1%>" required>
+                <br>
+                <br>
+                <label for="contacto">Contacto de telemóvel:</label><br>
+                <input type="text" name="contacto" placeholder="Contacto de telemóvel" maxlength="9" pattern="[0-9]+"
+                    value="<%=phone1%>" title="O número de telemóvel deve de conter apenas números" required>
+                <br>
+                <br>
+                <button>Alterar Dados</button>
+            </form>
+        </div>
+        <br><br>
+        <div class="block">
+            <h2>Jogador 2</h2>
+            <form action="/editar_inscricao/<%=torneio_id%>/<%=id_jogador2%>" method="POST">
+                <label for="name">Nome:</label><br>
+                <input type="text" name="username" placeholder="Nome" value="<%=nome2%>" pattern="[A-Za-z\W+]{1,25}"
+                    required>
+                <br>
+                <br>
+                <label for="email">Email:</label><br>
+                <input type="email" name="email" placeholder="Email" value="<%=email2%>" required>
+                <br>
+                <br>
+                <label for="nif">NIF:</label><br>
+                <input type="text" name="nif" placeholder="NIF" maxlength="9" value="<%=nif2%>" pattern="[0-9]+"
+                    title="O NIF deve de conter apenas números" required>
+                <br>
+                <br>
+                <label for="contacto">Contacto de telemóvel:</label><br>
+                <input type="text" name="contacto" placeholder="Contacto de telemóvel" value="<%=phone2%>" maxlength="9"
+                    pattern="[0-9]+" title="O número de telemóvel deve de conter apenas números" required>
+                <br>
+                <br>
+                <button>Alterar Dados</button>
+            </form>
+        </div>
+    </div>
+
+
+    </html>
+    <%- include('include/_footer') %>

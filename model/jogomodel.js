@@ -28,12 +28,14 @@ let gameSchema = new mongoose.Schema({
                 default:0
             },
     },
+
     previous_game1: mongoose.Schema.Types.ObjectID,//Game where pair1 came from
     previous_game2: mongoose.Schema.Types.ObjectID,//Game where pair2 came from
     field: mongoose.Schema.Types.ObjectID, //what field the game will be held
     date_time:Date,   //date and time, where the game will be held
     photo: [String],  //path/url to the photos of the players of the game
     duration: Number, //how long the game will last
+    
 })
 
 let Game = mongoose.model('games', gameSchema);

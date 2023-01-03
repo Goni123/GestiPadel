@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('include/_header', {Us:US}) %>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../css/styleClevert.css">
+    </head>
+
+    <body>
+    <div>
+        <h2><%=Tor?.nometorneio%></h2>
+        <%if(Tor?.fasegrupos==="Sim"){%>
+        <p hidden id="hasGroup"></p>
+        <%}
+        if (false){//groupfase has ended%>
+        <p hidden id="groupEnd"> </p>
+        <%}%>
+
+    </div>
+    <div class="tab">
+        <button class="tablink" onclick="openPage('Gclass')" id="grupos">Fase de Grupos</button>
+        <button class="tablink" onclick="openPage('Bclass')" id="elemina">fase de Eleminatória</button>
+    </div>
+    <div class="toSelectSlots">
+        <div class="genDiv Gclass">
+            <table class="table">
+                <thead class="thead-dark">
+
+                    <tr>
+                        <th>Dupla 1</th>
+                        <th></th>
+                        <th></th>
+                        <th>Dupla 2</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <%if (Tor.fasegrupos === "Sim"){%>
+                        <%for(var i= 0; i< jogos.length; i++) {%>
+                                <tr>
+                                    <td id ="par 1"><%=jogos[i].jogo_dupla1%></td>
+                                    <td id ="resultado"><%=resultados[i].result1%></td>
+                                    <td id ="resultado1"><%=resultados[i].result2%></td>
+                                    <td id ="par 2"><%= jogos[i].jogo_dupla2%></td>
+                                </tr>
+                                
+                        <%} %>
+                    <%}%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <%//for (let i=0;i == Math.ceil( Pares.length / 4);i++) {%>
+    <!--<div class="groupsFase" id="groupsFase"><div class="grupo" id="grupo0">
+            <p>Grupo1</p>
+            <input type="checkbox" class="teamCheck" id="teamCheck0/0" name="number"><div class="teamDiv" draggable="true" id="teamDiv0/0">/</div>
+            <input type="text" oninput="numberOnly(this.id);" maxlength="3" class="teamInput" id="teamInput0/0" name="number" placeholder="0">
+            <input type="checkbox" class="teamCheck" id="teamCheck1/0" name="number"><div class="teamDiv" draggable="true" id="teamDiv1/0">/</div>
+            <input type="text" oninput="numberOnly(this.id);" maxlength="3" class="teamInput" id="teamInput1/0" name="number" placeholder="0">
+            <input type="checkbox" class="teamCheck" id="teamCheck2/0" name="number"><div class="teamDiv" draggable="true" id="teamDiv2/0">/</div>
+            <input type="text" oninput="numberOnly(this.id);" maxlength="3" class="teamInput" id="teamInput2/0" name="number" placeholder="0">
+            <input type="checkbox" class="teamCheck" id="teamCheck3/0" name="number"><div class="teamDiv" draggable="true" id="teamDiv3/0">/</div>
+            <input type="text" oninput="numberOnly(this.id);" maxlength="3" class="teamInput" id="teamInput3/0" name="number" placeholder="0">
+        </div>-->
+    <%//}%>
+
+    
+
+    </div>
+        <div id="beforeRefDiv2">
+        </div>
+
+
+
+
+
+        <script language="JavaScript" src="/js/brackets.js "></script>
+
+    </body>
+
+</html>
+<% - include('include/_footer') %>

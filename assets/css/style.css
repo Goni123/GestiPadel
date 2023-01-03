@@ -1155,6 +1155,24 @@ button img {
     margin: 80px 0;
 }
 
+.ShowBracket td {
+    background-color: #fff;
+    font-size: 18px;
+}
+
+.ShowBracket th {
+    background-color: rgb(126 126 126);
+    font-size: 21px;
+}
+
+.ShowBracket .table {
+    padding: 40px;
+}
+
+.ShowBracket .table td:hover {
+    background-color: #fff;
+}
+
 /*media queries para responsive*/
 @media (max-width: 361px) {
 

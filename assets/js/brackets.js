@@ -2,6 +2,9 @@
 var IsOnBrackets = document.getElementById('hasGroup') !== null;
 
 function openPage(pageName) {
+
+    IsOnBrackets = pageName == "Bclass" ? true : false;
+
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("Gclass");
     for (i = 0; i < tabcontent.length; i++) {
@@ -24,10 +27,11 @@ function openPage(pageName) {
 // Get the element with id="defaultOpen" and click on it
 //document.getElementById("defaultOpen").click();
 
+
 //const User = import("./model/usermodel");
 
+
 let list = [];
-console.log("entrou");
 GetTeamList();
 
 
@@ -54,14 +58,11 @@ if (groupSize <= 4) {
     columns = 7;
 }
 
-
 CreateGroupFase();
-
-
 CreateBracketsSlots();
 
-
-
+//openPage("Bclass");
+openPage("Gclass");
 
 //DeleteWholeBracket();
 
@@ -73,8 +74,6 @@ for (let toSelectSlots of brackets) {
 }
 
 async function GetTeamList() {
-
-
     //console.log(User.name);
     /*/fetch('/editar_brakets/', {
         method: 'POST',
@@ -103,9 +102,6 @@ async function GetTeamList() {
         array_nome.push(User[i].name)
     
     }*/
-
-
-
 
     for (team of document.getElementsByClassName("sourceDiv Bclass_")) {
 
@@ -145,15 +141,17 @@ function CreateGroups() {
         document.body.insertBefore(bracketDiv, currentDiv);
     }*/
 }
+
 function populateBracket() {
 
 }
+
 function CreateBracketsSlots() {
     var bracketDiv = document.createElement("div");             //Create bracket Div
     bracketDiv.classList.add(`bracketSlots`);
     bracketDiv.classList.add(`tabcontent`)
     bracketDiv.setAttribute('id', 'bracketSlots');
-
+    //bracketDiv.appendChild()
     var bracketDivision = 1;
 
     for (let k = 0; k < columns; k++) {
@@ -183,7 +181,7 @@ function CreateBracketsSlots() {
                 teamDiv.classList.add(`teamDivNoDrag`);
             }
 
-            teamDiv.setAttribute("id", `teamDiv${i}/${k}`);
+            teamDiv.setAttribute("id", `teamDiv${i}/${k}B`);
 
             var node = document.createTextNode(`/`);                        //Create text
             teamDiv.appendChild(node);
@@ -200,7 +198,7 @@ function CreateBracketsSlots() {
                 input.setAttribute("oninput", "numberOnly(this.id);");
                 input.setAttribute("maxlength", "3");
                 input.setAttribute("class", `teamInput`);
-                input.setAttribute("id", `team${i}/${k}`);
+                input.setAttribute("id", `team${i}/${k}B`);
                 input.setAttribute("name", "number");
                 input.setAttribute("placeholder", "0");
             } else {
@@ -243,8 +241,6 @@ function CreateGroupFase() {
     bracketDiv.classList.add(`groupsFase`)
     bracketDiv.classList.add(`Gclass`)
     bracketDiv.setAttribute('id', 'groupsFase');
-
-
 
     for (let k = 0; k < groupsNumber; k++) {
 
@@ -305,6 +301,7 @@ function changeData(first, second) {
     if (first.id.length < 3 || second.id.length < 3)
         return;
 
+    console.log("ChangeData");
     var draged = first.id;
     var destination = second.id;
 
@@ -313,6 +310,7 @@ function changeData(first, second) {
     var eDragedCheck = document.getElementById(`teamCheck${dragedID}`);
 
     var destinationID = destination.charAt(destination.length - 3) + destination.charAt(destination.length - 2) + destination.charAt(destination.length - 1);
+
     var eDestinationInput = document.getElementById(`teamInput${destinationID}`);
     var eDestinationCheck = document.getElementById(`teamCheck${destinationID}`);
 
@@ -414,7 +412,8 @@ function dragAndDrop() {
 
                 this.innerHTML = e.dataTransfer.getData('text/html');
 
-                changeData(dragSrcEl, this);
+                if (!IsOnBrackets)
+                    changeData(dragSrcEl, this);
             }
 
             updateValue();
@@ -467,23 +466,24 @@ function updateValue() {
     if (IsOnBrackets) { //brackets
         let bracDivi = 1;
         console.clear();
+        console.log(IsOnBrackets);
 
         for (let k = 0; k < columns - 1; k++) {
             for (let i = 0; i < groupSizeAdap / bracDivi / 2; i++) {
 
                 const match = document.getElementById(`match${i}/${k}`);   //Match to compare
-                var scoreTeam1 = document.getElementById(`team${i * 2}/${k}`).value;
-                var scoreTeam2 = document.getElementById(`team${(i * 2) + 1}/${k}`).value;
+                var scoreTeam1 = document.getElementById(`team${i * 2}/${k}B`).value;
+                var scoreTeam2 = document.getElementById(`team${(i * 2) + 1}/${k}B`).value;
 
-                const team1 = document.getElementById(`teamDiv${i * 2}/${k}`);
-                const team2 = document.getElementById(`teamDiv${(i * 2) + 1}/${k}`);
+                const team1 = document.getElementById(`teamDiv${i * 2}/${k}B`);
+                const team2 = document.getElementById(`teamDiv${(i * 2) + 1}/${k}B`);
 
                 var groupAuxSelect = 0;
                 if (i % 2 == 1) {
                     groupAuxSelect = 1;
                 }
 
-                var name = `teamDiv${(i)}/${k + 1}`;
+                var name = `teamDiv${(i)}/${k + 1}B`;
                 const winnerSlot = document.getElementById(name);
 
                 scoreTeam1 = scoreTeam1 == "" ? 0 : parseInt(scoreTeam1);
@@ -535,7 +535,6 @@ function updateValue() {
                     const scoreTeam1 = document.getElementById(`teamDiv${i}/${k}`);
                     var n = i + 1;
                     const scoreTeam2 = document.getElementById(`teamDiv${n}/${k}`);
-
                     if (i != 3)
                         OrganizeData(scoreTeam1, scoreTeam2);
                 }

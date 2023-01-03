@@ -23,13 +23,16 @@
             <%for(tournment of Tournament){%>
                 <div class="block_torneios">
                     <img class="foto_torneio" src="/img/img_Torneios/<%=tournment.img%>">
-                    <p>
-                    <form action="/insctorneio/<%=tournment._id%>" id="torneio" method="get">
-                        <button type="submit">
-                            <%=tournment.nometorneio%>
-                        </button>
-                    </form>
-                    </p>
+                    <div class="overlay">
+                        <form action="/insctorneio/<%=tournment._id%>" id="torneio" method="get">
+                            <button type="submit">
+                                <p>
+                                    <%=tournment.nometorneio%>
+                                </p>
+                            </button>
+                        </form>
+                    </div>
+
                 </div>
                 <% } %>
         </div>

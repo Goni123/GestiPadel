@@ -39,6 +39,16 @@
                 alert(window.location.href.concat("/").concat(document.getElementById("nivel").value))
                 document.getElementById("formNivel").setAttribute("action", window.location.href.concat("/").concat(document.getElementById("nivel").value));
             }
+
+            function alertFunction(d) {
+                if ((d.getAttribute("data-pair-unavailability")) == 0) {
+                    alert(d.getAttribute("data-pair-names"));
+                    alert("Esta dupla não possui indisponibilidades");
+                } else {
+                    alert(d.getAttribute("data-pair-names"));
+                    alert(d.getAttribute("data-pair-unavailability"));
+                }
+            }
         </script>
         <style>
             .divdrop {
@@ -278,14 +288,17 @@
                         <% } %>
                     <% //} %>
 
+                    <p>Clique no par para consultar a indisponibilidade</p>
+                    <br>
+                    <br>
                     <% for(par of Pares){ %>
-                        <div id="drag<%=par._id%>" class="<%=par?.tournaments?.find((elem)=>{return elem.id.toString() === Torneio._id.toString()})?.level%>" draggable="true" ondragstart="drag(event)" data-pair-id="<%=par._id%>"><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
+                        <div id="drag<%=par._id%>" class="<%=par?.tournaments?.find((elem)=>{return elem.id.toString() === Torneio._id.toString()})?.level%>" draggable="true" ondragstart="drag(event)" onclick="alertFunction(this);" data-pair-id="<%=par._id%>" data-pair-names="<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%>" data-pair-unavailability="<%=par?.tournaments?.find((elem)=>{return elem.id.toString() === Torneio._id.toString()})?.unavailability%>"><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
                     <%}%>
                     <br>
                     <br>
                     <br>
                     <br>
-                    <h2>Legenda:</h2>
+                    <h3>Legenda:</h3>
                     <table>
                         <tr>
                             <td>

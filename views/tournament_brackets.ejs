@@ -17,40 +17,41 @@
     </head>
 
     <body>
-    <div>
-        <h2><%=Tor?.nometorneio%></h2>
-        <%if(Tor?.fasegrupos==="Sim"){%>
-        <p hidden id="hasGroup"></p>
-        <%}
-        if (false){//groupfase has ended%>
-        <p hidden id="groupEnd"> </p>
-        <%}%>
+        <div>
+            <h2>
+                <%=Tor?.nometorneio%>
+            </h2>
+            <%if(Tor?.fasegrupos==="Sim"){%>
+                <p hidden id="hasGroup"></p>
+                <%} if (false){//groupfase has ended%>
+                    <p hidden id="groupEnd"> </p>
+                    <%}%>
 
-    </div>
-    <div class="tab">
-        <button class="tablink" onclick="openPage('Gclass')" id="grupos">Fase de Grupos</button>
-        <button class="tablink" onclick="openPage('Bclass')" id="elemina">fase de Eleminatória</button>
-    </div>
-    <div class="toSelectSlots">
-        <%if (Tor.fasegrupos === "Sim"){%>
-        <div class="genDiv Gclass">
-            <% for(par of Pares){%>
-            <div class="teamDiv sourceDiv" draggable="true" data-pair-id="<%=par._id%>" <%= false ? 'data-location-target='+"asda" : ""  %>><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
-            <%}%>
         </div>
-
-        <%}%>
-        <div class="genDiv Bclass" >
-
-            <% for(par of Pares){%>
-            <div class="teamDiv sourceDiv Bclass_" draggable="true" data-pair-id="<%=par._id%>" <%= false ? 'data-location-target='+"asda" : ""  %>><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
-            <%}%>
+        <div class="tab">
+            <button class="tablink" onclick="openPage('Gclass')" id="grupos">Fase de Grupos</button>
+            <button class="tablink" onclick="openPage('Bclass')" id="elemina">fase de Eleminatória</button>
         </div>
-    </div>
+        <div class="toSelectSlots">
+            <%if (Tor.fasegrupos==="Sim" ){%>
+                <div class="genDiv Gclass">
+                    <% for(par of Pares){%>
+                        <div class="teamDiv sourceDiv" draggable="true" data-pair-id="<%=par._id%>" <%=false ? 'data-location-target=' +"asda" : "" %>><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
+                        <%}%>
+                </div>
+
+                <%}%>
+                    <div class="genDiv Bclass">
+
+                        <% for(par of Pares){%>
+                            <div class="teamDiv sourceDiv Bclass_" draggable="true" data-pair-id="<%=par._id%>" <%=false ? 'data-location-target=' +"asda" : "" %>><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() ===par.users[1].toString()})?.name%></div>
+                            <%}%>
+                    </div>
+        </div>
         <div id="beforeRefDiv"></div>
 
-    <%//for (let i=0;i == Math.ceil( Pares.length / 4);i++) {%>
-    <!--<div class="groupsFase" id="groupsFase"><div class="grupo" id="grupo0">
+        <% //for (let i=0;i==Math.ceil( Pares.length / 4);i++) {%>
+            <!--<div class="groupsFase" id="groupsFase"><div class="grupo" id="grupo0">
             <p>Grupo1</p>
             <input type="checkbox" class="teamCheck" id="teamCheck0/0" name="number"><div class="teamDiv" draggable="true" id="teamDiv0/0">/</div>
             <input type="text" oninput="numberOnly(this.id);" maxlength="3" class="teamInput" id="teamInput0/0" name="number" placeholder="0">
@@ -61,19 +62,27 @@
             <input type="checkbox" class="teamCheck" id="teamCheck3/0" name="number"><div class="teamDiv" draggable="true" id="teamDiv3/0">/</div>
             <input type="text" oninput="numberOnly(this.id);" maxlength="3" class="teamInput" id="teamInput3/0" name="number" placeholder="0">
         </div>-->
-    <%//}%>
+            <% //}%>
+                
+
+                </div>
+                <div id="beforeRefDiv2">
+                </div>
 
 
-    </div>
-        <div id="beforeRefDiv2">
-        </div>
 
 
 
+                <script language="JavaScript" src="/js/brackets.js "></script>
+        <% if (Tor.fasegrupos==="Sim"){%>
 
-
-        <script language="JavaScript" src="/js/brackets.js "></script>
-
+        <form action="editar" id="formGroups">
+            <input type="hidden" id="fgroups" name="groups">
+        </form>
+        <%}%>
+        <form action="" id="FormBracket">
+            <input type="hidden" id="fbracket" name="fbracket">
+        </form>
     </body>
 
 </html>

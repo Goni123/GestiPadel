@@ -291,8 +291,10 @@
                     <p>Clique no par para consultar a indisponibilidade</p>
                     <br>
                     <br>
-                    <% for(par of Pares){ %>
-                        <div id="drag<%=par._id%>" class="<%=par?.tournaments?.find((elem)=>{return elem.id.toString() === Torneio._id.toString()})?.level%>" draggable="true" ondragstart="drag(event)" onclick="alertFunction(this);" data-pair-id="<%=par._id%>" data-pair-names="<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%>" data-pair-unavailability="<%=par?.tournaments?.find((elem)=>{return elem.id.toString() === Torneio._id.toString()})?.unavailability%>"><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
+                    <% for(jogo of Jogos){ %>
+                        <div id="drag">
+                            <%= "( " + jogo.jogo_dupla1 + " vs " + jogo.jogo_dupla2 + " )" %>
+                        </div>
                     <%}%>
                     <br>
                     <br>

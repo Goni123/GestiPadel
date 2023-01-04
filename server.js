@@ -146,7 +146,7 @@ app.get('/editar_brakets/:id_torneio', async (req, res) => {
 })
 
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
-    
+
     let array_ids = []
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
     let converted = JSON.parse(JSON.stringify(docs))
@@ -166,8 +166,8 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
 })
 
 app.get('/view_brakets/:id_torneio', async (req, res) => {
-   
-    res.render("tournament_brackets_user", {jogos, Pares : docs, Utilizadores : users, US : req.session.user, Tor:tour});
+
+    res.render("tournament_brackets_user", { jogos, Pares: docs, Utilizadores: users, US: req.session.user, Tor: tour });
 
 })
 
@@ -175,41 +175,41 @@ app.get('/view_brakets/:id_torneio', async (req, res) => {
 
 app.post('/view_brakets/:id_torneio', async (req, res) => {
 
-    let game = await Game.find({tournament:req.params.id_torneio }).exec()
-    
+    let game = await Game.find({ tournament: req.params.id_torneio }).exec()
+
     let array_ids_pares = []
     let array_resultados = []
 
     let converted_jogos = JSON.parse(JSON.stringify(game))
-    for(var i = 0; i< converted_jogos.length; i++){
-        array_ids_pares.push({par1:converted_jogos[i].pair1, par2:converted_jogos[i].pair2})
+    for (var i = 0; i < converted_jogos.length; i++) {
+        array_ids_pares.push({ par1: converted_jogos[i].pair1, par2: converted_jogos[i].pair2 })
     }
     console.log(array_ids_pares)
 
-    for(var z = 0; z< converted_jogos.length; z++){
-        array_resultados.push({result1: converted_jogos[z].result.pair1, result2:converted_jogos[z].result.pair2})
+    for (var z = 0; z < converted_jogos.length; z++) {
+        array_resultados.push({ result1: converted_jogos[z].result.pair1, result2: converted_jogos[z].result.pair2 })
     }
     console.log(array_resultados)
 
     let array = []
 
-    for(var j =0; j< array_ids_pares.length; j++){
-        let par1 = await Pair.find({_id:array_ids_pares[j].par1}).exec()
-        let par2 = await Pair.find({_id:array_ids_pares[j].par2}).exec()
+    for (var j = 0; j < array_ids_pares.length; j++) {
+        let par1 = await Pair.find({ _id: array_ids_pares[j].par1 }).exec()
+        let par2 = await Pair.find({ _id: array_ids_pares[j].par2 }).exec()
         let converted_par1 = JSON.parse(JSON.stringify(par1))
         let converted_par2 = JSON.parse(JSON.stringify(par2))
-        array.push({dupla1:converted_par1[0].users,dupla2:converted_par2[0].users})
+        array.push({ dupla1: converted_par1[0].users, dupla2: converted_par2[0].users })
     }
     console.log(array)
 
 
-    array_user=[]
+    array_user = []
 
-    for(var k=0; k< array.length; k++){
-        let par1_user1 = await User.find({_id:array[k].dupla1[0]}).exec()
-        let par1_user2 = await User.find({_id:array[k].dupla1[1]}).exec()
-        let par2_user1 = await User.find({_id:array[k].dupla2[0]}).exec()
-        let par2_user2 = await User.find({_id:array[k].dupla2[1]}).exec()
+    for (var k = 0; k < array.length; k++) {
+        let par1_user1 = await User.find({ _id: array[k].dupla1[0] }).exec()
+        let par1_user2 = await User.find({ _id: array[k].dupla1[1] }).exec()
+        let par2_user1 = await User.find({ _id: array[k].dupla2[0] }).exec()
+        let par2_user2 = await User.find({ _id: array[k].dupla2[1] }).exec()
         let converted_par1_user1 = JSON.parse(JSON.stringify(par1_user1))
         let converted_par1_user2 = JSON.parse(JSON.stringify(par1_user2))
         let converted_par2_user1 = JSON.parse(JSON.stringify(par2_user1))
@@ -220,21 +220,21 @@ app.post('/view_brakets/:id_torneio', async (req, res) => {
         console.log(converted_par2_user1)
         console.log(converted_par2_user2)
 
-        array_user.push({jogo_dupla1:[converted_par1_user1[0].name,converted_par1_user2[0].name], jogo_dupla2: [converted_par2_user1[0].name,converted_par2_user2[0].name]}) 
+        array_user.push({ jogo_dupla1: [converted_par1_user1[0].name, converted_par1_user2[0].name], jogo_dupla2: [converted_par2_user1[0].name, converted_par2_user2[0].name] })
     }
 
     console.log(array_user)
 
     //let users = await User.find({ _id: { $in: array } }).exec()    
-    let tour  = await Tournament.findOne({_id : req.params.id_torneio}).exec() //ver se tem fase grupos
+    let tour = await Tournament.findOne({ _id: req.params.id_torneio }).exec() //ver se tem fase grupos
 
-    res.render("tournament_brackets_user", {jogos : array_user, Tor: tour, US: req.session.user, game, resultados: array_resultados});
+    res.render("tournament_brackets_user", { jogos: array_user, Tor: tour, US: req.session.user, game, resultados: array_resultados });
 })
 
 
 
 app.get('/home', (req, res) => {
-    res.render("home_user",{US:req.session.user});
+    res.render("home_user", { US: req.session.user });
     console.log(req.session.user)
 })
 
@@ -785,34 +785,35 @@ app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'
     let users = await User.find({ _id: { $in: array_ids } }).exec()
     console.log(typeof tor[0])
 
-    let jogos = await Game.find({tournament:req.params.id_torneio }).exec()
+    let jogos = await Game.find({ tournament: req.params.id_torneio }).exec()
     let array_ids_pares = []
     let converted_jogos = JSON.parse(JSON.stringify(jogos))
-    for(var i = 0; i< converted_jogos.length; i++){
-        array_ids_pares.push({par1:converted_jogos[i].pair1, par2:converted_jogos[i].pair2})
+    console.log(converted_jogos);
+    for (var i = 0; i < converted_jogos.length; i++) {
+        array_ids_pares.push({ par1: converted_jogos[i].pair1, par2: converted_jogos[i].pair2 })
     }
     console.log(array_ids_pares)
 
     let array = []
 
-    for(var j =0; j< array_ids_pares.length; j++){
-        let par1 = await Pair.find({_id:array_ids_pares[j].par1}).exec()
-        let par2 = await Pair.find({_id:array_ids_pares[j].par2}).exec()
+    for (var j = 0; j < array_ids_pares.length; j++) {
+        let par1 = await Pair.find({ _id: array_ids_pares[j].par1 }).exec()
+        let par2 = await Pair.find({ _id: array_ids_pares[j].par2 }).exec()
         let converted_par1 = JSON.parse(JSON.stringify(par1))
         let converted_par2 = JSON.parse(JSON.stringify(par2))
-  
-        array.push({dupla1:converted_par1[0].users,dupla2:converted_par2[0].users})
+
+        array.push({ dupla1: converted_par1[0].users, dupla2: converted_par2[0].users })
     }
 
     console.log(array)
 
-    array_user=[]
-    
-   for(var k=0; k< array.length; k++){
-        let par1_user1 = await User.find({_id:array[k].dupla1[0]}).exec()
-        let par1_user2 = await User.find({_id:array[k].dupla1[1]}).exec()
-        let par2_user1 = await User.find({_id:array[k].dupla2[0]}).exec()
-        let par2_user2 = await User.find({_id:array[k].dupla2[1]}).exec()
+    array_user = []
+
+    for (var k = 0; k < array.length; k++) {
+        let par1_user1 = await User.find({ _id: array[k].dupla1[0] }).exec()
+        let par1_user2 = await User.find({ _id: array[k].dupla1[1] }).exec()
+        let par2_user1 = await User.find({ _id: array[k].dupla2[0] }).exec()
+        let par2_user2 = await User.find({ _id: array[k].dupla2[1] }).exec()
         let converted_par1_user1 = JSON.parse(JSON.stringify(par1_user1))
         let converted_par1_user2 = JSON.parse(JSON.stringify(par1_user2))
         let converted_par2_user1 = JSON.parse(JSON.stringify(par2_user1))
@@ -823,11 +824,11 @@ app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'
         console.log(converted_par2_user1)
         console.log(converted_par2_user2)
 
-        array_user.push({jogo_dupla1:[converted_par1_user1[0].name,converted_par1_user2[0].name], jogo_dupla2: [converted_par2_user1[0].name,converted_par2_user2[0].name]}) 
-   }
+        array_user.push({ jogo_dupla1: [converted_par1_user1[0].name, converted_par1_user2[0].name], jogo_dupla2: [converted_par2_user1[0].name, converted_par2_user2[0].name] })
+    }
 
-   console.log(array_user)
+    console.log(array_user)
 
-    res.render('calendario_jogos', {Jogos: array_user, Pares: docs, Utilizadores: users, Torneio: tor[0], US: req.session.user })
+    res.render('calendario_jogos', { nivelJogos: converted_jogos, Jogos: array_user, Pares: docs, Utilizadores: users, Torneio: tor[0], US: req.session.user })
 
 })

@@ -464,11 +464,7 @@ table {
     text-align: center;
 }
 
-#calendario_jogos .Calendar .table1 td {
-    background-color: #fff;
-    border: 1px solid #000000;
-    padding: 10px;
-}
+
 
 #calendario_jogos .Calendar .table1 {
 
@@ -480,11 +476,7 @@ table {
     margin-bottom: 20px;
 }
 
-#calendario_jogos .formulario .Calendar th {
-    background-color: #928c8c;
-    border: 1px solid #000000;
-    padding: 10px;
-}
+
 
 #calendario_jogos h1 {
     text-align: center;
@@ -1172,6 +1164,12 @@ button img {
 .ShowBracket .table td:hover {
     background-color: #fff;
 }
+
+
+#calendario_jogos .Calendar .table td:hover {
+    background-color: #16db9381;
+}
+
 
 /*media queries para responsive*/
 @media (max-width: 361px) {

@@ -795,6 +795,9 @@ app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'
     console.log(array_ids_pares)
 
     let array = []
+    let array_indisponibilidade = []
+    let array_indisponibilidade_torneio = []
+    let array_indisponibilidade_unavailability = []
 
     for (var j = 0; j < array_ids_pares.length; j++) {
         let par1 = await Pair.find({ _id: array_ids_pares[j].par1 }).exec()
@@ -803,9 +806,15 @@ app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'
         let converted_par2 = JSON.parse(JSON.stringify(par2))
 
         array.push({ dupla1: converted_par1[0].users, dupla2: converted_par2[0].users })
-    }
+        array_indisponibilidade.push({ dupla1: converted_par1[0].tournaments, dupla2: converted_par2[0].tournaments })
 
-    console.log(array)
+        for (var g = 0; g < converted_par1[0].tournaments.length; g++) {
+            if (converted_par1[0].tournaments[g].id == req.params.id_torneio) {
+                array_indisponibilidade_torneio.push({ dupla1: converted_par1[0].tournaments[g].unavailability, dupla2: converted_par2[0].tournaments[g].unavailability })
+            }
+        }
+    }
+    console.log(array_indisponibilidade_torneio)
 
     array_user = []
 
@@ -829,8 +838,11 @@ app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'
 
     console.log(array_user)
 
+    res.render('calendario_jogos', { indisponibilidade: array_indisponibilidade_torneio, nivelJogos: converted_jogos, Jogos: array_user, Pares: docs, Utilizadores: users, Torneio: tor[0], US: req.session.user })
 
-    res.render('calendario_jogos', { nivelJogos: converted_jogos, Jogos: array_user, Pares: docs, Utilizadores: users, Torneio: tor[0], US: req.session.user })
 
+})
+
+app.post('/guardarCalendario/:id_jogo', async (req, res) => {
 
 })

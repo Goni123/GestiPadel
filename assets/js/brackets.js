@@ -23,7 +23,43 @@ function openPage(pageName) {
     }
     //elmnt.style.backgroundColor = color;
 }
+function populateFormGroup(){
+    let groupfields=document.getElementById("groupsFase").children
+    let output=""
+    for (mid of groupfields){
+        let bottom=mid.children
+        for (let i=1;i<bottom.length; i=i+3){
+            output +=  bottom[i].checked+","+bottom[i+1].getAttribute("data-pair-id")+","+bottom[i+2].value+","
+        }
+        output+="/"
+    }
+    document.getElementById("fgroups").value=output
+    //document.getElementById("formGroups").submit()
+    //console.log(output)
+}
+function populateFormBracket(){
+    let matchDivs=document.getElementsByClassName("matchDiv")
+    let output=""
+    //console.log(matchDivs)
+    for (mid of matchDivs){
 
+        //console.log(mid.children)
+        for (team of mid.children){
+            console.log(team ,team.value )
+            if (team.hasAttribute("data-pair-id")){
+            output +=  team.getAttribute("data-pair-id") + ","
+            }else{
+                output+=team.value+","
+            }
+
+
+        }
+        output+="/"
+    }
+    document.getElementById("fbracket").value=output
+    //document.getElementById("FormBracket").submit()
+    console.log(output)
+}
 // Get the element with id="defaultOpen" and click on it
 //document.getElementById("defaultOpen").click();
 
@@ -105,7 +141,7 @@ async function GetTeamList() {
 
     for (team of document.getElementsByClassName("sourceDiv Bclass_")) {
 
-        list.push({ name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1] })
+        list.push({ name0: team.innerHTML.split('/')[0], name1: team.innerHTML.split('/')[1] ,pair_id: team.getAttribute("data-pair-id") })
     }
 }
 
@@ -290,6 +326,7 @@ function CreateGroupFase() {
             document.body.insertBefore(bracketDiv, currentDiv);
         }
     }
+    moveteams()
 }
 
 dragAndDrop();
@@ -323,6 +360,19 @@ function changeData(first, second) {
     eDragedInput.value = auxInput;
     eDragedCheck.checked = auxCheck;
 }
+function moveteams(){
+    let sources = document.querySelectorAll("[data-location-target]")
+
+    for (sour of sources) {
+        let dlt= sour.getAttribute("data-location-target").replace("grupo","")
+
+        let target = document.querySelector("#" + sour.getAttribute("data-location-target") + ">[id^='teamDiv'][id$='/" + dlt +"']:not([data-pair-id])")
+        target.setAttribute("data-pair-id", sour.getAttribute("data-pair-id"))
+        target.innerHTML = sour.innerHTML
+        sour.remove()
+    }
+
+}
 
 function OrganizeData(first, second) {
     if (first == null || second == null)
@@ -354,15 +404,26 @@ function OrganizeData(first, second) {
 
     var auxFirstInput = parseInt(firstInput.value);
     var auxSecondInput = parseInt(secondInput.value);
-
+    let auxData="";
     if (auxFirstInput < auxSecondInput) {
         secondInput.value = auxFirstInput;
         secondCheck.checked = firstCheck.checked;
         secondteam.innerHTML = firstTeam.innerHTML;
+        if (secondteam.hasAttribute("data-pair-id")){
+            auxData=secondteam.getAttribute("data-pair-id")
+        }
+        secondteam.setAttribute("data-pair-id", firstTeam.getAttribute("data-pair-id"))
+
 
         firstInput.value = auxSecondInput;
         firstCheck.checked = auxCheck;
         firstTeam.innerHTML = auxTeam;
+        if (auxData !== "") {
+            firstTeam.setAttribute("data-pair-id", auxData)
+
+        }else {
+            firstTeam.removeAttribute("data-pair-id")
+        }
     }
 }
 
@@ -377,9 +438,9 @@ function dragAndDrop() {
             this.style.opacity = '0.4';
 
             dragSrcEl = this;
-
             e.dataTransfer.effectAllowed = 'move';
             e.dataTransfer.setData('text/html', this.innerHTML);
+            e.dataTransfer.setData('data-pair-id', this.getAttribute("data-pair-id"))
         }
 
         function handleDragOver(e) {
@@ -407,11 +468,10 @@ function dragAndDrop() {
 
             if (dragSrcEl !== this) {
                 dragSrcEl.innerHTML = this.innerHTML;
-
                 DeleteDiv(dragSrcEl, e.dataTransfer.getData('text/html'), this);
 
                 this.innerHTML = e.dataTransfer.getData('text/html');
-
+                this.setAttribute('data-pair-id',e.dataTransfer.getData('data-pair-id'))
                 if (!IsOnBrackets)
                     changeData(dragSrcEl, this);
             }
@@ -501,6 +561,7 @@ function updateValue() {
                     }
 
                     winnerSlot.innerHTML = team1.innerHTML;
+                    winnerSlot.setAttribute("data-pair-id",team1.getAttribute("data-pair-id"))
                 }
 
                 else if (scoreTeam1 < scoreTeam2) {
@@ -515,6 +576,7 @@ function updateValue() {
                     }
 
                     winnerSlot.innerHTML = team2.innerHTML;
+                    winnerSlot.setAttribute("data-pair-id",team2.getAttribute("data-pair-id"))
                 } else {
                     team1.classList.remove('loser');
                     team1.classList.remove('winner');

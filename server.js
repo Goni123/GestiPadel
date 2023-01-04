@@ -32,6 +32,10 @@ app.use(session({
     resave: false
 }));
 
+
+//parse request to body-parser
+app.use(bodyparser.urlencoded({ extended: true }))
+
 app.get('/', (req, res) => {
     res.render("home_user", { US: req.session.user });
     console.log(req.session.user)
@@ -141,13 +145,115 @@ app.get('/editar_brakets/:id_torneio', async (req, res) => {
     let tour = await Tournament.findOne({ _id: req.params.id_torneio }).exec()
     console.log(tour)
     //console.log(users)
-    res.render("tournament_brackets", { Pares: docs, Utilizadores: users, US: req.session.user, Tor: tour });
+    let glist =await Game.find({
+        tournament: req.params.id_torneio
+    }).exec()
+    //console.log(glist)
+
+    res.render("tournament_brackets", { Pares: docs, Utilizadores: users, US: req.session.user, Tor: tour, Games : glist});
 
 })
 
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
     let array_ids = []
-    // console.log(req.params.id_torneio)
+    //console.log(req.body?.groups)
+    let teams =[]
+    //let par_id,result, check = ""
+    if (typeof req.body.groups !== 'undefined'){
+        let groupsp = req.body.groups.split("/")
+        //console.log(groupsp[-1])
+        groupsp.pop()
+        let count=0;
+        for (item of groupsp){
+            let temp=item.split(",")
+            for (let index=0;index<temp.length; index+=3){
+                if(temp[index+1] !== 'null') {
+                    teams.push({
+                        "gindex": count,
+                        "check": temp[index],
+                        "par_id": temp[index + 1],
+                        "result": temp[index + 2]
+                    })
+                }
+            }
+            count++
+        }
+        //console.log(teams)
+        let temp=[]
+
+        for (let i=0; (temp=teams.filter((elem)=>{return elem.gindex === i && typeof elem.par_id !== 'undefined' })).length > 0 ; i++ ){
+            //console.log(temp, temp.length)
+            let count=0
+            for (let j=0;j<temp.length-1;j++){
+                //console.log(req.params?.id_torneio)
+                for (let k=1;k<temp.length;k++){
+                        //console.log(typeof temp[j+k] !== 'undefined' ,"<--",j,k+j,temp?.[j+k])
+                        if (typeof temp[j+k] !== 'undefined') {
+                            //console.log( typeof temp[j+k] !== 'undefined' ,"--> ",j,k+j)
+                            let resp = await Game.find({
+                                pair1: {$in: [temp[j].par_id, temp[j + k].par_id]},
+                                pair2: {$in: [temp[j].par_id, temp[j + k].par_id]},
+                                phase: "grupos",
+                                tournament: req.params.id_torneio
+                            }).exec()
+                            //console.log(await Game.find({pair1:{$in :[temp[j].par_id,temp[j+1].par_id ] }, pair2: {$in :[temp[j].par_id ,temp[j+1].par_id ], phase : "grupos" }}).exec())
+                            //console.log("reslen",resp.length)
+                            if (resp.length === 0) {//
+                                //cria o jogo
+                                console.log("create",j,k+j)
+                                let nada = new Game({
+                                    "tournament": req.params.id_torneio,
+                                    "phase": "grupos",
+                                    "group": String.fromCharCode(65 + i),
+                                    "pair1": temp[j].par_id,
+                                    "pair2": temp[j + k].par_id
+                                })
+                                count++
+                                await nada.save()
+                                //console.log(nada)
+                            }
+                        }
+                }
+
+            }
+            console.log("##",count)
+        }
+    }
+    let match=[]
+    if (typeof req.body.bracket !== 'undefined'){
+        let bracketsp = req.body?.bracket?.split('/')
+        bracketsp.pop()
+        bracketsp.pop()
+        //console.log(bracketsp.length)
+        for (mat of bracketsp){
+            let temp=mat.split(",")
+            if (temp[0] !== 'undefined' && temp[2] !== 'undefined') {
+                match.push({"team1": temp[0], "score1": temp[1], "team2": temp[2], "score2": temp[3]})
+            }
+        }console.log(match)
+
+        for (t of match) {
+            let resp = await Game.find({
+                pair1: {$in: [t.team1, t.team2]},
+                pair2: {$in: [t.team1, t.team2]},
+                phase: "elimination",
+                tournament: req.params.id_torneio
+            }).exec()
+            console.log(resp)
+            if (resp.length === 0){
+                let newGame = new Game({
+                    "tournament": req.params.id_torneio ,
+                    "phase": "elimination",
+                    "pair1": t.team1,
+                    "pair2": t.team2
+                })
+                await newGame.save()
+                console.log("create")
+            }
+        }
+
+    }
+
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
     let converted = JSON.parse(JSON.stringify(docs))
     for (i of converted) {
@@ -155,11 +261,26 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
             array_ids.push(j)
         }
     }
+    let glist =await Game.find({
+        /*pair1: {$in: [temp[j].par_id, temp[j + k].par_id]},
+        pair2: {$in: [temp[j].par_id, temp[j + k].par_id]},
+        phase: "grupos",*/
+        tournament: req.params.id_torneio
+    }).exec()
     let users = await User.find({ _id: { $in: array_ids } }).exec()
     let tour = await Tournament.findOne({ _id: req.params.id_torneio }).exec()
     //console.log(array_ids)
     //console.log(users)
-    res.render("tournament_brackets", { Pares: docs, Utilizadores: users, US: req.session.user, Tor: tour });
+    /*let newGame = new Game({
+        "tournament": req.params.id_torneio ,
+        "phase": "grupos",
+        "group": "a",
+        "pair1": "63b41c50236057a30b7257bc",
+        "pair2": "63af8823ea0202836214c90e"
+    })//*/
+    //console.log(newGame)
+    //await newGame.save()
+    res.render("tournament_brackets", { Pares: docs, Utilizadores: users, US: req.session.user, Tor: tour,Games: glist });
 
 })
 
@@ -222,8 +343,6 @@ const connectDB = async () => {
 }
 connectDB();
 
-//parse request to body-parser
-app.use(bodyparser.urlencoded({ extended: true }))
 
 //set view engine
 app.set("view engine", "ejs")  //pode ser html

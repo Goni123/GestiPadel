@@ -828,6 +828,6 @@ app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'
 
    console.log(array_user)
 
-    res.render('calendario_jogos', {Jogos: array_user, Pares: docs, Utilizadores: users, Torneio: tor[0], US: req.session.user })
+    res.render('calendario_jogos', {nivelJogos: converted_jogos, Jogos: array_user, Pares: docs, Utilizadores: users, Torneio: tor[0], US: req.session.user })
 
 })

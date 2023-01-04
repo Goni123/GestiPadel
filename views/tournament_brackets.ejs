@@ -77,13 +77,13 @@
         <% if (Tor.fasegrupos==="Sim"){%>
 
             <form action="<%=Tor?._id%>" onsubmit="populateFormGroup()" id="formGroups" method="post">
-                <button type="submit"  class="Gclass">Guardar Alterações</button>
+                <button type="submit"  class="Gclass"><p>Guardar Alterações</p></button>
                 <input type="hidden" id="fgroups" name="groups">
             </form>
         <%}%>
 
             <form action="<%=Tor?._id%>" onsubmit="populateFormBracket()" id="FormBracket" method="post">
-                <button type="submit" class="Bclass" >Guardar Alterações</button>
+                <button type="submit" class="Bclass" ><p>Guardar Alterações</p></button>
                 <input type="hidden" id="fbracket" name="bracket">
             </form>
 
@@ -92,8 +92,7 @@
 
                 <script language="JavaScript" src="/js/brackets.js "></script>
 
-
+                <%- include('include/_footer') %>
     </body>
-
+    
 </html>
-<% - include('include/_footer') %>

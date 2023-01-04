@@ -17,7 +17,7 @@
     </head>
 
     <body>
-        <div>
+        <div id="brackets">
             <h2>
                 <%=Tor?.nometorneio%>
             </h2>
@@ -27,10 +27,10 @@
                     <p hidden id="groupEnd"> </p>
                     <%}%>
 
-        </div>
+       
         <div class="tab">
-            <button class="tablink" onclick="openPage('Gclass')" id="grupos">Fase de Grupos</button>
-            <button class="tablink" onclick="openPage('Bclass')" id="elemina">fase de Eleminatória</button>
+            <button class="tablink" onclick="openPage('Gclass')" id="grupos"><p>Fase de Grupos</p></button>
+            <button class="tablink" onclick="openPage('Bclass')" id="elemina"><p>Fase de Eliminatória</p></button>
         </div>
         <div class="toSelectSlots">
             <%if (Tor.fasegrupos==="Sim" ){%>
@@ -91,6 +91,7 @@
 
 
                 <script language="JavaScript" src="/js/brackets.js "></script>
+
 
     </body>
 

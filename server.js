@@ -98,6 +98,19 @@ app.post('/editar_torneio_menu/:id_torneio', async (req, res) => {
 
 })
 
+app.get('/view_tournament/:id_torneio', async (req, res) => {
+    res.render("menu_escolha_user", { US: req.session.user });
+})
+
+app.post('/view_tournament/:id_torneio', async (req, res) => {
+
+    Tournament.find({ _id: req.params.id_torneio }).exec(function (err, docs) {
+        res.render("menu_escolha_user", { Tournament: docs, US: req.session.user })
+    })
+
+})
+
+
 app.post('/torneiomenu/:id_torneio', async (req, res) => {
 
     let insc = await Tournament.findOne({ _id: tournment._id }).exec()
@@ -155,7 +168,9 @@ app.get('/editar_brakets/:id_torneio', async (req, res) => {
 })
 
 app.post('/editar_brakets/:id_torneio', async (req, res) => {
+
     let array_ids = []
+
     //console.log(req.body?.groups)
     let teams =[]
     //let par_id,result, check = ""
@@ -254,6 +269,7 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
 
     }
 
+
     let docs = await Pair.find({ tournaments: { $elemMatch: { id: req.params.id_torneio } } }).exec()
     let converted = JSON.parse(JSON.stringify(docs))
     for (i of converted) {
@@ -268,6 +284,7 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
         tournament: req.params.id_torneio
     }).exec()
     let users = await User.find({ _id: { $in: array_ids } }).exec()
+
     let tour = await Tournament.findOne({ _id: req.params.id_torneio }).exec()
     //console.log(array_ids)
     //console.log(users)
@@ -282,11 +299,131 @@ app.post('/editar_brakets/:id_torneio', async (req, res) => {
     //await newGame.save()
     res.render("tournament_brackets", { Pares: docs, Utilizadores: users, US: req.session.user, Tor: tour,Games: glist });
 
+
+})
+
+app.get('/view_brakets/:id_torneio', async (req, res) => {
+
+    let game = await Game.find({ tournament: req.params.id_torneio }).exec()
+
+    let array_ids_pares = []
+    let array_resultados = []
+
+    let converted_jogos = JSON.parse(JSON.stringify(game))
+    for (var i = 0; i < converted_jogos.length; i++) {
+        array_ids_pares.push({ par1: converted_jogos[i].pair1, par2: converted_jogos[i].pair2 })
+    }
+    console.log(array_ids_pares)
+
+    for (var z = 0; z < converted_jogos.length; z++) {
+        array_resultados.push({ result1: converted_jogos[z].result.pair1, result2: converted_jogos[z].result.pair2 })
+    }
+    console.log(array_resultados)
+
+    let array = []
+
+    for (var j = 0; j < array_ids_pares.length; j++) {
+        let par1 = await Pair.find({ _id: array_ids_pares[j].par1 }).exec()
+        let par2 = await Pair.find({ _id: array_ids_pares[j].par2 }).exec()
+        let converted_par1 = JSON.parse(JSON.stringify(par1))
+        let converted_par2 = JSON.parse(JSON.stringify(par2))
+        array.push({ dupla1: converted_par1[0].users, dupla2: converted_par2[0].users })
+    }
+    console.log(array)
+
+
+    array_user = []
+
+    for (var k = 0; k < array.length; k++) {
+        let par1_user1 = await User.find({ _id: array[k].dupla1[0] }).exec()
+        let par1_user2 = await User.find({ _id: array[k].dupla1[1] }).exec()
+        let par2_user1 = await User.find({ _id: array[k].dupla2[0] }).exec()
+        let par2_user2 = await User.find({ _id: array[k].dupla2[1] }).exec()
+        let converted_par1_user1 = JSON.parse(JSON.stringify(par1_user1))
+        let converted_par1_user2 = JSON.parse(JSON.stringify(par1_user2))
+        let converted_par2_user1 = JSON.parse(JSON.stringify(par2_user1))
+        let converted_par2_user2 = JSON.parse(JSON.stringify(par2_user2))
+
+        console.log(converted_par1_user1)
+        console.log(converted_par1_user2)
+        console.log(converted_par2_user1)
+        console.log(converted_par2_user2)
+
+        array_user.push({ jogo_dupla1: [converted_par1_user1[0].name, converted_par1_user2[0].name], jogo_dupla2: [converted_par2_user1[0].name, converted_par2_user2[0].name] })
+    }
+
+    console.log(array_user)
+
+    //let users = await User.find({ _id: { $in: array } }).exec()    
+    let tour = await Tournament.findOne({ _id: req.params.id_torneio }).exec() //ver se tem fase grupos
+
+    res.render("tournament_brackets_user", { jogos: array_user, Tor: tour, US: req.session.user, game, resultados: array_resultados });
+
 })
 
 
-app.get('/home', (req, res) => {
 
+app.post('/view_brakets/:id_torneio', async (req, res) => {
+
+    let game = await Game.find({ tournament: req.params.id_torneio }).exec()
+
+    let array_ids_pares = []
+    let array_resultados = []
+
+    let converted_jogos = JSON.parse(JSON.stringify(game))
+    for (var i = 0; i < converted_jogos.length; i++) {
+        array_ids_pares.push({ par1: converted_jogos[i].pair1, par2: converted_jogos[i].pair2 })
+    }
+    console.log(array_ids_pares)
+
+    for (var z = 0; z < converted_jogos.length; z++) {
+        array_resultados.push({ result1: converted_jogos[z].result.pair1, result2: converted_jogos[z].result.pair2 })
+    }
+    console.log(array_resultados)
+
+    let array = []
+
+    for (var j = 0; j < array_ids_pares.length; j++) {
+        let par1 = await Pair.find({ _id: array_ids_pares[j].par1 }).exec()
+        let par2 = await Pair.find({ _id: array_ids_pares[j].par2 }).exec()
+        let converted_par1 = JSON.parse(JSON.stringify(par1))
+        let converted_par2 = JSON.parse(JSON.stringify(par2))
+        array.push({ dupla1: converted_par1[0].users, dupla2: converted_par2[0].users })
+    }
+    console.log(array)
+
+
+    array_user = []
+
+    for (var k = 0; k < array.length; k++) {
+        let par1_user1 = await User.find({ _id: array[k].dupla1[0] }).exec()
+        let par1_user2 = await User.find({ _id: array[k].dupla1[1] }).exec()
+        let par2_user1 = await User.find({ _id: array[k].dupla2[0] }).exec()
+        let par2_user2 = await User.find({ _id: array[k].dupla2[1] }).exec()
+        let converted_par1_user1 = JSON.parse(JSON.stringify(par1_user1))
+        let converted_par1_user2 = JSON.parse(JSON.stringify(par1_user2))
+        let converted_par2_user1 = JSON.parse(JSON.stringify(par2_user1))
+        let converted_par2_user2 = JSON.parse(JSON.stringify(par2_user2))
+
+        console.log(converted_par1_user1)
+        console.log(converted_par1_user2)
+        console.log(converted_par2_user1)
+        console.log(converted_par2_user2)
+
+        array_user.push({ jogo_dupla1: [converted_par1_user1[0].name, converted_par1_user2[0].name], jogo_dupla2: [converted_par2_user1[0].name, converted_par2_user2[0].name] })
+    }
+
+    console.log(array_user)
+
+    //let users = await User.find({ _id: { $in: array } }).exec()    
+    let tour = await Tournament.findOne({ _id: req.params.id_torneio }).exec() //ver se tem fase grupos
+
+    res.render("tournament_brackets_user", { jogos: array_user, Tor: tour, US: req.session.user, game, resultados: array_resultados });
+})
+
+
+
+app.get('/home', (req, res) => {
     res.render("home_user", { US: req.session.user });
     console.log(req.session.user)
 })
@@ -835,6 +972,65 @@ app.post(['/calendario_jogos/:id_torneio', '/calendario_jogos/:id_toneio/:nivel'
     }
     let users = await User.find({ _id: { $in: array_ids } }).exec()
     console.log(typeof tor[0])
-    res.render('calendario_jogos', { Pares: docs, Utilizadores: users, Torneio: tor[0], US: req.session.user })
+
+    let jogos = await Game.find({ tournament: req.params.id_torneio }).exec()
+    let array_ids_pares = []
+    let converted_jogos = JSON.parse(JSON.stringify(jogos))
+    console.log(converted_jogos);
+    for (var i = 0; i < converted_jogos.length; i++) {
+        array_ids_pares.push({ par1: converted_jogos[i].pair1, par2: converted_jogos[i].pair2 })
+    }
+    console.log(array_ids_pares)
+
+    let array = []
+    let array_indisponibilidade = []
+    let array_indisponibilidade_torneio = []
+    let array_indisponibilidade_unavailability = []
+
+    for (var j = 0; j < array_ids_pares.length; j++) {
+        let par1 = await Pair.find({ _id: array_ids_pares[j].par1 }).exec()
+        let par2 = await Pair.find({ _id: array_ids_pares[j].par2 }).exec()
+        let converted_par1 = JSON.parse(JSON.stringify(par1))
+        let converted_par2 = JSON.parse(JSON.stringify(par2))
+
+        array.push({ dupla1: converted_par1[0].users, dupla2: converted_par2[0].users })
+        array_indisponibilidade.push({ dupla1: converted_par1[0].tournaments, dupla2: converted_par2[0].tournaments })
+
+        for (var g = 0; g < converted_par1[0].tournaments.length; g++) {
+            if (converted_par1[0].tournaments[g].id == req.params.id_torneio) {
+                array_indisponibilidade_torneio.push({ dupla1: converted_par1[0].tournaments[g].unavailability, dupla2: converted_par2[0].tournaments[g].unavailability })
+            }
+        }
+    }
+    console.log(array_indisponibilidade_torneio)
+
+    array_user = []
+
+    for (var k = 0; k < array.length; k++) {
+        let par1_user1 = await User.find({ _id: array[k].dupla1[0] }).exec()
+        let par1_user2 = await User.find({ _id: array[k].dupla1[1] }).exec()
+        let par2_user1 = await User.find({ _id: array[k].dupla2[0] }).exec()
+        let par2_user2 = await User.find({ _id: array[k].dupla2[1] }).exec()
+        let converted_par1_user1 = JSON.parse(JSON.stringify(par1_user1))
+        let converted_par1_user2 = JSON.parse(JSON.stringify(par1_user2))
+        let converted_par2_user1 = JSON.parse(JSON.stringify(par2_user1))
+        let converted_par2_user2 = JSON.parse(JSON.stringify(par2_user2))
+
+        console.log(converted_par1_user1)
+        console.log(converted_par1_user2)
+        console.log(converted_par2_user1)
+        console.log(converted_par2_user2)
+
+        array_user.push({ jogo_dupla1: [converted_par1_user1[0].name, converted_par1_user2[0].name], jogo_dupla2: [converted_par2_user1[0].name, converted_par2_user2[0].name] })
+    }
+
+    console.log(array_user)
+
+    res.render('calendario_jogos', { indisponibilidade: array_indisponibilidade_torneio, nivelJogos: converted_jogos, Jogos: array_user, Pares: docs, Utilizadores: users, Torneio: tor[0], US: req.session.user })
+
+
+})
+
+app.post('/guardarCalendario/:id_jogo', async (req, res) => {
 
 })

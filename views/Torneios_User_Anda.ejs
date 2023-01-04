@@ -23,18 +23,26 @@
             <%for(tournment of Tournament){%>
                 <div class="block_torneios">
                     <img class="foto_torneio" src="/img/img_Torneios/<%=tournment.img%>">
-                    <p>
-                        <form action="/editar_brakets/<%=tournment._id%>" id="torneio" method="POST">
+
+                    <div class="overlay">
+                        <form action="/view_tournament/<%=tournment._id%>" id="torneio" method="POST">
+
                             <button type="submit">
-                                <%=tournment.nometorneio%>
+                                <p>
+                                    <%=tournment.nometorneio%>
+                                </p>
                             </button>
                         </form>
-                    </p>
+                    </div>
                 </div>
-            <% } %>
+
+
+
+
+
+                <% } %>
         </div>
     </body>
-
 
 </html>
 <%- include('include/_footer') %>

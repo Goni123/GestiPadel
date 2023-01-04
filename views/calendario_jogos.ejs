@@ -30,8 +30,6 @@
             function drop(ev) {
                 ev.preventDefault();
                 var data = ev.dataTransfer.getData("text");
-                alert (data)
-                alert (ev.toString())
                 ev.target.appendChild(document.getElementById(data));
             }
 
@@ -55,7 +53,10 @@
                 padding: 10px;
             }
 
-            .nivel1, .nivel1M, .nivel1F, .nivel1MF{
+            .level1,
+            .level1M,
+            .level1F,
+            .level1MF {
                 font-family: 'Poppins';
                 /*border: 1px solid #000;*/
                 background-color: orange;
@@ -64,7 +65,10 @@
                 padding: 1px;
             }
 
-            .nivel2, .nivel2M, .nivel2F, .nivel2MF{
+            .level2,
+            .level2M,
+            .level2F,
+            .level2MF {
                 font-family: 'Poppins';
                 /*border: 1px solid #000;*/
                 background-color: lightgreen;
@@ -73,7 +77,10 @@
                 padding: 1px;
             }
 
-            .nivel3, .nivel3M, .nivel3F, .nivel3MF{
+            .level3,
+            .level3M,
+            .level3F,
+            .level3MF {
                 font-family: 'Poppins';
                 /*border: 1px solid #000;*/
                 background-color: cyan;
@@ -82,7 +89,10 @@
                 padding: 1px;
             }
 
-            .nivel4, .nivel4M, .nivel4F, .nivel4MF{
+            .level4,
+            .level4M,
+            .level4F,
+            .level4MF {
                 font-family: 'Poppins';
                 /* border: 1px solid #000; */
                 background-color: grey;
@@ -101,31 +111,38 @@
                 <!--fazer push do nome db-->
             </div>
 
-            <form method="POST">
+
+            <form method="POST" action="/guardarCalendario/<%nivelJogos._id%> ">
                 <!--<div class="jgd1">
                     <br>
                     <br>
-                    <label for="jogadoresnivel">Selecione o nível:</label><br>
-                    <form method="POST" id="formNivel">
-                        <select name="nivel" id="nivel" onchange="mudarNivel()">
-                            <option></option>
-                            <%for(nivel of Torneio?.niveltipo){%>
-                                <option value="<%=nivel%>"><%=nivel%></option>
-                            <%}%>
-                        </select>
-                    </form>
-                    <br>
-                    <br>
-                </div>
+                    <label for="jogadoresnivel">Selecione o nível:</label><br>-->
+
+
+                <select name="Jogos" id="option_jogos" onChange="SelectedGame()">
+                    <option></option>
+
+                    <% for(var i=0 ; i<Jogos.length; i++){ %>
+
+                        <option value="<%=indisponibilidade[i].dupla1 + " ," + indisponibilidade[i].dupla2 %>">
+
+                            <%=Jogos[i].jogo_dupla1 + " vs " +Jogos[i].jogo_dupla2 %>
+
+                        </option>
+
+                        <%}%>
+                </select>
+
+                <input type="date" class="data">
                 <br>
-                <br>-->
+                <br>
+                <p>selecione o jogo para consultar as indisponibilidades</p>
+
+                <br>
                 <div class="Calendar">
-                    <p>Organize os jogos do torneio arrastando as duplas para o dia e hora pretendido!</p>
+
                     <br>
-                    <br>
-                    <br>
-                    <br>
-                    <table class="table1" id="table">
+                    <table class="table1 table" id="table">
                         <tr>
                             <th></th>
                             <th>Segunda-feira</th>
@@ -138,196 +155,568 @@
                         </tr>
                         <tr>
                             <td class="hora_tabela">09:00</td>
-                            <td><div id="div1" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div2" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div3" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div4" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div5" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div6" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div7" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda9">
+                                <div id="div1" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca9">
+                                <div id="div2" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta9">
+                                <div id="div3" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta9">
+                                <div id="div4" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta9">
+                                <div id="div5" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado9">
+                                <div id="div6" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo9">
+                                <div id="div7" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">10:00</td>
-                            <td><div id="div8" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div9" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div10" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div11" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div12" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div13" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div14" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda10">
+                                <div id="div8" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca10">
+                                <div id="div9" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta10">
+                                <div id="div10" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta10">
+                                <div id="div11" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta10">
+                                <div id="div12" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado10">
+                                <div id="div13" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo10">
+                                <div id="div14" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">11:00</td>
-                            <td><div id="div15" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div16" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div17" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div18" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div19" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div20" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div21" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda11">
+                                <div id="div15" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca11">
+                                <div id="div16" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta11">
+                                <div id="div17" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta11">
+                                <div id="div18" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta11">
+                                <div id="div19" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado11">
+                                <div id="div20" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo11">
+                                <div id="div21" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">12:00</td>
-                            <td><div id="div22" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div23" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div24" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div25" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div26" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div27" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div28" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda12">
+                                <div id="div22" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca12">
+                                <div id="div23" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta12">
+                                <div id="div24" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta12">
+                                <div id="div25" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta12">
+                                <div id="div26" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado12">
+                                <div id="div27" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo12">
+                                <div id="div28" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">13:00</td>
-                            <td><div id="div29" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div30" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div31" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div32" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div33" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div34" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div35" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda13">
+                                <div id="div29" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca13">
+                                <div id="div30" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta13">
+                                <div id="div31" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta13">
+                                <div id="div32" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta13">
+                                <div id="div33" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado13">
+                                <div id="div34" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="doming13">
+                                <div id="div35" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">14:00</td>
-                            <td><div id="div36" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div37" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div38" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div39" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div40" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div41" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div42" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda14">
+                                <div id="div36" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca14">
+                                <div id="div37" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta14">
+                                <div id="div38" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta14">
+                                <div id="div39" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta14">
+                                <div id="div40" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado14">
+                                <div id="div41" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo14">
+                                <div id="div42" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">15:00</td>
-                            <td><div id="div43" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div44" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div45" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div46" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div47" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div48" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div49" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda15">
+                                <div id="div43" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca15">
+                                <div id="div44" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta15">
+                                <div id="div45" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta15">
+                                <div id="div46" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta15">
+                                <div id="div47" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado15">
+                                <div id="div48" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo15">
+                                <div id="div49" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">16:00</td>
-                            <td><div id="div50" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div51" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div52" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div53" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div54" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div55" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div56" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda16">
+                                <div id="div50" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca16">
+                                <div id="div51" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta16">
+                                <div id="div52" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta16">
+                                <div id="div53" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta16">
+                                <div id="div54" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado16">
+                                <div id="div55" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo16">
+                                <div id="div56" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">17:00</td>
-                            <td><div id="div57" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div58" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div59" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div60" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div61" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div62" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div63" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda17">
+                                <div id="div57" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca17">
+                                <div id="div58" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta17">
+                                <div id="div59" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta17">
+                                <div id="div60" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta17">
+                                <div id="div61" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado17">
+                                <div id="div62" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo17">
+                                <div id="div63" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">18:00</td>
-                            <td><div id="div64" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div65" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div66" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div67" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div68" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div69" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div70" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda18">
+                                <div id="div64" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca18">
+                                <div id="div65" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta18">
+                                <div id="div66" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta18">
+                                <div id="div67" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta18">
+                                <div id="div68" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado18">
+                                <div id="div69" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo18">
+                                <div id="div70" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">19:00</td>
-                            <td><div id="div71" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div72" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div73" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div74" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div75" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div76" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div77" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda19">
+                                <div id="div71" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca19">
+                                <div id="div72" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta19">
+                                <div id="div73" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta19">
+                                <div id="div74" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta19">
+                                <div id="div75" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado19">
+                                <div id="div76" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo19">
+                                <div id="div77" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">20:00</td>
-                            <td><div id="div78" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div79" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div80" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div81" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div82" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div83" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div84" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda20">
+                                <div id="div78" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca20">
+                                <div id="div79" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta20">
+                                <div id="div80" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta20">
+                                <div id="div81" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta20">
+                                <div id="div82" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado20">
+                                <div id="div83" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo20">
+                                <div id="div84" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">21:00</td>
-                            <td><div id="div85" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div86" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div87" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div88" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div89" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div90" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div91" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
+                            <td class="segunda21">
+                                <div id="div85" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="terca21">
+                                <div id="div86" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quarta21">
+                                <div id="div87" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="quinta21">
+                                <div id="div88" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta21">
+                                <div id="div89" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado21">
+                                <div id="div90" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo21">
+                                <div id="div91" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td class="hora_tabela">22:00</td>
-                            <td><div id="div92" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div93" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div94" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div95" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div96" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div97" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                            <td><div id="div98" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)"></div></td>
-                        </tr>
-                    </table>
-
-                    <br>
-                    <br>
-                    <%//for(var i= 0; i< User.length; i+=2) {%>
-                        <%if(false/*i!=User.length-1*/){%>
-                            <div id="drag<%=i%>" class="nome" draggable="true" ondragstart="drag(event)" width="50" height="20"><%= User[i].name+"/"+ User[i+1].name%></div>
-                            <br>
-                            <br>
-                        <% } %>
-                    <% //} %>
-
-                    <p>Clique no par para consultar a indisponibilidade</p>
-                    <br>
-                    <br>
-                    <% for(par of Pares){ %>
-                        <div id="drag<%=par._id%>" class="<%=par?.tournaments?.find((elem)=>{return elem.id.toString() === Torneio._id.toString()})?.level%>" draggable="true" ondragstart="drag(event)" onclick="alertFunction(this);" data-pair-id="<%=par._id%>" data-pair-names="<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%>" data-pair-unavailability="<%=par?.tournaments?.find((elem)=>{return elem.id.toString() === Torneio._id.toString()})?.unavailability%>"><%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[0].toString()})?.name%>/<%=Utilizadores?.find((elem)=>{return elem._id.toString() === par.users[1].toString()})?.name%></div>
-                    <%}%>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <h3>Legenda:</h3>
-                    <table>
-                        <tr>
-                            <td>
-                                <div class="nivel1">Nível 1</div>
+                            <td class="segunda22">
+                                <div id="div92" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
                             </td>
-                            <td>
-                                <div class="nivel2">Nível 2</div>
+                            <td class="terca22">
+                                <div id="div93" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
                             </td>
-                            <td>
-                                <div class="nivel3">Nível 3</div>
+                            <td class="quarta22">
+                                <div id="div94" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
                             </td>
-                            <td>
-                                <div class="nivel4">Nível 4</div>
+                            <td class="quinta22">
+                                <div id="div95" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sexta22">
+                                <div id="div96" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="sabado22">
+                                <div id="div97" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
+                            </td>
+                            <td class="domingo22">
+                                <div id="div98" class="divdrop" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </div>
                             </td>
                         </tr>
                     </table>
 
-                    <button type="submit" class="enviar">
-                        Submeter alteração
-                    </button>
+                    <br>
+                    <br>
+                    <% //for(var i=0; i< User.length; i+=2) {%>
+                        <%if(false /*i!=User.length-1*/){%>
+                            <div id="drag<%=i%>" class="nome" draggable="true" ondragstart="drag(event)" width="50"
+                                height="20">
+                                <%= User[i].name+"/"+ User[i+1].name%>
+                            </div>
+                            <br>
+                            <br>
+                            <% } %>
+                                <% //} %>
+                                    <p>Organize os jogos do torneio arrastando as duplas para o dia e hora
+                                        pretendido!
+                                    </p>
+                                    <br>
+                                    <br>
+                                    <% for(var i=0 ; i<Jogos.length; i++){ %>
+                                        <div id="drag<%=nivelJogos[i]._id%>" class="<%=nivelJogos[i].level%> game"
+                                            draggable="true" ondragstart="drag(event)">
+                                            <span>
+                                                <%= Jogos[i].jogo_dupla1 + " vs " + Jogos[i].jogo_dupla2 %>
+                                            </span>
+                                        </div>
+                                        <%}%>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <h3>Legenda:</h3>
+                                            <table>
+                                                <tr>
+                                                    <td class="nivel">
+                                                        <div class="level1">Nível 1</div>
+                                                    </td>
+                                                    <td class="nivel">
+                                                        <div class="level2">Nível 2</div>
+                                                    </td>
+                                                    <td class="nivel">
+                                                        <div class="level3">Nível 3</div>
+                                                    </td>
+                                                    <td class="nivel">
+                                                        <div class="level4">Nível 4</div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+                                            <button type="submit" class="enviar">
+                                                <p>Submeter alteração</p>
+                                            </button>
                 </div>
             </form>
         </div>
     </div>
 
+
     </html>
+    <script type="text/javascript">
+
+        const texto = document.querySelectorAll('.game');
+        for (i = 0; i < texto.length; i++) {
+            let text = texto[i].innerHTML;
+            console.log(text)
+            let result = text.replace(",", "/");
+            texto[i].innerHTML = result;
+        }
+
+        const jogos = document.querySelectorAll('.game');
+        for (i = 0; i < jogos.length; i++) {
+            let text = jogos[i].innerHTML;
+            console.log(text)
+            let result = text.replace(",", "/");
+            jogos[i].innerHTML = result;
+        }
+
+        const duplasOption = document.querySelectorAll('option');
+        for (i = 0; i < duplasOption.length; i++) {
+            let text = duplasOption[i].innerHTML;
+            console.log(text)
+            let result = text.replace(",", "/");
+            duplasOption[i].innerHTML = result;
+        }
+
+        const duplas2Option = document.querySelectorAll('option');
+        for (i = 0; i < duplas2Option.length; i++) {
+            let text = duplas2Option[i].innerHTML;
+            console.log(text)
+            let result = text.replace(",", "/");
+            duplas2Option[i].innerHTML = result;
+        }
+
+        /*function jogosHandler() {
+            var x = document.getElementsByID("#option_jogos").value;
+            console.log(x);
+        }*/
+
+
+
+        function SelectedGame() {
+            var select = document.getElementById('option_jogos');
+            var option = select.options[select.selectedIndex];
+
+            console.log(option.selectedIndex)
+            //var arrayopcao = []
+            var opcao = option.value;
+            var opcaoSplit = opcao.split(',')
+
+            console.log(element)
+            //console.log(opcaoSplit);
+            var limpa = document.getElementsByTagName("td");
+            for (const limpar of limpa) {
+                limpar.style.backgroundColor = '#16db9381';
+            }
+
+            //limpa[0].style.backgroundColor = "#16db9381";
+            for (var i = 0; i < opcaoSplit.length; i++) {
+                var element = document.getElementsByClassName(opcaoSplit[i]);
+                element[0].style.backgroundColor = "#e70909";
+            }
+            //console.log(arrayopcao)
+        }
+        SelectedGame()
+
+    </script>
     <!-- /Main Site -->
 
 
-<!-- include footer -->
-<%- include('include/_footer') %>
-<!-- /include footer -->
+    <!-- include footer -->
+    <%- include('include/_footer') %>
+        <!-- /include footer -->

@@ -464,11 +464,7 @@ table {
     text-align: center;
 }
 
-#calendario_jogos .Calendar .table1 td {
-    background-color: #fff;
-    border: 1px solid #000000;
-    padding: 10px;
-}
+
 
 #calendario_jogos .Calendar .table1 {
 
@@ -480,11 +476,7 @@ table {
     margin-bottom: 20px;
 }
 
-#calendario_jogos .formulario .Calendar th {
-    background-color: #928c8c;
-    border: 1px solid #000000;
-    padding: 10px;
-}
+
 
 #calendario_jogos h1 {
     text-align: center;
@@ -551,6 +543,7 @@ span {
     box-sizing: border-box;
     width: 80%;
     border-radius: 6px;
+    padding-left: 7px;
     height: 46px;
     margin-bottom: 25px;
     background: #FFFFFF;
@@ -1074,7 +1067,7 @@ button img {
 
 #torneios_admin .block_torneios:hover .overlay {
     opacity: 1;
-    border-radius: 31px;
+    /*border-radius: 31px;*/
 }
 
 #torneios_admin .block_torneios button {
@@ -1116,7 +1109,99 @@ button img {
 
 #editar_inscricoes form {
     display: inline-block;
+    width: 77%;
 }
+
+#editar_inscricoes .formulario {
+    display: inline-flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: baseline;
+    text-align: center;
+}
+
+#editar_inscricoes .formulario input {
+    width: 96%;
+    font-size: 18px;
+    font-family: 'Poppins';
+}
+
+#editar_inscricoes .formulario label {
+    float: left;
+    padding-left: 10px;
+}
+
+#brackets h2 {
+    text-align: center;
+    font-size: 40px;
+}
+
+#brackets {
+    margin-top: 20px;
+}
+
+#brackets .tab {
+    text-align: center;
+    margin: 80px 0;
+}
+
+.ShowBracket td {
+    background-color: #fff;
+    font-size: 18px;
+}
+
+.ShowBracket th {
+    background-color: rgb(126 126 126);
+    font-size: 21px;
+}
+
+.ShowBracket .table {
+    padding: 40px;
+}
+
+.ShowBracket .table td:hover {
+    background-color: #fff;
+}
+
+
+#calendario_jogos .Calendar .table td:hover {
+    background-color: #16db9381;
+}
+
+#calendario_jogos .table .hora_tabela,
+#calendario_jogos .nivel {
+    background-color: #fff !important;
+}
+
+#calendario_jogos .game {
+    border-radius: 5px;
+    border: 2px solid #000000;
+    vertical-align: middle;
+    margin: 0 20px;
+}
+
+#calendario_jogos .game span {
+    font-weight: 600;
+}
+
+#calendario_jogos .formulario select {
+    width: max-content;
+    font-size: 17px;
+}
+
+#calendario_jogos .formulario input[type=date] {
+    width: auto !important;
+}
+
+#calendario_jogos p {
+    font-weight: normal;
+    text-align: center;
+    font-size: 18px;
+    padding-left: 0;
+}
+
 
 /*media queries para responsive*/
 @media (max-width: 361px) {

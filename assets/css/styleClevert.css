@@ -80,7 +80,8 @@ td {
 }
 
 .toSelectSlots {
-    margin: 1%;
+    margin-bottom: 60px;
+    text-align: center;
 }
 
 /*.genDiv:nth-child(n+2) {

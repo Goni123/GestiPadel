@@ -1,0 +1,56 @@
+<!-- include header -->
+<%- include('include/_header', {Us:US}) %>
+    <!-- /include header -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+
+    <body>
+        <div id="editar_torneio_admin">
+            <div class="titulo">
+                <% for(tournment of Tournament){%>
+                    <h1><%=tournment.nometorneio%>
+                    </h1>
+                    <%}%>
+            </div>
+            <% for(tournment of Tournament){%>
+                <div class="bloco">
+                    <form action="/calendario_jogos/<%=tournment._id%>" method="post">
+                        <button type="submit" class="enviar">
+                            <p>Ver Horários de Jogos</p>
+                        </button>
+                    </form>
+
+                    <form action="/view_brakets/<%=tournment._id%>" method="get">
+                        <button type="submit" class="enviar">
+                            <p> Ver Resultados de Jogos</p>
+                        </button>
+                    </form>
+                </div>
+            <%}%>
+        </div>
+    </body>
+
+
+    </html>
+
+
+
+    <!-- include footer -->
+    <%- include('include/_footer') %>
+        <!-- /include footer -->

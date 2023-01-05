@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registo Administrador</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Registo de Administrador</title>
 </head>
-<body>
-    <h1>Registar Administrador</h1>
-    
-    <form method="POST">
-        <label for="name_admin">Nome:</label><br>
-        <input type="text" name="username_admin" placeholder="Nome" pattern="[A-Za-z\W+]{1,25}" required>
-        <br>
-        <br>
-        <label for="password_admin">Password:</label><br>
-        <input type="password" name="password_admin" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A password tem de conter pelo menos um número, uma letra maiúscula, uma letra minúscula, e pelo menos 8 caracteres ou mais" required>
-        <br>
-        <br>
-        <label for="confirmpassword_admin">Confirmar Password:</label><br>
-        <input type="password" name="confirmpassword_admin" placeholder="Confirmar Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="A password tem de conter pelo menos um número, uma letra maiúscula, uma letra minúscula, e pelo menos 8 caracteres ou mais" required>
-        <br>
-        <br>
-        <button>Registar-se</button>
-    </form>
-    
+
+<body style="background-color:#4141A5;">
+    <div id="registo_admin">
+
+        <div class="container">
+
+
+            <h1>Registar Administrador</h1>
+            <div class="logo">
+                <img src="../img/logo_bola.png">
+            </div>
+            <form method="POST">
+                <br>
+                <input type="text" name="username_admin" placeholder="Nome" pattern="[A-Za-z\W+]{1,25}" required>
+                <br>
+                <br>
+                <br>
+                <input type="password" name="password_admin" placeholder="Password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="A password tem de conter pelo menos um número, uma letra maiúscula, uma letra minúscula, e pelo menos 8 caracteres ou mais"
+                    required>
+                <br>
+                <br>
+                <br>
+                <input type="password" name="confirmpassword_admin" placeholder="Confirmar Password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="A password tem de conter pelo menos um número, uma letra maiúscula, uma letra minúscula, e pelo menos 8 caracteres ou mais"
+                    required>
+                <br>
+                <br>
+                <button>
+                    <p>Registar-se</p>
+                </button>
+            </form>
+        </div>
+    </div>
+
 </body>
+
 </html>

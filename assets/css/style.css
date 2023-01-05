@@ -1232,6 +1232,42 @@ button img {
     margin-bottom: 10px;
 }
 
+#registo_admin .logo {
+    text-align: center;
+    margin: 19px 0px;
+}
+
+#registo_admin .logo img {
+    width: auto;
+    height: 117px;
+}
+
+#registo_admin form {
+    margin-top: 0px;
+}
+
+#registo_admin input[type=text],
+#registo_admin input[type=password] {
+    border: none;
+    border-bottom: 2px solid rgb(0, 0, 0);
+    font-size: 25px;
+    margin: 0px 0 22px 0px;
+}
+
+#registo_admin h1 {
+
+    text-align: center;
+}
+
+#registo_admin .container {
+    height: fit-content;
+    background-color: #fff;
+    border-radius: 14px;
+    margin-top: 10%;
+    padding: 40px;
+    width: fit-content;
+}
+
 /*media queries para responsive*/
 @media (max-width: 361px) {
 

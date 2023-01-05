@@ -110,23 +110,45 @@
                 <h1>Calendário de jogos</h1>
                 <!--fazer push do nome db-->
             </div>
+
             <p class="aviso">*FUNCIONALIDADES EM TESTES*</p>
             <br>
             <p>Selecione o jogo para consultar as indisponibilidades</p>
             <br>
-            <form method="POST" action="/guardarCalendario/<%nivelJogos._id%> ">
+
+
+
+
+            <form method="POST">
+
                 <!--<div class="jgd1">
                     <br>
                     <br>
                     <label for="jogadoresnivel">Selecione o nível:</label><br>-->
 
+                    <script>
+                        function get_data(){
+                            var num = document.getElementsByTagName("option")
+                            console.log(num)
+                            var opt
+                            for(var i = 0; i < num.length; i++){
+                                if(num[i].selected == 1){
+                                    opt = num[i].id
+                                }
+                            }
+                            console.log(opt)
+                            //var url =opt;
+                            //document.getElementById('formCalendario').setAttribute('action', url);
 
-                <select name="Jogos" id="option_jogos" onChange="SelectedGame()">
+                        }
+                    </script>
+
+                <select name="Jogos" id="option_jogos" onChange="get_data(); SelectedGame();">
                     <option></option>
 
                     <% for(var i=0 ; i<Jogos.length; i++){ %>
 
-                        <option value="<%=indisponibilidade[i].dupla1 + " ," + indisponibilidade[i].dupla2 %>">
+                        <option value="<%=indisponibilidade[i].dupla1 + " ," + indisponibilidade[i].dupla2 %>" id=<%=i%>>
 
                             <%=Jogos[i].jogo_dupla1 + " vs " +Jogos[i].jogo_dupla2 %>
 
@@ -134,6 +156,8 @@
 
                         <%}%>
                 </select>
+
+                
 
                 <input type="date" class="data">
                 <br>

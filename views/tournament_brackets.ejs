@@ -18,16 +18,21 @@
 
     <body>
         <div id="brackets">
+
             <h2>
                 <%=Tor?.nometorneio%>
             </h2>
+            <p class="aviso">*FUNCIONALIDADES EM TESTES*</p>
 
-            <p>*FUNCIONALIDADES EM TESTES*</p>
             <%if(Tor?.fasegrupos==="Sim"){%>
                 <p hidden id="hasGroup"></p>
                 <%} if (false){//groupfase has ended%>
                     <p hidden id="groupEnd"> </p>
                     <%}%>
+                        <p class="aviso">*Favor, somente inserir os nomes após o encerramente das inscrições do
+                            torneio*
+                        </p>
+                        <p class="desc">Arraste as duplas</p>
 
 
                         <div class="tab">
@@ -41,9 +46,7 @@
                         <div class="toSelectSlots">
                             <%if (Tor.fasegrupos==="Sim" ){%>
                                 <div class="genDiv Gclass">
-                                    <p>Arraste as duplas para o respectivo grupo</p>
-                                    <p>*Favor, somente inserir os nomes após o encerramente das inscrições do torneio*
-                                    </p>
+
                                     <% for(par of Pares){ let tempgame=Games.filter((elem)=>{return
                                         (elem.pair1.toString() === par._id.toString()|| elem.pair2.toString() ===
                                         par._id.toString()) && elem.phase === "grupos" })
@@ -62,9 +65,6 @@
 
                                 <%}%>
                                     <div class="genDiv Bclass">
-                                        <p>Arraste os nomes das duplas aos campos dos brackets com seus respectivos
-                                            resultados</p>
-                                        <p>*As duplas somente são inseridas na primeira fase*</p>
                                         <% for(par of Pares){%>
                                             <div class="teamDiv sourceDiv Bclass_" draggable="true"
                                                 data-pair-id="<%=par._id%>" <%=false ? 'data-location-target=' +"asda"

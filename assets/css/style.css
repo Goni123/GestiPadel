@@ -1086,12 +1086,24 @@ button img {
     vertical-align: middle;
 }
 
+#alterarInsc .titulo {
+    text-align: center;
+}
+
+#alterarInsc .aviso {
+    text-align: center;
+}
+
+#alterarInsc .desc {
+    text-align: center;
+}
+
 #alterarInsc .table th {
     background-color: rgb(126 126 126);
 }
 
 #alterarInsc .table {
-    padding: 90px;
+    padding: 17px 90px 90px 90px;
 }
 
 .btn.border-shadow.delete {
@@ -1138,13 +1150,23 @@ button img {
     font-size: 40px;
 }
 
+#brackets .aviso {
+    text-align: center;
+}
+
+#brackets .desc {
+    text-align: center;
+}
+
 #brackets {
     margin-top: 20px;
 }
 
 #brackets .tab {
     text-align: center;
-    margin: 80px 0;
+
+    margin: 42px 0;
+
 }
 
 .ShowBracket td {
@@ -1202,6 +1224,13 @@ button img {
     padding-left: 0;
 }
 
+.aviso {
+    color: red;
+}
+
+#calendario_jogos .titulo {
+    margin-bottom: 10px;
+}
 
 /*media queries para responsive*/
 @media (max-width: 361px) {

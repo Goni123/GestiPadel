@@ -17,15 +17,19 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <!-- Main Site -->
-    <br>
-    <p>Clique no botão editar para alterar os dados dos jogadores</p>
-    <br>
-    <p>*Clicar no botão "X" elimina a incrição da dupla*</p>
-    <br>
-    <p>*Só pode remover utilizadores do torneio, antes de criar fases de grupos*</p>
-    <br>
+
 
     <div id="alterarInsc">
+        <div class="titulo">
+            <h1>Alterar Incrições</h1>
+        </div>
+
+        <br>
+        <p class="desc">Clique no botão editar para alterar os dados dos jogadores</p>
+        <br>
+        <p class="aviso">*Clicar no botão "X" elimina a incrição da dupla*</p>
+        <br>
+        <p class="aviso">*Só pode remover utilizadores do torneio, antes de criar fases de grupos*</p>
 
         <table class="table">
 
@@ -50,7 +54,7 @@
                                             <td style="text-align: center; vertical-align: middle" rowspan="2">
                                                 <%= num_dupla %>
                                             </td>
-                                            <%=num_dupla++%>
+                                            <%num_dupla++%>
                                                 <% } %>
                                                     <td id="name_tabela">
                                                         <%= User[i].name%>
